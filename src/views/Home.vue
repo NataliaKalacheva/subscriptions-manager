@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-
+    <ui-button>Button example</ui-button>
   </div>
 </template>
 
