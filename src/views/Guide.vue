@@ -25,6 +25,7 @@
     </section>
     <section>
       <h3>Inputs</h3>
+      <ui-input placeholder="example@example.com" v-model="input" size="medium"></ui-input>
     </section>
   </div>
 </template>
@@ -33,6 +34,9 @@
 export default {
   name: 'Guide',
   components: {},
+  data: () => ({
+    input: '',
+  }),
 };
 </script>
 

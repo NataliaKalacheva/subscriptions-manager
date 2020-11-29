@@ -1,5 +1,5 @@
 <template>
-  <el-input placeholder="Please input" v-model="input"></el-input>
+  <el-input class="ui-input" v-bind="$attrs" v-on="$listeners"></el-input>
 </template>
 
 <script>
@@ -11,4 +11,17 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  $color-input-bg: #EBEDF0;
+  $color-input-text: #77869E;
+
+  .ui-input /deep/ {
+    .el-input__inner {
+      height: 50px;
+      color: $color-input-text;
+      background: $color-input-bg;
+      border-color: $color-input-bg;
+      border-radius: 18px;
+    }
+  }
+</style>
