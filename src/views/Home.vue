@@ -1,14 +1,12 @@
 <template>
   <div class="home">
-    <ui-button>Button example</ui-button>
+    <h1>Home</h1>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'Home',
-  components: {
-  },
+  components: {},
 };
 </script>
