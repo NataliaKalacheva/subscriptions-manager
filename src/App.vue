@@ -10,12 +10,20 @@
 </template>
 
 <style lang="scss">
+$bg-color: #3380FE;
+$white: #fff;
+
+body {
+  margin: 0 0;
+  color: $white;
+  background: $bg-color;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 
 #nav {

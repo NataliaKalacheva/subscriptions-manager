@@ -24,6 +24,7 @@ export default {
 
   .ui-button {
     & /deep/ {
+      margin: 10px;
       font-family: Arial, sans-serif;
     }
 

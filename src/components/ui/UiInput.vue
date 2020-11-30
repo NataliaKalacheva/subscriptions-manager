@@ -1,5 +1,6 @@
 <template>
-  <el-input class="ui-input" v-bind="$attrs" v-on="$listeners"></el-input>
+  <el-input class="ui-input" v-bind="$attrs" v-on="$listeners">
+  </el-input>
 </template>
 
 <script>
@@ -16,6 +17,7 @@ export default {
   $color-input-text: #77869E;
 
   .ui-input /deep/ {
+      margin: 10px;
     .el-input__inner {
       height: 50px;
       color: $color-input-text;
