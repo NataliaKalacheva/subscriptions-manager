@@ -1,5 +1,6 @@
 <template>
-  <el-input class="ui-input" v-bind="$attrs" v-on="$listeners">
+  <el-input class="ui-input" v-bind="$attrs" v-on="$listeners"
+           :class="{ isFullWidth: isFullWidth}">
   </el-input>
 </template>
 
@@ -7,6 +8,12 @@
 export default {
   name: 'UiInput',
   props: {
+    width: {
+      type: [Number, String],
+    },
+    isFullWidth: {
+      type: Boolean,
+    },
   },
 
 };
@@ -18,12 +25,20 @@ export default {
 
   .ui-input /deep/ {
       margin: 10px;
+      width: auto;
+    ::placeholder {
+      color:  $color-input-text;
+    }
     .el-input__inner {
       height: 50px;
+      padding-left: 25px;
       color: $color-input-text;
       background: $color-input-bg;
       border-color: $color-input-bg;
       border-radius: 18px;
     }
+  }
+  .isFullWidth /deep/ {
+    width: 100%;
   }
 </style>

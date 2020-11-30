@@ -25,12 +25,13 @@
       </section>
       <section>
         <h3>Inputs</h3>
-        <ui-input placeholder="example@example.com" v-model="input" size="medium"></ui-input>
+        <ui-input placeholder="example@example.com" v-model="input" size="medium"
+                 :isFullWidth="true"/>
       </section>
       <section>
         <h3>Select</h3>
         <ui-select :options="options" :title="optionTitle" v-model="selected"
-                   size="large"/>
+                   :isFullWidth="true" size="large"/>
         <span>Selected: {{ selected }}</span>
       </section>
     </ui-container>

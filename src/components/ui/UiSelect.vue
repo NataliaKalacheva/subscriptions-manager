@@ -1,5 +1,6 @@
 <template>
-  <el-select class="ui-select" v-bind="$attrs" v-on="$listeners">
+  <el-select class="ui-select" :class="{ isFullWidth: isFullWidth}"
+              :width="width" v-bind="$attrs" v-on="$listeners">
     <el-option v-if="title" disabled value="">{{ title }}</el-option>
     <el-option v-for="option in options" :key="option.value" :value="option.value">
       {{ option.label }}
@@ -21,6 +22,12 @@ export default {
     suffix: {
       type: String,
     },
+    width: {
+      type: [Number, String],
+    },
+    isFullWidth: {
+      type: Boolean,
+    },
   },
 };
 </script>
@@ -36,10 +43,15 @@ export default {
     .el-input {
       &__inner {
         height: 50px;
+        padding-left: 25px;
+        padding-right: 70px;
         color: $color-input-text;
         background: $color-input-bg;
         border-color: $color-input-bg;
         border-radius: 18px;
+        &::placeholder {
+          color:  $color-input-text;
+        }
       }
       &.is-focus .el-input__inner {
         border-color: $color-input-accent;
@@ -48,7 +60,7 @@ export default {
         &:before {
           content: 'Change';
           position: absolute;
-          right: 5px;
+          right: 10px;
           top: 50%;
           transform: translateY(-50%);
           color: $color-input-accent;
@@ -63,13 +75,21 @@ export default {
       }
 
     }
-
-    .el-select-dropdown {
+  }
+  .ui-select.isFullWidth {
+    width: 100%;
+  }
+  .el-select-dropdown__item {
+    & /deep/ {
       font-family: Arial, sans-serif;
-
-      &__item.selected {
-        color: $color-input-accent;
-      }
+    }
+    &:hover /deep/,
+    &.hover /deep/,
+    &:focus /deep/ {
+        background: $color-input-bg;
+    }
+    &.selected /deep/{
+      color: $color-input-accent;
     }
   }
 </style>
