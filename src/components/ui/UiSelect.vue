@@ -34,23 +34,24 @@ export default {
 
 <style lang="scss" scoped>
   $color-input-bg: #EBEDF0;
-  $color-input-text: #77869E;
+  $color-input-placeholder: #77869E;
   $color-input-accent: #3380FE;
+  $color-input-text: #042C5C;
 
   .ui-select /deep/ {
-      margin: 10px;
+      margin: 5px 0;
 
     .el-input {
       &__inner {
         height: 50px;
         padding-left: 25px;
         padding-right: 70px;
-        color: $color-input-text;
+        color:  $color-input-text;
         background: $color-input-bg;
         border-color: $color-input-bg;
         border-radius: 18px;
         &::placeholder {
-          color:  $color-input-text;
+          color:  $color-input-placeholder;
         }
       }
       &.is-focus .el-input__inner {
@@ -82,6 +83,10 @@ export default {
   .el-select-dropdown__item {
     & /deep/ {
       font-family: Arial, sans-serif;
+      color: $color-input-placeholder;
+    }
+    &.is-disabled /deep/ {
+      color: rgba($color-input-placeholder,.7);
     }
     &:hover /deep/,
     &.hover /deep/,

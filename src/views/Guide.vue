@@ -34,6 +34,14 @@
                    :isFullWidth="true" size="large"/>
         <span>Selected: {{ selected }}</span>
       </section>
+      <section>
+        <h3>Form item</h3>
+        <el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign">
+          <ui-form-item label="Name">
+            <ui-input v-model="formData.name"></ui-input>
+          </ui-form-item>
+        </el-form>
+      </section>
     </ui-container>
   </div>
 </template>
@@ -57,6 +65,12 @@ export default {
     }],
     optionTitle: 'Please select',
     selectSuffix: 'Change',
+    labelPosition: 'top',
+    formData: {
+      name: '',
+      region: '',
+      type: '',
+    },
   }),
 };
 </script>

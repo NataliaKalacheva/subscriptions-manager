@@ -13,6 +13,7 @@ export default {
     },
     isFullWidth: {
       type: Boolean,
+      default: true
     },
   },
 
@@ -21,13 +22,15 @@ export default {
 
 <style lang="scss" scoped>
   $color-input-bg: #EBEDF0;
-  $color-input-text: #77869E;
+  $color-input-placeholder: #77869E;
+  $color-input-accent: #3380FE;
+  $color-input-text: #042C5C;
 
   .ui-input /deep/ {
-      margin: 10px;
+      margin: 5px 0;
       width: auto;
     ::placeholder {
-      color:  $color-input-text;
+      color:  $color-input-placeholder;
     }
     .el-input__inner {
       height: 50px;
@@ -36,6 +39,10 @@ export default {
       background: $color-input-bg;
       border-color: $color-input-bg;
       border-radius: 18px;
+
+      &:focus, &:hover {
+        border-color: $color-input-accent;
+      }
     }
   }
   .isFullWidth /deep/ {
