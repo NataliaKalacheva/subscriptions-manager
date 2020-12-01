@@ -25,12 +25,18 @@ export default {
   .ui-form-item /deep/ {
     text-align: left;
 
-    .el-form-item__label {
-      padding: 0;
-      font-size: 14px;
-      letter-spacing: 0.27px;
-      line-height: 2.4;
-      color: $color-text-grey;
+    .el-form-item {
+      &__label {
+        margin-left: 18px;
+        padding: 0;
+        font-size: 14px;
+        letter-spacing: 0.27px;
+        line-height: 2.4;
+        color: $color-text-grey;
+      }
+      &__error {
+        margin-left: 18px;
+      }
     }
   }
 </style>

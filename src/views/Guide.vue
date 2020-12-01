@@ -36,9 +36,17 @@
       </section>
       <section>
         <h3>Form item</h3>
-        <el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign">
-          <ui-form-item label="Name">
+        <el-form :label-position="labelPosition" label-width="100px"
+                 :model="formData" :rules="formRules" ref="formData"
+                 hide-required-asterisk>
+          <ui-form-item label="Name" prop="name">
             <ui-input v-model="formData.name"></ui-input>
+          </ui-form-item>
+          <ui-form-item label="Amount" prop="amount">
+            <ui-input v-model.number="formData.amount" placeholder="₦" type="number"></ui-input>
+          </ui-form-item>
+          <ui-form-item label="Password">
+            <ui-input v-model="formData.password" placeholder="Password" show-password></ui-input>
           </ui-form-item>
         </el-form>
       </section>
@@ -50,28 +58,55 @@
 export default {
   name: 'Guide',
   components: {},
-  data: () => ({
-    input: '',
-    selected: '',
-    options: [{
-      value: 'HTML',
-      label: 'HTML',
-    }, {
-      value: 'CSS',
-      label: 'CSS',
-    }, {
-      value: 'JavaScript',
-      label: 'JavaScript',
-    }],
-    optionTitle: 'Please select',
-    selectSuffix: 'Change',
-    labelPosition: 'top',
-    formData: {
-      name: '',
-      region: '',
-      type: '',
-    },
-  }),
+  data() {
+    const checkNumber = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error('Please input the value'));
+      }
+      if (!Number.isInteger(value)) {
+        callback(new Error('Please input digits'));
+      } else if (value <= 0) {
+        callback(new Error('Value must be greater than 0'));
+      } else {
+        callback();
+      }
+    };
+    return {
+      input: '',
+      selected: '',
+      options: [{
+        value: 'HTML',
+        label: 'HTML',
+      }, {
+        value: 'CSS',
+        label: 'CSS',
+      }, {
+        value: 'JavaScript',
+        label: 'JavaScript',
+      }],
+      optionTitle: 'Please select',
+      selectSuffix: 'Change',
+      labelPosition: 'top',
+      formData: {
+        name: '',
+        amount: 0,
+        password: '',
+        type: '',
+      },
+      formRules: {
+        name: [
+          { required: true, message: 'Please input name', trigger: 'blur' },
+          {
+            min: 3, message: 'Min length: 3', trigger: 'blur',
+          },
+        ],
+        amount: [
+          { required: true, message: 'Please input number', trigger: 'blur' },
+          { validator: checkNumber, trigger: 'blur' },
+        ],
+      },
+    };
+  },
 };
 </script>
 

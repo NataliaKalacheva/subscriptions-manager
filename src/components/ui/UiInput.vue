@@ -13,7 +13,7 @@ export default {
     },
     isFullWidth: {
       type: Boolean,
-      default: true
+      default: true,
     },
   },
 
@@ -27,7 +27,7 @@ export default {
   $color-input-text: #042C5C;
 
   .ui-input /deep/ {
-      margin: 5px 0;
+      margin: 0;
       width: auto;
     ::placeholder {
       color:  $color-input-placeholder;
@@ -43,6 +43,9 @@ export default {
       &:focus, &:hover {
         border-color: $color-input-accent;
       }
+    }
+    .el-input__clear {
+      color: $color-input-accent;
     }
   }
   .isFullWidth /deep/ {
