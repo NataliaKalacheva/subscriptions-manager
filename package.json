@@ -41,11 +41,11 @@
   },
   "lint-staged": {
     "*.js": [
-      "npm run lint --fix",
+      "npm run lint --fix --color",
       "git add"
     ],
     "*.vue": [
-      "npm run lint --fix",
+      "npm run lint --fix --color",
       "git add"
     ]
   }
