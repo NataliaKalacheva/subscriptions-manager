@@ -40,7 +40,7 @@
       </section>
       <section>
         <h3>Form item</h3>
-        <el-form :label-position="labelPosition" label-width="100px"
+        <ui-form :label-position="labelPosition" label-width="100px"
                  :model="formData" :rules="formRules" ref="formData"
                  hide-required-asterisk>
           <ui-form-item label="Name" prop="name">
@@ -52,7 +52,7 @@
           <ui-form-item label="Password">
             <ui-input v-model="formData.password" placeholder="Password" show-password></ui-input>
           </ui-form-item>
-        </el-form>
+        </ui-form>
       </section>
     </ui-container>
   </div>
