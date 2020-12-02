@@ -29,11 +29,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $primary-color: #3380FE;
-  $white: #ffffff;
-  $grey: #C8C8C8;
-  $info-color: rgb(119,134,158);
-
   .ui-button {
     & /deep/ {
       margin: 10px;
@@ -53,10 +48,10 @@ export default {
     }
 
     &.is-disabled /deep/ {
-      background-color: $grey;
-      border-color: $grey;
+      background-color: $color-grey;
+      border-color: $color-grey;
       .ui-icon {
-        color: $grey;
+        color: $color-grey;
       }
     }
 
@@ -64,39 +59,39 @@ export default {
       position: absolute;
       right: 10px;
       top: 50%;
-      background: $white;
-      color: $primary-color;
+      background: $color-white;
+      color: $color-blue;
       border-radius: 50%;
       transform: translateY(-50%);
     }
   }
 
   .el-button--default /deep/  {
-    background-color: $white;
-    border-color: $primary-color;
-    color: $primary-color;
+    background-color: $color-white;
+    border-color: $color-blue;
+    color: $color-blue;
   }
   .el-button--primary /deep/ {
     position: relative;
-    background-color: $primary-color;
-    border-color: $primary-color;
+    background-color: $color-blue;
+    border-color: $color-blue;
 
     .el-icon-arrow-right {
       position: absolute;
       right: 0;
-      background-color: $white;
-      color: $primary-color;
+      background-color: $color-white;
+      color: $color-blue;
     }
   }
   .el-button--info /deep/ {
-    background-color: $white;
-    border-color: $white;
-    color: $info-color;
+    background-color: $color-white;
+    border-color: $color-white;
+    color: $color-text-grey;
   }
   .el-button--info.is-plain /deep/ {
-    background-color: $white;
-    border-color: $info-color;
-    color: $info-color;
+    background-color: $color-white;
+    border-color: $color-text-grey;
+    color: $color-text-grey;
   }
   .el-button--large /deep/ {
     width: 223px;

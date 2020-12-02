@@ -32,31 +32,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $color-input-bg: #EBEDF0;
-  $color-input-placeholder: #77869E;
-  $color-input-accent: #3380FE;
-  $color-input-text: #042C5C;
-
   .ui-input /deep/ {
       margin: 0;
       width: auto;
     ::placeholder {
-      color:  $color-input-placeholder;
+      color:  $color-text-grey;
     }
     .el-input__inner {
       height: 50px;
       padding-left: 25px;
-      color: $color-input-text;
-      background: $color-input-bg;
-      border-color: $color-input-bg;
+      color: $color-dark-blue;
+      background: $color-light-grey;
+      border-color: $color-light-grey;
       border-radius: 18px;
 
       &:focus, &:hover {
-        border-color: $color-input-accent;
+        border-color: $color-blue;
       }
     }
     .el-input__clear {
-      color: $color-input-accent;
+      color: $color-blue;
     }
   }
 </style>

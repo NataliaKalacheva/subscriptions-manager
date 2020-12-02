@@ -38,7 +38,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $color-text-grey: #77869E;
 
   .ui-form-item /deep/ {
     text-align: left;

@@ -10,13 +10,11 @@
 </template>
 
 <style lang="scss">
-$bg-color: #3380FE;
-$white: #fff;
 
 body {
   margin: 0 0;
-  color: $white;
-  background: $bg-color;
+  color: $color-white;
+  background: $color-blue;
 }
 
 #app {
@@ -31,10 +29,10 @@ body {
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: $color-white;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: $color-grey;
     }
   }
 }

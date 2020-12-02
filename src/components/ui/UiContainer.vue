@@ -33,7 +33,7 @@ export default {
     margin: 0 auto;
     padding: 15px 33px;
     background: white;
-    color: #042C5C;
+    color: $color-dark-blue;
 
     &.is-rounded {
       border-radius: 50px 50px 0 0;

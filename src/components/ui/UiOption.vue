@@ -28,26 +28,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $color-input-bg: #EBEDF0;
-  $color-input-placeholder: #77869E;
-  $color-input-accent: #3380FE;
-  $color-input-text: #042C5C;
-
   .ui-option {
     & /deep/ {
       font-family: Arial, sans-serif;
-      color: $color-input-placeholder;
+      color: $color-text-grey;
     }
     &.is-disabled /deep/ {
-      color: rgba($color-input-placeholder,.7);
+      color: rgba($color-text-grey,.7);
     }
     &:hover /deep/,
     &.hover /deep/,
     &:focus /deep/ {
-        background: $color-input-bg;
+        background: $color-light-grey;
     }
     &.selected /deep/{
-      color: $color-input-accent;
+      color: $color-blue;
     }
   }
 </style>

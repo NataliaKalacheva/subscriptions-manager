@@ -33,11 +33,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $color-input-bg: #EBEDF0;
-  $color-input-placeholder: #77869E;
-  $color-input-accent: #3380FE;
-  $color-input-text: #042C5C;
-
   .ui-select /deep/ {
       margin: 5px 0;
 
@@ -46,16 +41,16 @@ export default {
         height: 50px;
         padding-left: 25px;
         padding-right: 70px;
-        color:  $color-input-text;
-        background: $color-input-bg;
-        border-color: $color-input-bg;
+        color:  $color-dark-blue;
+        background: $color-light-grey;
+        border-color: $color-light-grey;
         border-radius: 18px;
         &::placeholder {
-          color:  $color-input-placeholder;
+          color:  $color-text-grey;
         }
       }
       &.is-focus .el-input__inner {
-        border-color: $color-input-accent;
+        border-color: $color-blue;
       }
       &__suffix {
         &:before {
@@ -64,7 +59,7 @@ export default {
           right: 10px;
           top: 50%;
           transform: translateY(-50%);
-          color: $color-input-accent;
+          color: $color-blue;
         }
       }
     }
