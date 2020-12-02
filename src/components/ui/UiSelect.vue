@@ -20,8 +20,8 @@ export default {
       type: String,
     },
     selectWidth: {
-      type: [Number, String],
-      default: 500,
+      type: String,
+      default: '250px',
     },
     isFullWidth: {
       type: Boolean,
@@ -31,12 +31,11 @@ export default {
   computed: {
     selectClasses() {
       return {
-        'is-full-width': this.isFullWidth,
       };
     },
     selectStyles() {
       return {
-        width: this.selectWidth,
+        width: this.isFullWidth ? '100%' : this.selectWidth,
       };
     },
   },
@@ -87,9 +86,6 @@ export default {
       }
 
     }
-  }
-  .ui-select.isFullWidth {
-    width: 100%;
   }
   .el-select-dropdown__item {
     & /deep/ {

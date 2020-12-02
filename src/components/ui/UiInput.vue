@@ -1,6 +1,6 @@
 <template>
   <el-input class="ui-input" v-bind="$attrs" v-on="$listeners"
-           :class="{ isFullWidth: isFullWidth}">
+            :class="inputClasses" :style="inputStyles">
   </el-input>
 </template>
 
@@ -10,11 +10,22 @@ export default {
   props: {
     width: {
       type: [Number, String],
-      default: 250,
+      default: '250px',
     },
     isFullWidth: {
       type: Boolean,
       default: true,
+    },
+  },
+  computed: {
+    inputClasses() {
+      return {
+      };
+    },
+    inputStyles() {
+      return {
+        width: this.isFullWidth ? '100%' : this.width,
+      };
     },
   },
 };
@@ -47,8 +58,5 @@ export default {
     .el-input__clear {
       color: $color-input-accent;
     }
-  }
-  .isFullWidth /deep/ {
-    width: 100%;
   }
 </style>

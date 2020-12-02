@@ -1,5 +1,5 @@
 <template>
-  <el-button class="ui-button" :class="{ isShadow: isShadow, isArrow: isArrow }"
+  <el-button class="ui-button" :class="buttonClasses" :style="buttonStyles"
              v-bind="$attrs" v-on="$listeners">
     <slot/>
   </el-button>
@@ -13,12 +13,18 @@ export default {
       type: Boolean,
       default: false,
     },
-    isArrow: {
-      type: Boolean,
-      default: false,
+  },
+  computed: {
+    buttonClasses() {
+      return {
+        'is-shadow': this.isShadow,
+      };
+    },
+    buttonStyles() {
+      return {
+      };
     },
   },
-
 };
 </script>
 
@@ -42,7 +48,7 @@ export default {
       border-radius: 18px;
     }
 
-    &.isShadow /deep/ {
+    &.is-shadow /deep/ {
       box-shadow: 0 6px 12px rgba(0, 0, 0, .16);
     }
 

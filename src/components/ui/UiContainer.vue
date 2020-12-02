@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :class="{ isRounded: isRounded }">
+  <div class="container" :class="containerClasses" :style="containerStyles">
     <slot/>
   </div>
 </template>
@@ -10,10 +10,20 @@ export default {
   props: {
     isRounded: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
-
+  computed: {
+    containerClasses() {
+      return {
+        'is-rounded': this.isRounded,
+      };
+    },
+    containerStyles() {
+      return {
+      };
+    },
+  },
 };
 </script>
 
@@ -25,7 +35,7 @@ export default {
     background: white;
     color: #042C5C;
 
-    &.isRounded {
+    &.is-rounded {
       border-radius: 50px 50px 0 0;
     }
   }

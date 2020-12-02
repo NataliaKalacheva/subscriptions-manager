@@ -1,7 +1,9 @@
 <template>
-    <el-form-item class="ui-form-item" :label="label" v-bind="$attrs" v-on="$listeners">
-      <slot/>
-    </el-form-item>
+  <el-form-item class="ui-form-item" :label="label"
+               :class="itemClasses" :style="itemStyles"
+                v-bind="$attrs" v-on="$listeners">
+    <slot/>
+  </el-form-item>
 </template>
 
 <script>
@@ -14,10 +16,24 @@ export default {
     },
     isFullWidth: {
       type: Boolean,
-      default: false,
+      default: true,
+    },
+    width: {
+      type: [Number, String],
+      default: '250px',
     },
   },
-
+  computed: {
+    itemClasses() {
+      return {
+      };
+    },
+    itemStyles() {
+      return {
+        width: this.isFullWidth ? '100%' : this.width,
+      };
+    },
+  },
 };
 </script>
 

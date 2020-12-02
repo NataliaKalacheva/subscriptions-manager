@@ -1,6 +1,6 @@
 <template>
   <div class="guide">
-    <ui-container :isRounded="true">
+    <ui-container>
       <section>
         <h3>Buttons</h3>
         <ui-button type="primary" size="large">Continue
@@ -31,7 +31,7 @@
       <section>
         <h3>Select</h3>
         <ui-select :options="options" :title="optionTitle" v-model="selected"
-                   :isFullWidth="false" :selectWidth="selectWidth" size="large"/>
+                   :isFullWidth="true" size="large"/>
         <span>Selected: {{ selected }}</span>
       </section>
       <section>
@@ -105,7 +105,6 @@ export default {
           { validator: checkNumber, trigger: 'blur' },
         ],
       },
-      selectWidth: 500,
     };
   },
 };
