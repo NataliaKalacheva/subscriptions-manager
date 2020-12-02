@@ -30,8 +30,12 @@
       </section>
       <section>
         <h3>Select</h3>
-        <ui-select :options="options" :title="optionTitle" v-model="selected"
-                   :isFullWidth="true" size="large"/>
+        <ui-select v-model="selected"
+                   :isFullWidth="true" size="large">
+          <ui-option v-if="optionTitle" disabled value="" :label="optionTitle"/>
+          <ui-option v-for="option in options" :key="option.value"
+                    :value="option.value" :label="option.label"/>
+        </ui-select>
         <span>Selected: {{ selected }}</span>
       </section>
       <section>

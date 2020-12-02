@@ -1,10 +1,7 @@
 <template>
   <el-select class="ui-select" :class="selectClasses" :style="selectStyles"
              v-bind="$attrs" v-on="$listeners">
-    <el-option v-if="title" disabled value="">{{ title }}</el-option>
-    <el-option v-for="option in options" :key="option.value" :value="option.value">
-      {{ option.label }}
-    </el-option>
+    <slot/>
   </el-select>
 </template>
 
@@ -12,13 +9,6 @@
 export default {
   name: 'UiSelect',
   props: {
-    options: {
-      type: Array,
-      required: true,
-    },
-    title: {
-      type: String,
-    },
     selectWidth: {
       type: String,
       default: '250px',
@@ -85,23 +75,6 @@ export default {
         display: none;
       }
 
-    }
-  }
-  .el-select-dropdown__item {
-    & /deep/ {
-      font-family: Arial, sans-serif;
-      color: $color-input-placeholder;
-    }
-    &.is-disabled /deep/ {
-      color: rgba($color-input-placeholder,.7);
-    }
-    &:hover /deep/,
-    &.hover /deep/,
-    &:focus /deep/ {
-        background: $color-input-bg;
-    }
-    &.selected /deep/{
-      color: $color-input-accent;
     }
   }
 </style>
