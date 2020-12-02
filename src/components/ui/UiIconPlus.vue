@@ -30,9 +30,11 @@ export default {
     },
     isCircle: {
       type: Boolean,
+      default: false,
     },
     isShadow: {
       type: Boolean,
+      default: false,
     },
   },
 };

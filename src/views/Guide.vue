@@ -31,7 +31,7 @@
       <section>
         <h3>Select</h3>
         <ui-select :options="options" :title="optionTitle" v-model="selected"
-                   :isFullWidth="true" size="large"/>
+                   :isFullWidth="false" :selectWidth="selectWidth" size="large"/>
         <span>Selected: {{ selected }}</span>
       </section>
       <section>
@@ -105,6 +105,7 @@ export default {
           { validator: checkNumber, trigger: 'blur' },
         ],
       },
+      selectWidth: 500,
     };
   },
 };

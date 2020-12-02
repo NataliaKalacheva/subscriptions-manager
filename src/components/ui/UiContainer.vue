@@ -8,7 +8,10 @@
 export default {
   name: 'UiContainer',
   props: {
-    isRounded: Boolean,
+    isRounded: {
+      type: Boolean,
+      default: false,
+    },
   },
 
 };

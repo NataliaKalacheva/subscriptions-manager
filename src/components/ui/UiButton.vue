@@ -9,8 +9,14 @@
 export default {
   name: 'UiButton',
   props: {
-    isShadow: Boolean,
-    isArrow: Boolean,
+    isShadow: {
+      type: Boolean,
+      default: false,
+    },
+    isArrow: {
+      type: Boolean,
+      default: false,
+    },
   },
 
 };

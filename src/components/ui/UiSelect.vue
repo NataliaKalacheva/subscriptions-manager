@@ -1,6 +1,6 @@
 <template>
-  <el-select class="ui-select" :class="{ isFullWidth: isFullWidth}"
-              :width="width" v-bind="$attrs" v-on="$listeners">
+  <el-select class="ui-select" :class="selectClasses" :style="selectStyles"
+             v-bind="$attrs" v-on="$listeners">
     <el-option v-if="title" disabled value="">{{ title }}</el-option>
     <el-option v-for="option in options" :key="option.value" :value="option.value">
       {{ option.label }}
@@ -19,14 +19,25 @@ export default {
     title: {
       type: String,
     },
-    suffix: {
-      type: String,
-    },
-    width: {
+    selectWidth: {
       type: [Number, String],
+      default: 500,
     },
     isFullWidth: {
       type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    selectClasses() {
+      return {
+        'is-full-width': this.isFullWidth,
+      };
+    },
+    selectStyles() {
+      return {
+        width: this.selectWidth,
+      };
     },
   },
 };

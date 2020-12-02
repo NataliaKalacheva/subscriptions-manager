@@ -10,13 +10,13 @@ export default {
   props: {
     width: {
       type: [Number, String],
+      default: 250,
     },
     isFullWidth: {
       type: Boolean,
       default: true,
     },
   },
-
 };
 </script>
 
