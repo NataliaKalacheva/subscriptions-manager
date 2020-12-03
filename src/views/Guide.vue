@@ -60,7 +60,7 @@
 
 <script>
 
-import checkNumber from '../helpers/validators/checkNumber';
+import checkNumber from '@/helpers/validators/checkNumber';
 
 export default {
   name: 'Guide',

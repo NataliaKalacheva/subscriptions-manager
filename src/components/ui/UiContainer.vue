@@ -19,10 +19,6 @@ export default {
         'is-rounded': this.isRounded,
       };
     },
-    containerStyles() {
-      return {
-      };
-    },
   },
 };
 </script>

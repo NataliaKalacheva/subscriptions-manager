@@ -20,10 +20,6 @@ export default {
         'is-shadow': this.isShadow,
       };
     },
-    buttonStyles() {
-      return {
-      };
-    },
   },
 };
 </script>
