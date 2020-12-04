@@ -2,6 +2,7 @@
   <div class="page-login">
     <section-header :title="title">
       {{ subtitle }}
+      Or <router-link :to="{ name: 'SignUp' }">SignUp</router-link>
     </section-header>
     <ui-container>
       <ui-form
@@ -10,13 +11,13 @@
         ref="formData"
         hide-required-asterisk
       >
-        <ui-form-item label="Name" prop="email" :rules="formRules.email">
+        <ui-form-item label="Email" prop="email" :rules="formRules.email">
           <ui-input v-model="formData.email"></ui-input>
         </ui-form-item>
         <ui-form-item label="Password" prop="password" :rules="formRules.password">
           <ui-input v-model="formData.password" placeholder="Password" show-password></ui-input>
         </ui-form-item>
-        <ui-button type="primary" size="large" @click.prevent="submitForm(formData)"
+        <ui-button type="primary" size="large" @click.prevent="submitForm('formData')"
           >Login
           <ui-icon-base :isCircle="true" :isShadow="true">
             <ui-arrow-right></ui-arrow-right>
@@ -66,7 +67,7 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      this.$refs[formName].validate(valid => {
+      this.$refs[formName].$children[0].validate(valid => {
         if (valid) {
           console.log('submit!')
         } else {

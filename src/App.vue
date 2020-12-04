@@ -23,6 +23,14 @@ p {
   letter-spacing: 0.27px;
 }
 
+a {
+  color: $color-white;
+
+  &.router-link-exact-active {
+    color: $color-grey;
+  }
+}
+
 #app {
   display: flex;
   flex-direction: column;
@@ -39,11 +47,6 @@ p {
 
   a {
     font-weight: bold;
-    color: $color-white;
-
-    &.router-link-exact-active {
-      color: $color-grey;
-    }
   }
 }
 </style>

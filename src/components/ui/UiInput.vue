@@ -44,6 +44,9 @@ export default {
     &:hover {
       border-color: $color-blue;
     }
+    &:invalid {
+      border-color: red;
+    }
   }
   .el-input__clear {
     color: $color-blue;
