@@ -4,3 +4,9 @@ $color-grey: #C8C8C8;
 $color-text-grey: #77869E;
 $color-dark-blue: #042C5C;
 $color-blue: #3380FE;
+
+$tab: 768px;
+
+$breakpoints: (
+  "tab" $tab,
+);

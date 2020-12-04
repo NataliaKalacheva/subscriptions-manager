@@ -3,7 +3,8 @@
     <div id="nav">
       <router-link :to="{ name: 'Home' }">Home</router-link> |
       <router-link :to="{ name: 'About' }">About</router-link> |
-      <router-link :to="{ name: 'Guide' }">Guide</router-link>
+      <router-link :to="{ name: 'Guide' }">Guide</router-link> |
+      <router-link :to="{ name: 'Login' }">Login</router-link>
     </div>
     <router-view />
   </div>
@@ -16,7 +17,17 @@ body {
   background: $color-blue;
 }
 
+p {
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.27px;
+}
+
 #app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
