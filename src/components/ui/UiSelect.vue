@@ -1,5 +1,5 @@
 <template>
-  <el-select class="ui-select" :class="selectClasses" :style="selectStyles"
+  <el-select class="ui-select" :style="selectStyles"
              v-bind="$attrs" v-on="$listeners">
     <slot/>
   </el-select>
@@ -19,10 +19,6 @@ export default {
     },
   },
   computed: {
-    selectClasses() {
-      return {
-      };
-    },
     selectStyles() {
       return {
         width: this.isFullWidth ? '100%' : this.selectWidth,

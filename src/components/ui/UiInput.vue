@@ -1,6 +1,6 @@
 <template>
   <el-input class="ui-input" v-bind="$attrs" v-on="$listeners"
-            :class="inputClasses" :style="inputStyles">
+            :style="inputStyles">
   </el-input>
 </template>
 
@@ -18,10 +18,6 @@ export default {
     },
   },
   computed: {
-    inputClasses() {
-      return {
-      };
-    },
     inputStyles() {
       return {
         width: this.isFullWidth ? '100%' : this.width,

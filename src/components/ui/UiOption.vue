@@ -1,6 +1,5 @@
 <template>
-  <el-option class="ui-option" v-bind="$attrs" v-on="$listeners"
-            :class="optionClasses" :style="optionStyles">
+  <el-option class="ui-option" v-bind="$attrs" v-on="$listeners">
     {{ label }}
   </el-option>
 </template>
@@ -12,16 +11,6 @@ export default {
     label: {
       type: String,
       required: true,
-    },
-  },
-  computed: {
-    optionClasses() {
-      return {
-      };
-    },
-    optionStyles() {
-      return {
-      };
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <el-form-item class="ui-form-item" :label="label"
-               :class="itemClasses" :style="itemStyles"
+                :style="itemStyles"
                 v-bind="$attrs" v-on="$listeners">
     <slot/>
   </el-form-item>
@@ -24,10 +24,6 @@ export default {
     },
   },
   computed: {
-    itemClasses() {
-      return {
-      };
-    },
     itemStyles() {
       return {
         width: this.isFullWidth ? '100%' : this.width,

@@ -1,5 +1,5 @@
 <template>
-  <el-button class="ui-button" :class="buttonClasses" :style="buttonStyles"
+  <el-button class="ui-button" :class="buttonClasses"
              v-bind="$attrs" v-on="$listeners">
     <slot/>
   </el-button>
