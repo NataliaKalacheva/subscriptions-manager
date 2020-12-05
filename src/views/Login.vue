@@ -68,6 +68,7 @@ export default {
   methods: {
     submitForm(formName) {
       this.$refs[formName].$children[0].validate(valid => {
+        console.log(this.$refs[formName].$children[0])
         if (valid) {
           console.log('submit!')
         } else {

@@ -55,4 +55,10 @@ export default {
     }
   }
 }
+
+.ui-form-item.is-error /deep/ {
+  .el-input__inner {
+    border-color: $color-danger;
+  }
+}
 </style>
