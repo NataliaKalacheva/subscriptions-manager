@@ -5,87 +5,25 @@
       Or <router-link :to="{ name: 'Login' }">Login</router-link>
     </section-header>
     <ui-container>
-      <ui-form
-        :label-position="labelPosition"
-        :model="formData"
-        ref="formData"
-        hide-required-asterisk
-      >
-        <ui-form-item label="Email" prop="email" :rules="formRules.email">
-          <ui-input v-model="formData.email"></ui-input>
-        </ui-form-item>
-        <ui-form-item label="Password" prop="password" :rules="formRules.password">
-          <ui-input v-model="formData.password" placeholder="Password" show-password></ui-input>
-        </ui-form-item>
-        <ui-form-item
-          label="Repeat password"
-          prop="repeatPassword"
-          :rules="formRules.repeatPassword"
-        >
-          <ui-input
-            v-model="formData.repeatPassword"
-            placeholder="Password"
-            show-password
-          ></ui-input>
-        </ui-form-item>
-        <ui-button type="primary" size="large" @click.prevent="submitForm('formData')"
-          >Login
-          <ui-icon-base :isCircle="true" :isShadow="true">
-            <ui-arrow-right></ui-arrow-right>
-          </ui-icon-base>
-        </ui-button>
-      </ui-form>
+      <sign-up-form />
     </ui-container>
   </div>
 </template>
 
 <script>
-import SectionHeader from '@/components/SectionHeader'
+import SectionHeader from '@/components/Auth/SectionHeader'
+import SignUpForm from '@/components/Auth/SignUpForm'
 
 export default {
-  name: 'Login',
+  name: 'SignUp',
   components: {
-    SectionHeader
+    SectionHeader,
+    SignUpForm
   },
-  data() {
-    return {
-      title: 'Welcome',
-      subtitle: 'Fill all fields to create the new account.',
-      formData: {
-        email: '',
-        password: '',
-        repeatPassword: ''
-      },
-      formRules: {
-        email: [
-          { required: true, message: 'Please input email address', trigger: 'submit' },
-          {
-            type: 'email',
-            message: 'Please input correct email address',
-            trigger: ['sumbit']
-          }
-        ],
-        password: [
-          { required: true, message: 'Please input password', trigger: 'submit' },
-          {
-            min: 4,
-            message: 'Min length: 4',
-            trigger: 'submit'
-          }
-        ],
-        repeatPassword: [
-          { required: true, message: 'Please input password', trigger: 'submit' },
-          {
-            min: 4,
-            message: 'Min length: 4',
-            trigger: 'submit'
-          },
-          { validator: this.checkPassword, trigger: 'sumbit' }
-        ]
-      },
-      labelPosition: 'top'
-    }
-  },
+  data: () => ({
+    title: 'Welcome',
+    subtitle: 'Fill all fields to create the new account.'
+  }),
   methods: {
     submitForm(formName) {
       this.$refs[formName].$children[0].validate(valid => {

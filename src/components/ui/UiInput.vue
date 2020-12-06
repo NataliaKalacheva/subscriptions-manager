@@ -1,5 +1,5 @@
 <template>
-  <el-input class="ui-input" v-bind="$attrs" v-on="$listeners" :style="inputStyles"> </el-input>
+  <el-input class="ui-input" v-bind="$attrs" v-on="$listeners" :style="inputStyles" />
 </template>
 
 <script>

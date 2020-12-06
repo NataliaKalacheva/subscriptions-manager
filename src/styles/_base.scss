@@ -1,0 +1,19 @@
+body {
+  margin: 0 0;
+  color: $color-white;
+  background: $color-blue;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.27px;
+}
+
+a {
+  color: $color-white;
+
+  &.router-link-exact-active {
+    color: $color-grey;
+  }
+}
