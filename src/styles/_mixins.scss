@@ -1,0 +1,10 @@
+@mixin mq($viewport: null) {
+  @media screen and (min-width: $viewport + 1) {
+    @content;
+  }
+}
+@mixin mq-max($viewport: null) {
+  @media screen and (max-width: $viewport) {
+    @content;
+  }
+}

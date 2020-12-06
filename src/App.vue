@@ -3,20 +3,20 @@
     <div id="nav">
       <router-link :to="{ name: 'Home' }">Home</router-link> |
       <router-link :to="{ name: 'About' }">About</router-link> |
-      <router-link :to="{ name: 'Guide' }">Guide</router-link>
+      <router-link :to="{ name: 'Guide' }">Guide</router-link> |
+      <router-link :to="{ name: 'Login' }">Login</router-link> |
+      <router-link :to="{ name: 'SignUp' }">SignUp</router-link>
     </div>
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
-body {
-  margin: 0 0;
-  color: $color-white;
-  background: $color-blue;
-}
-
 #app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,11 +28,6 @@ body {
 
   a {
     font-weight: bold;
-    color: $color-white;
-
-    &.router-link-exact-active {
-      color: $color-grey;
-    }
   }
 }
 </style>

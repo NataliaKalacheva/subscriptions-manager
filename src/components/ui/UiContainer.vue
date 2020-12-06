@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :class="containerClasses" :style="containerStyles">
+  <div class="container" :class="containerClasses">
     <slot />
   </div>
 </template>
@@ -25,14 +25,20 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  max-width: 768px;
-  margin: 0 auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   padding: 15px 33px;
   background: white;
   color: $color-dark-blue;
 
   &.is-rounded {
     border-radius: 50px 50px 0 0;
+  }
+
+  @include mq($tab) {
+    width: 768px;
+    margin: 0 auto;
   }
 }
 </style>
