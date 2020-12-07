@@ -28,7 +28,7 @@ export default {
     labelPosition: 'top'
   }),
   computed: {
-    ...mapGetters(['isLogin'])
+    ...mapGetters('auth', ['isLogin'])
   }
 }
 </script>

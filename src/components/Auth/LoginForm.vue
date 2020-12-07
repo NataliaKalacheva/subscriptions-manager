@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'LoginForm',
   data: () => ({
@@ -50,10 +52,11 @@ export default {
     labelPosition: 'top'
   }),
   methods: {
+    ...mapActions('auth', ['login']),
     submitForm() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          console.log('submit!')
+          this.login(this.loginForm)
         } else {
           console.log('error submit!!')
         }

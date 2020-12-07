@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'SignUpForm',
   data() {
@@ -45,16 +47,16 @@ export default {
         password: [
           { required: true, message: 'Please input password', trigger: 'submit' },
           {
-            min: 4,
-            message: 'Min length: 4',
+            min: 6,
+            message: 'Min length: 6',
             trigger: 'submit'
           }
         ],
         repeatPassword: [
           { required: true, message: 'Please input password', trigger: 'submit' },
           {
-            min: 4,
-            message: 'Min length: 4',
+            min: 6,
+            message: 'Min length: 6',
             trigger: 'submit'
           },
           { validator: this.checkPassword, trigger: 'sumbit' }
@@ -64,10 +66,11 @@ export default {
     }
   },
   methods: {
+    ...mapActions('auth', ['signUp']),
     submitForm() {
       this.$refs.signUpForm.validate(valid => {
         if (valid) {
-          console.log('submit!')
+          this.signUp(this.signUpForm)
         } else {
           console.log('error submit!!')
         }

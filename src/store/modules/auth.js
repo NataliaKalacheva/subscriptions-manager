@@ -1,5 +1,6 @@
 import mutations from '@/store/mutations'
-// import { firebaseSignUp, firebaseLogin } from '@/services/firebase/auth.services'
+import { firebaseSignUp, firebaseLogin } from '@/services/firebase/auth.services'
+import router from '@/router'
 
 const { IS_FIRST_LOGIN, IS_LOGIN } = mutations
 
@@ -22,9 +23,22 @@ const authStore = {
     }
   },
   actions: {
-    setIsLoginState: {
-      handler({ commit }, boolean) {
-        commit(IS_LOGIN, boolean)
+    async signUp({ commit }, { email, password }) {
+      try {
+        await firebaseSignUp(email, password)
+        commit(IS_FIRST_LOGIN, true)
+        router.push({ path: 'Home' })
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async login({ commit }, { email, password }) {
+      try {
+        await firebaseLogin(email, password)
+        commit(IS_LOGIN, true)
+        router.push({ path: 'Home' })
+      } catch (err) {
+        console.log(err)
       }
     }
   }
