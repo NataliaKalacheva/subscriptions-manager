@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from '@/plugins/firebase'
+import auth from '@/store/modules/auth'
 
 Vue.use(Vuex)
 
@@ -8,7 +9,9 @@ export default new Vuex.Store({
   state: {},
   mutations: {},
   actions: {},
-  modules: {}
+  modules: {
+    auth
+  }
 })
 
 firebase.auth().onAuthStateChanged(async userData => {
