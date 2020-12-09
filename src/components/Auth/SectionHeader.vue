@@ -20,7 +20,9 @@ export default {
 
 <style lang="scss" scoped>
 .section-header {
+  margin-top: 30px;
   margin-bottom: 20px;
+  text-align: center;
 
   &__title {
     margin-bottom: 20px;

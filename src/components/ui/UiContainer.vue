@@ -32,6 +32,14 @@ export default {
   background: white;
   color: $color-dark-blue;
 
+  /deep/ a {
+    color: $color-dark-blue;
+    &:hover,
+    &:focus {
+      color: $color-blue;
+    }
+  }
+
   &.is-rounded {
     border-radius: 50px 50px 0 0;
   }

@@ -14,7 +14,7 @@
     <ui-form-item label="Repeat password" prop="repeatPassword" :rules="formRules.repeatPassword">
       <ui-input v-model="signUpForm.repeatPassword" placeholder="Password" show-password />
     </ui-form-item>
-    <ui-button type="primary" size="large" @click.prevent="submitForm"
+    <ui-button type="primary" size="large" is-centered @click.prevent="submitForm"
       >Login
       <ui-icon-base is-circle is-shadow>
         <ui-arrow-right />
