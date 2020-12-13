@@ -22,6 +22,7 @@ firebase.auth().onAuthStateChanged(async userData => {
   // store.dispatch('setUserState', userData)
   if (userData) {
     const token = await getUserIdToken()
+    console.log(process.env)
     localStorage.setItem(process.env.VUE_APP_LS_TOKEN_KEY, token)
   } else {
     router.push({ path: 'Login' })

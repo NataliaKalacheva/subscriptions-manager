@@ -3,7 +3,7 @@
     <h1>Home</h1>
     <h1 v-if="isLogin">
       You are logged in!
-      <ui-button @click="signOut">signOut</ui-button>
+      <ui-button @click="signOut">Sign out</ui-button>
     </h1>
   </div>
 </template>

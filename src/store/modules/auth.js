@@ -13,7 +13,8 @@ const authStore = {
   namespaced: true,
   state: {
     isFirstLogin: false,
-    isLogin: false
+    isLogin: Boolean(localStorage.getItem('vue_app_token')),
+    message: ''
   },
   getters: {
     isFirstLogin: ({ isFirstLogin }) => isFirstLogin,
