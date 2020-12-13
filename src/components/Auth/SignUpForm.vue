@@ -70,9 +70,7 @@ export default {
     submitForm() {
       this.$refs.signUpForm.validate(valid => {
         if (valid) {
-          this.signUp(this.signUpForm)
-        } else {
-          console.log('error submit!!')
+          this.signUp({ ...this.signUpForm })
         }
       })
     },

@@ -45,9 +45,7 @@ export default {
     submitForm() {
       this.$refs.resetForm.validate(valid => {
         if (valid) {
-          this.resetPassword(this.resetForm)
-        } else {
-          console.log('error submit!!')
+          this.resetPassword({ ...this.resetForm })
         }
       })
     }

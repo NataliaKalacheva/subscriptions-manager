@@ -11,9 +11,9 @@
     </ui-form-item>
     <ui-form-item label="Password" prop="password" :rules="formRules.password">
       <ui-input v-model="loginForm.password" placeholder="Password" show-password />
-      <p>
+      <div class="reset-link">
         <router-link :to="{ name: 'ResetPassword' }">Forgot password?</router-link>
-      </p>
+      </div>
     </ui-form-item>
     <ui-button type="primary" size="large" is-centered @click.prevent="submitForm"
       >Login
@@ -59,9 +59,7 @@ export default {
     submitForm() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.login(this.loginForm)
-        } else {
-          console.log('error submit!!')
+          this.login({ ...this.loginForm })
         }
       })
     }
@@ -75,7 +73,7 @@ export default {
     margin-top: 60px;
   }
 
-  p {
+  .reset-link {
     margin-left: 18px;
   }
 

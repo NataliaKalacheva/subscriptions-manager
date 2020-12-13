@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <h1 v-if="isLogin">
+    <h1 class="text-center">Home</h1>
+    <h2 class="text-center" v-if="isLogin">
       You are logged in!
       <ui-button @click="signOut">Sign out</ui-button>
-    </h1>
+    </h2>
   </div>
 </template>
 
