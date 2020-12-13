@@ -14,3 +14,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.ui-form {
+  text-align: center;
+}
+</style>

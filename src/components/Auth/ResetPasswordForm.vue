@@ -10,7 +10,7 @@
       <ui-input v-model="resetForm.email" />
     </ui-form-item>
 
-    <ui-button type="primary" size="large" is-centered @click.prevent="submitForm"
+    <ui-button type="primary" size="large" @click.prevent="submitForm"
       >Reset password
       <ui-icon-base is-circle is-shadow>
         <ui-arrow-right />

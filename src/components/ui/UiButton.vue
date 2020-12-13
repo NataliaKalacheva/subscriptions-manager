@@ -11,17 +11,12 @@ export default {
     isShadow: {
       type: Boolean,
       default: false
-    },
-    isCentered: {
-      type: Boolean,
-      default: false
     }
   },
   computed: {
     buttonClasses() {
       return {
-        'is-shadow': this.isShadow,
-        'is-centered': this.isCentered
+        'is-shadow': this.isShadow
       }
     }
   }
@@ -41,12 +36,6 @@ export default {
 
   &.is-round /deep/ {
     border-radius: 18px;
-  }
-
-  &.is-centered /deep/ {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   &.is-shadow /deep/ {
