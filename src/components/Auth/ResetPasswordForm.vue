@@ -1,22 +1,17 @@
 <template>
   <ui-form
-    class="login-form"
+    class="reset-form"
     :label-position="labelPosition"
-    :model="loginForm"
-    ref="loginForm"
+    :model="resetForm"
+    ref="resetForm"
     hide-required-asterisk
   >
     <ui-form-item label="Email" prop="email" :rules="formRules.email">
-      <ui-input v-model="loginForm.email" />
+      <ui-input v-model="resetForm.email" />
     </ui-form-item>
-    <ui-form-item label="Password" prop="password" :rules="formRules.password">
-      <ui-input v-model="loginForm.password" placeholder="Password" show-password />
-      <div class="reset-link">
-        <router-link :to="{ name: 'ResetPassword' }">Forgot password?</router-link>
-      </div>
-    </ui-form-item>
+
     <ui-button type="primary" size="large" @click.prevent="submitForm"
-      >Login
+      >Reset password
       <ui-icon-base is-circle is-shadow>
         <ui-arrow-right />
       </ui-icon-base>
@@ -28,11 +23,10 @@
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'LoginForm',
+  name: 'ResetForm',
   data: () => ({
-    loginForm: {
-      email: '',
-      password: ''
+    resetForm: {
+      email: ''
     },
     formRules: {
       email: [
@@ -42,24 +36,16 @@ export default {
           message: 'Please input correct email address',
           trigger: ['sumbit']
         }
-      ],
-      password: [
-        { required: true, message: 'Please input number', trigger: 'submit' },
-        {
-          min: 4,
-          message: 'Min length: 4',
-          trigger: 'submit'
-        }
       ]
     },
     labelPosition: 'top'
   }),
   methods: {
-    ...mapActions('auth', ['login']),
+    ...mapActions('auth', ['resetPassword']),
     submitForm() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.resetForm.validate(valid => {
         if (valid) {
-          this.login({ ...this.loginForm })
+          this.resetPassword({ ...this.resetForm })
         }
       })
     }
@@ -68,12 +54,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login-form {
+.reset-form {
   /deep/ .ui-button {
     margin-top: 60px;
   }
 
-  .reset-link {
+  p {
     margin-left: 18px;
   }
 

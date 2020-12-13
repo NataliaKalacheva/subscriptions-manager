@@ -1,34 +1,34 @@
 <template>
-  <div class="page-login">
+  <div class="page-reset">
     <section-header :title="title">
-      {{ subtitle }} Or <router-link :to="{ name: 'SignUp' }">SignUp</router-link>
+      {{ subtitle }}
     </section-header>
     <ui-container>
-      <login-form />
+      <reset-password-form />
     </ui-container>
   </div>
 </template>
 
 <script>
 import SectionHeader from '@/components/Auth/SectionHeader'
-import LoginForm from '@/components/Auth/LoginForm'
+import ResetPasswordForm from '@/components/Auth/ResetPasswordForm'
 
 export default {
-  name: 'Login',
+  name: 'Reset',
   components: {
     SectionHeader,
-    LoginForm
+    ResetPasswordForm
   },
   data: () => ({
     title: 'Welcome',
-    subtitle: 'Please login to your account.',
+    subtitle: 'Please input email and we will send you recover instructions.',
     labelPosition: 'top'
   })
 }
 </script>
 
 <style lang="scss" scoped>
-.page-login {
+.page-reset {
   display: flex;
   flex-direction: column;
   align-items: stretch;

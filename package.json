@@ -10,6 +10,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "element-ui": "^2.14.1",
+    "firebase": "^8.1.2",
     "lodash": "^4.17.20",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
