@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from '@/plugins/firebase'
 import auth from '@/store/modules/auth'
+import notifications from '@/store/modules/notifications'
 import { getUserIdToken } from '@/services/firebase/auth.services'
 import router from '@/router'
 
@@ -12,7 +13,8 @@ const store = new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
-    auth
+    auth,
+    notifications
   }
 })
 

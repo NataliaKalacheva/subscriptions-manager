@@ -40,28 +40,54 @@ const authStore = {
         console.log(err)
       }
     },
-    async login({ commit }, { email, password }) {
+    async login({ commit, dispatch }, { email, password }) {
       try {
         await firebaseLogin(email, password)
         commit(IS_LOGIN, true)
         router.push({ path: '/' })
       } catch (err) {
-        console.log(err)
+        dispatch(
+          'showNotification',
+          {
+            type: 'error',
+            message: err,
+            title: ''
+          },
+          { root: true }
+        )
       }
     },
-    async signOut({ commit }) {
+    async signOut({ commit, dispatch }) {
       try {
         await firebaseSignOut()
         commit(IS_LOGIN, false)
       } catch (err) {
         console.log(err)
+        dispatch(
+          'showNotification',
+          {
+            type: 'error',
+            message: err,
+            title: ''
+          },
+          { root: true }
+        )
       }
     },
-    async resetPassword(state, { email }) {
+    async resetPassword({ dispatch }, { email }) {
       try {
         await firebaseResetPassword(email)
       } catch (err) {
         console.log(err)
+        dispatch(
+          'showNotification',
+          {
+            type: 'error',
+            message: err,
+            title: ''
+          },
+          { root: true }
+        )
       }
     }
   }
