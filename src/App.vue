@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <ui-loader />
     <notification />
     <router-view />
   </div>

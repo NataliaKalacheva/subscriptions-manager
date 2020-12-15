@@ -31,17 +31,21 @@ const authStore = {
       },
       root: true
     },
-    async signUp({ commit }, { email, password }) {
+    async signUp({ commit, dispatch }, { email, password }) {
       try {
+        dispatch('toggleLoader', true, { root: true })
         await firebaseSignUp(email, password)
         commit(IS_FIRST_LOGIN, true)
         router.push({ path: '/' })
       } catch (err) {
         console.log(err)
+      } finally {
+        dispatch('toggleLoader', false, { root: true })
       }
     },
     async login({ commit, dispatch }, { email, password }) {
       try {
+        dispatch('toggleLoader', true, { root: true })
         await firebaseLogin(email, password)
         commit(IS_LOGIN, true)
         router.push({ path: '/' })
@@ -55,10 +59,13 @@ const authStore = {
           },
           { root: true }
         )
+      } finally {
+        dispatch('toggleLoader', false, { root: true })
       }
     },
     async signOut({ commit, dispatch }) {
       try {
+        dispatch('toggleLoader', true, { root: true })
         await firebaseSignOut()
         commit(IS_LOGIN, false)
       } catch (err) {
@@ -72,10 +79,13 @@ const authStore = {
           },
           { root: true }
         )
+      } finally {
+        dispatch('toggleLoader', false, { root: true })
       }
     },
     async resetPassword({ dispatch }, { email }) {
       try {
+        dispatch('toggleLoader', true, { root: true })
         await firebaseResetPassword(email)
       } catch (err) {
         console.log(err)
@@ -88,6 +98,8 @@ const authStore = {
           },
           { root: true }
         )
+      } finally {
+        dispatch('toggleLoader', false, { root: true })
       }
     }
   }
