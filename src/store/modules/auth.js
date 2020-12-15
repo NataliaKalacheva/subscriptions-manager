@@ -7,21 +7,25 @@ import {
 } from '@/services/firebase/auth.services'
 import router from '@/router'
 
-const { IS_FIRST_LOGIN, IS_LOGIN } = mutations
+const { IS_FIRST_LOGIN, IS_LOGIN, SUCCESS_MESSAGE } = mutations
 
 const authStore = {
   namespaced: true,
   state: {
     isLogin: Boolean(localStorage.getItem('vue_app_token')),
-    message: ''
+    successMessage: 'Successful'
   },
   getters: {
-    isLogin: ({ isLogin }) => isLogin
+    isLogin: ({ isLogin }) => isLogin,
+    successMessage: ({ successMessage }) => successMessage
   },
   mutations: {
     [IS_LOGIN](state, boolean) {
       console.log(state.isLogin)
       state.isLogin = boolean
+    },
+    [SUCCESS_MESSAGE](state, value) {
+      state.successMessage = value
     }
   },
   actions: {
@@ -30,6 +34,9 @@ const authStore = {
         commit(IS_LOGIN, boolean)
       },
       root: true
+    },
+    setSuccessMessage({ commit }, value) {
+      commit(SUCCESS_MESSAGE, value)
     },
     async signUp({ commit, dispatch }, { email, password }) {
       try {
