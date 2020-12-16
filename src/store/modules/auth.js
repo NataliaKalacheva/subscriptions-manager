@@ -94,8 +94,9 @@ const authStore = {
       try {
         dispatch('toggleLoader', true, { root: true })
         await firebaseResetPassword(email)
+        dispatch('setSuccessMessage', 'Please check your email to reset your password')
+        router.push({ path: '/success' })
       } catch (err) {
-        console.log(err)
         dispatch(
           'showNotification',
           {
