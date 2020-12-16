@@ -29,7 +29,6 @@ export default {
   padding-top: 25vh;
   box-sizing: border-box;
   background-color: $color-white;
-  background-image: url('../assets/success-bg@3x.png');
   background-position: center;
   background-size: cover;
   color: $color-dark-blue;
@@ -40,6 +39,16 @@ export default {
 }
 
 @include mq-max($tab) {
-  background-image: url('../assets/success-bg@3x.png');
+  .page-success {
+    background-image: url('../assets/success-bg@3x.png');
+  }
+}
+
+@include mq($tab) {
+  .page-success {
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-image: url('../assets/success-bg-desktop.svg');
+  }
 }
 </style>
