@@ -25,6 +25,8 @@ export default {
 
 <style lang="scss" scoped>
 .ui-button {
+  transition: all 0.3s linear;
+
   & /deep/ {
     margin: 10px;
     font-family: Arial, sans-serif;
@@ -50,6 +52,17 @@ export default {
     }
   }
 
+  &.is-disabled:hover /deep/,
+  &.is-disabled:focus /deep/ {
+    background-color: $color-grey;
+    border-color: $color-grey;
+    color: $color-white;
+
+    .ui-icon svg {
+      transform: none;
+    }
+  }
+
   /deep/ .ui-icon {
     position: absolute;
     right: 10px;
@@ -66,6 +79,14 @@ export default {
   border-color: $color-blue;
   color: $color-blue;
 }
+
+.el-button--default:hover /deep/,
+.el-button--default:focus /deep/ {
+  background-color: $color-blue;
+  border-color: $color-blue;
+  color: $color-white;
+}
+
 .el-button--primary /deep/ {
   position: relative;
   background-color: $color-blue;
@@ -78,11 +99,28 @@ export default {
     color: $color-blue;
   }
 }
+
+.el-button--primary:hover /deep/,
+.el-button--primary:focus /deep/ {
+  background-color: $color-white;
+  color: $color-blue;
+
+  .ui-icon svg {
+    transform: translateX(2px);
+  }
+}
+
 .el-button--info /deep/ {
   background-color: $color-white;
   border-color: $color-white;
   color: $color-text-grey;
 }
+
+.el-button--info:hover /deep/,
+.el-button--info:focus/deep/ {
+  transform: scale(1.1) translateX(-2px);
+}
+
 .el-button--info.is-plain /deep/ {
   background-color: $color-white;
   border-color: $color-text-grey;
