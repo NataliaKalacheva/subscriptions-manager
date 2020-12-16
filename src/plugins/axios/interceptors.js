@@ -1,6 +1,7 @@
 function setAuthToken(config) {
   const customConfig = { ...config }
-  // const token = localStorage.getItem(process.env.VUE_APP_LS_TOKEN_KEY)
+  const token = localStorage.getItem(process.env.VUE_APP_LS_TOKEN_KEY)
+  customConfig.headers = { Authorization: `bearer ${token}` }
 
   return customConfig
 }
