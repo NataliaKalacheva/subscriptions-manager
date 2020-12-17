@@ -1,8 +1,21 @@
 <template>
   <div id="app">
+    <ui-loader />
+    <notification />
     <router-view />
   </div>
 </template>
+
+<script>
+import Notification from '@/components/Notification'
+
+export default {
+  name: 'App',
+  components: {
+    Notification
+  }
+}
+</script>
 
 <style lang="scss">
 #app {

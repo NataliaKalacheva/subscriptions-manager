@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from '@/plugins/firebase'
 import auth from '@/store/modules/auth'
+import notifications from '@/store/modules/notifications'
+import loader from '@/store/modules/loader'
 import { getUserIdToken } from '@/services/firebase/auth.services'
 import router from '@/router'
 
@@ -9,10 +11,13 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {},
+  getters: {},
   mutations: {},
   actions: {},
   modules: {
-    auth
+    auth,
+    notifications,
+    loader
   }
 })
 

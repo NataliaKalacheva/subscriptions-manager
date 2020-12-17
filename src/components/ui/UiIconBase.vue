@@ -41,6 +41,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ui-icon,
+.ui-icon svg {
+  transition: all 0.2s linear;
+}
+
 .isCircle {
   display: inline-flex;
   justify-content: center;

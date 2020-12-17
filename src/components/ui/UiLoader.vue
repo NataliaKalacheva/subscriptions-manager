@@ -1,6 +1,6 @@
 <template>
   <div
-    v-loading.fullscreen="true"
+    v-loading.fullscreen="isShowLoader"
     element-loading-background="rgba(0, 0, 0, 0.8)"
     element-loading-custom-class="ui-loader"
     v-bind="$attrs"
@@ -9,7 +9,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'Loader'
+  name: 'Loader',
+  computed: {
+    ...mapGetters(['isShowLoader'])
+  }
 }
 </script>
