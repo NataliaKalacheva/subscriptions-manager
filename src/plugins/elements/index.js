@@ -20,7 +20,5 @@ const elements = [Button, Card, Form, FormItem, Input, Select, Option, Link, Loa
 Vue.prototype.$notify = Notification
 
 locale.use(lang)
-// import ElementUI from 'element-ui'
-// Vue.use(ElementUI, { locale })
 
 elements.forEach(el => Vue.use(el, { locale }))
