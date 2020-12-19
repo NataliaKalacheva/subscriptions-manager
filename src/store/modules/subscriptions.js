@@ -2,30 +2,19 @@ import mutations from '@/store/mutations'
 import Vue from 'vue'
 import axios from '@/plugins/axios'
 
-const { ADD_SUBSCRIPTION, ALL_SUBSCRIPTIONS } = mutations
+const { ADD_SUBSCRIPTION, SUBSCRIPTIONS } = mutations
 
 const subscriptionsStore = {
   namespaced: true,
   state: {
-    subscriptions: {
-      1: {
-        name: 'Netflix',
-        description: 'Some description',
-        startDate: 1594483747063,
-        period: 'month',
-        userId: 'meEgv9mwvvbvGXrHrt6mYKZPZ343',
-        isPayed: true,
-        price: 10,
-        currency: 'USD'
-      }
-    }
+    subscriptions: {}
   },
   getters: {
     subscriptions: ({ subscriptions }) => Object.values(subscriptions),
     total: ({ subscriptions }) => Object.keys(subscriptions).length
   },
   mutations: {
-    [ALL_SUBSCRIPTIONS](state, value) {
+    [SUBSCRIPTIONS](state, value = {}) {
       state.subscriptions = value
     },
     [ADD_SUBSCRIPTION](state, newItem) {
@@ -40,11 +29,13 @@ const subscriptionsStore = {
     async getSubscriptions({ commit, dispatch }) {
       try {
         dispatch('toggleLoader', true, { root: true })
-        const request = axios.get(`??`) // ass get request
-        const response = await Promise.all(request)
-        const allSubscriptions = response // needs to serialize here
-
-        commit(ALL_SUBSCRIPTIONS, allSubscriptions)
+        axios.get(`/subscriptions`).then(function getResponse(response) {
+          const subscriptions = response.reduce((acc, item) => {
+            acc[item.id] = item
+            return acc
+          }, {})
+          commit(SUBSCRIPTIONS, subscriptions)
+        })
       } catch (err) {
         console.log(err)
       } finally {
