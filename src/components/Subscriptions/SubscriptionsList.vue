@@ -2,8 +2,13 @@
   <ui-container>
     <ul>
       <ui-button @click="getSubscriptions">Get all subscriptions</ui-button>
+
       <template v-if="isExist">
-        {{ subscriptions }}
+        <li v-for="item in subscriptions" :key="item.id">
+          {{ item }}
+
+          <ui-button @click="deleteSubscription(item.id)">Delete</ui-button>
+        </li>
       </template>
 
       <template v-else>
@@ -19,14 +24,20 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'SubscriptionsList',
   components: {},
+  data: () => ({}),
   computed: {
-    ...mapGetters('subscriptions', ['subscriptions']),
+    ...mapGetters('subscriptions', ['subscriptions', 'total']),
     isExist() {
-      return Boolean(Object.keys(this.subscriptions).length)
+      return Boolean(this.total)
     }
   },
   methods: {
-    ...mapActions('subscriptions', ['getSubscriptions'])
+    ...mapActions('subscriptions', [
+      'getSubscriptions',
+      'addSubscription',
+      'deleteSubscription',
+      'updateSubscription'
+    ])
   }
 }
 </script>
