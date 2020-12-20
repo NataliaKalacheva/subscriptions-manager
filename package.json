@@ -13,6 +13,7 @@
     "element-ui": "^2.14.1",
     "firebase": "^8.1.2",
     "lodash": "^4.17.20",
+    "moment": "^2.29.1",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",

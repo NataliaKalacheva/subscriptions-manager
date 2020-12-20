@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import SectionHeader from '@/components/Auth/SectionHeader'
+import SectionHeader from '@/components/common/SectionHeader'
 import ResetPasswordForm from '@/components/Auth/ResetPasswordForm'
 
 export default {

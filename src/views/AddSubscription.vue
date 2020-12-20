@@ -1,19 +1,29 @@
 <template>
   <div class="page-subscriptions">
     <div class="page-subscriptions__content">
-      <subscriptions-header />
+      <subscriptions-header :title="title"> {{ description }}</subscriptions-header>
+      <ui-container>
+        <subscription-form />
+      </ui-container>
     </div>
   </div>
 </template>
 
 <script>
-import SubscriptionsHeader from '@/components/Subscriptions/SubscriptionsAddHeader'
+import SubscriptionsHeader from '@/components/common/SectionHeader'
+import SubscriptionForm from '@/components/Subscriptions/AddSubscriptionForm'
 
 export default {
   name: 'Subscriptions',
   components: {
-    SubscriptionsHeader
-  }
+    SubscriptionsHeader,
+    SubscriptionForm
+  },
+  data: () => ({
+    title: 'Add Subscription',
+    description:
+      'Enter the details of a service you are subscribed to  so we can help you track and manage it.'
+  })
 }
 </script>
 

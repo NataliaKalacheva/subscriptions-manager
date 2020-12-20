@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import SectionHeader from '@/components/Auth/SectionHeader'
+import SectionHeader from '@/components/common/SectionHeader'
 import SignUpForm from '@/components/Auth/SignUpForm'
 
 export default {

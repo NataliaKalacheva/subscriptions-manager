@@ -1,8 +1,8 @@
 import mutations from '@/store/mutations'
-import Vue from 'vue'
 import axios from '@/plugins/axios'
+import serializeSubscriptionsResponse from '../utils/serializeSubscriptionsResponse'
 
-const { ADD_SUBSCRIPTION, SUBSCRIPTIONS, DELETE_SUBSCRIPTION, UPDATE_SUBSCRIPTION } = mutations
+const { SUBSCRIPTIONS, UPDATE_SUBSCRIPTION } = mutations
 
 const subscriptionsStore = {
   namespaced: true,
@@ -17,12 +17,6 @@ const subscriptionsStore = {
     [SUBSCRIPTIONS](state, value = {}) {
       state.subscriptions = value
     },
-    [ADD_SUBSCRIPTION](state, newItem) {
-      Vue.set(state.subscriptions, newItem.id, newItem)
-    },
-    [DELETE_SUBSCRIPTION](state, subscriptionId) {
-      Vue.delete(state.subscriptions, subscriptionId)
-    },
     [UPDATE_SUBSCRIPTION](state, subscription) {
       state.subscriptions[subscription.id] = subscription
     }
@@ -32,10 +26,8 @@ const subscriptionsStore = {
       try {
         dispatch('toggleLoader', true, { root: true })
         const response = await axios.get(`/subscriptions`)
-        const subscriptions = response.reduce((acc, item) => {
-          acc[item.id] = item
-          return acc
-        }, {})
+        const subscriptions = serializeSubscriptionsResponse(response)
+        console.log(response)
         commit(SUBSCRIPTIONS, subscriptions)
       } catch (err) {
         dispatch(
@@ -51,12 +43,30 @@ const subscriptionsStore = {
         dispatch('toggleLoader', false, { root: true })
       }
     },
-    async addSubscription({ commit, dispatch }, subscription) {
+    async getSubscriptionById({ commit, dispatch }, id) {
+      try {
+        dispatch('toggleLoader', true, { root: true })
+        const response = await axios.get(`/subscriptions/${id}`)
+        commit('UPDATE_SUBSCRIPTION', response)
+      } catch (err) {
+        dispatch(
+          'showNotification',
+          {
+            type: 'error',
+            message: err,
+            title: ''
+          },
+          { root: true }
+        )
+      } finally {
+        dispatch('toggleLoader', false, { root: true })
+      }
+    },
+    async addSubscription({ dispatch }, subscription) {
       try {
         dispatch('toggleLoader', true, { root: true })
         await axios.post(`/subscriptions`, subscription)
-        const item = { ...subscription, id: String(Math.random()) }
-        commit('ADD_SUBSCRIPTION', item)
+        dispatch('getSubscriptions')
       } catch (err) {
         dispatch(
           'showNotification',
@@ -71,11 +81,11 @@ const subscriptionsStore = {
         dispatch('toggleLoader', false, { root: true })
       }
     },
-    async deleteSubscription({ commit, dispatch }, subscriptionId) {
+    async deleteSubscription({ dispatch }, subscriptionId) {
       try {
         dispatch('toggleLoader', true, { root: true })
         await axios.delete(`/subscriptions/${subscriptionId}`)
-        commit('DELETE_SUBSCRIPTION', subscriptionId)
+        dispatch('getSubscriptions')
       } catch (err) {
         dispatch(
           'showNotification',
@@ -90,11 +100,11 @@ const subscriptionsStore = {
         dispatch('toggleLoader', false, { root: true })
       }
     },
-    async updateSubscription({ commit, dispatch }, item) {
+    async updateSubscription({ dispatch }, item) {
       try {
         dispatch('toggleLoader', true, { root: true })
         await axios.patch(`/subscriptions/${item.id}`, item)
-        commit('UPDATE_SUBSCRIPTION', item)
+        dispatch('getSubscriptionById', item.id)
       } catch (err) {
         dispatch(
           'showNotification',
