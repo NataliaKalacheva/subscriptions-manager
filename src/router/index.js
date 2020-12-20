@@ -39,6 +39,16 @@ const routes = [
     path: '/success',
     name: 'Success',
     component: () => import('../views/Success.vue')
+  },
+  {
+    path: '/subscriptions',
+    name: 'Subscriptions',
+    component: () => import('../views/Subscriptions.vue')
+  },
+  {
+    path: '/add-subscription',
+    name: 'AddSubscription',
+    component: () => import('../views/AddSubscription.vue')
   }
 ]
 
