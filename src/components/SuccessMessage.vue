@@ -2,10 +2,7 @@
   <div class="success-message">
     <p class="success-message__text">{{ successMessage }}</p>
 
-    <router-link v-if="isLogin" tag="span" :to="{ name: 'Home' }">
-      <ui-button :isShadow="true" size="small" round>Return</ui-button>
-    </router-link>
-    <router-link v-else tag="span" :to="{ name: 'Login' }">
+    <router-link tag="span" :to="{ name: redirectLink }">
       <ui-button :isShadow="true" size="small" round>Return</ui-button>
     </router-link>
   </div>
@@ -16,8 +13,33 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'SuccessMessage',
+  data: () => ({
+    redirectLink: 'Login'
+  }),
   computed: {
     ...mapGetters('auth', ['successMessage', 'isLogin'])
+  },
+  watch: {
+    '$route.query': {
+      handler: 'setPageContent',
+      immediate: true
+    }
+  },
+  methods: {
+    setPageContent() {
+      const { type } = this.$route.query
+
+      switch (type) {
+        case 'reset-password':
+          this.redirectLink = 'Login'
+          break
+        case 'add-subscription':
+          this.redirectLink = 'Subscriptions'
+          break
+        default:
+          this.redirectLink = 'Home'
+      }
+    }
   }
 }
 </script>
