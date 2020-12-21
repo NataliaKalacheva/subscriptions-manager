@@ -52,7 +52,7 @@ export default {
   }
   .el-input__prefix {
     left: auto;
-    right: 5px;
+    right: 8px;
   }
 }
 

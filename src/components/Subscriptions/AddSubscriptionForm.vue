@@ -9,29 +9,32 @@
     <ui-form-item label="name" prop="name" :rules="formRules.name">
       <ui-input v-model="subscriptionForm.name" />
     </ui-form-item>
-    <ui-form-item label="Amount" prop="amount">
+    <ui-form-item label="Amount" prop="amount" :rules="formRules.amount">
       <ui-input v-model.number="subscriptionForm.amount" placeholder="$" type="number" />
     </ui-form-item>
-    <ui-form-item label="Next Payment" prop="nextPayment">
+    <ui-form-item label="Next Payment" prop="nextPayment" :rules="formRules.nextPayment">
       <ui-date-picker
         v-model.number="subscriptionForm.nextPayment"
         type="date"
         placeholder="dd/mm/yyyy"
       />
     </ui-form-item>
-    <ui-form-item label="Due Date" prop="dueDate">
+    <ui-form-item label="Due Date" prop="dueDate" :rules="formRules.dueDate">
       <ui-date-picker
         v-model.number="subscriptionForm.dueDate"
         type="date"
         placeholder="dd/mm/yyyy"
       />
     </ui-form-item>
-    <ui-form-item label="Due Date" prop="dueDate">
-      <ui-select
-        v-model.number="subscriptionForm.billingCycle"
-        type="date"
-        placeholder="dd/mm/yyyy"
-      />
+    <ui-form-item label="Billing Cycle" prop="billingCycle" :rules="formRules.billingCycle">
+      <ui-select v-model="subscriptionForm.billingCycle" :isFullWidth="true" size="large">
+        <ui-option
+          v-for="option in subscriptionForm.BillingCycleOptions"
+          :key="option.value"
+          :value="option.label"
+          :label="option.label"
+        />
+      </ui-select>
     </ui-form-item>
 
     <ui-button type="primary" size="large" @click.prevent="submitForm"
@@ -46,6 +49,7 @@
 <script>
 import { mapActions } from 'vuex'
 import checkNumber from '@/helpers/validators/checkNumber'
+import BillingCycles from '@/constants'
 
 export default {
   name: 'subscriptionForm',
@@ -55,28 +59,8 @@ export default {
       amount: 0,
       nextPayment: '',
       dueDate: '',
-      billingCycle: [
-        {
-          value: 'Option1',
-          label: 'Option1'
-        },
-        {
-          value: 'Option2',
-          label: 'Option2'
-        },
-        {
-          value: 'Option3',
-          label: 'Option3'
-        },
-        {
-          value: 'Option4',
-          label: 'Option4'
-        },
-        {
-          value: 'Option5',
-          label: 'Option5'
-        }
-      ]
+      billingCycle: BillingCycles[0].label,
+      BillingCycleOptions: BillingCycles
     },
     formRules: {
       name: [{ required: true, message: 'Please input subscription', trigger: 'submit' }],
@@ -86,7 +70,9 @@ export default {
       ],
       nextPayment: [
         { required: true, message: 'Please input next payment date', trigger: 'submit' }
-      ]
+      ],
+      dueDate: [{ required: false }],
+      billingCycle: [{ required: true, message: 'Please select billing cycle', trigger: 'submit' }]
     },
     labelPosition: 'top'
   }),
