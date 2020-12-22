@@ -1,6 +1,6 @@
 <template>
   <div class="success-message">
-    <p class="success-message__text">{{ successMessage }}</p>
+    <p class="success-message__text">{{ successMsg }}</p>
 
     <router-link tag="span" :to="{ name: redirectLink }">
       <ui-button :isShadow="true" size="small" round>Return</ui-button>
@@ -17,7 +17,8 @@ export default {
     redirectLink: 'Login'
   }),
   computed: {
-    ...mapGetters('auth', ['successMessage', 'isLogin'])
+    ...mapGetters('auth', ['isLogin']),
+    ...mapGetters(['successMsg'])
   },
   watch: {
     '$route.query': {

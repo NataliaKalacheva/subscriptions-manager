@@ -54,6 +54,9 @@ export default {
     left: auto;
     right: 8px;
   }
+  .el-input__suffix {
+    display: none;
+  }
 }
 
 .el-date-picker {

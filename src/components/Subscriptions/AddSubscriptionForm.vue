@@ -6,15 +6,17 @@
     ref="subscriptionForm"
     hide-required-asterisk
   >
-    <ui-form-item label="name" prop="name" :rules="formRules.name">
+    <ui-form-item label="Name" prop="name" :rules="formRules.name">
       <ui-input v-model="subscriptionForm.name" />
     </ui-form-item>
-    <ui-form-item label="Amount" prop="amount" :rules="formRules.amount">
-      <ui-input v-model.number="subscriptionForm.amount" placeholder="$" type="number" />
+    <ui-form-item label="Amount" prop="price" :rules="formRules.price">
+      <span class="subscription-form__currency" area-label="USD">$</span>
+      <ui-input v-model.number="subscriptionForm.price" placeholder="$" type="number" />
     </ui-form-item>
     <ui-form-item label="Next Payment" prop="nextPayment" :rules="formRules.nextPayment">
       <ui-date-picker
         v-model.number="subscriptionForm.nextPayment"
+        value-format="timestamp"
         type="date"
         placeholder="dd/mm/yyyy"
       />
@@ -22,14 +24,15 @@
     <ui-form-item label="Due Date" prop="dueDate" :rules="formRules.dueDate">
       <ui-date-picker
         v-model.number="subscriptionForm.dueDate"
+        value-format="timestamp"
         type="date"
         placeholder="dd/mm/yyyy"
       />
     </ui-form-item>
-    <ui-form-item label="Billing Cycle" prop="billingCycle" :rules="formRules.billingCycle">
-      <ui-select v-model="subscriptionForm.billingCycle" :isFullWidth="true" size="large">
+    <ui-form-item label="Billing Cycle" prop="period" :rules="formRules.period">
+      <ui-select v-model="subscriptionForm.period" :isFullWidth="true" size="large">
         <ui-option
-          v-for="option in subscriptionForm.BillingCycleOptions"
+          v-for="option in periodOptions"
           :key="option.value"
           :value="option.label"
           :label="option.label"
@@ -56,23 +59,23 @@ export default {
   data: () => ({
     subscriptionForm: {
       name: '',
-      amount: 0,
-      nextPayment: '',
-      dueDate: '',
-      billingCycle: BillingCycles[0].label,
-      BillingCycleOptions: BillingCycles
+      price: 0,
+      nextPayment: new Date(),
+      dueDate: new Date(),
+      period: BillingCycles[0].label
     },
+    periodOptions: BillingCycles,
     formRules: {
       name: [{ required: true, message: 'Please input subscription', trigger: 'submit' }],
-      amount: [
+      price: [
         { required: true, message: 'Please input number', trigger: 'submit' },
-        { validator: checkNumber, trigger: 'blur' }
+        { validator: checkNumber, trigger: 'submit' }
       ],
       nextPayment: [
         { required: true, message: 'Please input next payment date', trigger: 'submit' }
       ],
       dueDate: [{ required: false }],
-      billingCycle: [{ required: true, message: 'Please select billing cycle', trigger: 'submit' }]
+      period: [{ required: true, message: 'Please select billing cycle', trigger: 'submit' }]
     },
     labelPosition: 'top'
   }),
@@ -82,7 +85,7 @@ export default {
     submitForm() {
       this.$refs.subscriptionForm.validate(valid => {
         if (valid) {
-          console.log('submit here')
+          console.log('submit here', this.subscriptionForm)
         }
       })
     }
@@ -92,6 +95,16 @@ export default {
 
 <style lang="scss" scoped>
 .subscription-form {
+  &__currency {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    z-index: 1;
+    padding: 3px 0 0;
+    transform: translateY(-50%);
+    color: $color-blue;
+  }
+
   /deep/ .ui-button {
     margin-top: 60px;
   }
