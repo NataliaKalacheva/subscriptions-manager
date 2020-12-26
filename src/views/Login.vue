@@ -3,6 +3,7 @@
     <section-header :title="title">
       {{ subtitle }} Or <router-link :to="{ name: 'SignUp' }">SignUp</router-link>
     </section-header>
+
     <ui-container>
       <login-form />
     </ui-container>

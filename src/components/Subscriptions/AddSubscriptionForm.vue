@@ -59,10 +59,15 @@ export default {
   data: () => ({
     subscriptionForm: {
       name: '',
+      // description: '',
       price: 0,
+      // startDate: new Date(),
       nextPayment: new Date(),
       dueDate: new Date(),
-      period: BillingCycles[0].label
+      period: BillingCycles[0].label,
+      currency: 'USD'
+      // userID: '',
+      // isPayed: true
     },
     periodOptions: BillingCycles,
     formRules: {
