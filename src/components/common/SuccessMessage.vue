@@ -13,32 +13,19 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'SuccessMessage',
-  data: () => ({
-    redirectLink: 'Login'
-  }),
   computed: {
     ...mapGetters('auth', ['isLogin']),
-    ...mapGetters(['successMsg'])
-  },
-  watch: {
-    '$route.query': {
-      handler: 'setPageContent',
-      immediate: true
-    }
-  },
-  methods: {
-    setPageContent() {
+    ...mapGetters(['successMsg']),
+    redirectLink() {
       const { type } = this.$route.query
 
       switch (type) {
         case 'reset-password':
-          this.redirectLink = 'Login'
-          break
+          return 'Login'
         case 'add-subscription':
-          this.redirectLink = 'Subscriptions'
-          break
+          return 'Subscriptions'
         default:
-          this.redirectLink = 'Home'
+          return 'Home'
       }
     }
   }

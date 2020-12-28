@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ui-form-item /deep/ {
+.ui-form-item ::v-deep {
   text-align: left;
 
   .el-form-item {
@@ -56,7 +56,7 @@ export default {
   }
 }
 
-.ui-form-item.is-error /deep/ {
+.ui-form-item.is-error ::v-deep {
   .el-input__inner {
     border-color: $color-danger;
   }

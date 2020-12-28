@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ui-date-picker /deep/ {
+.ui-date-picker ::v-deep {
   margin: 0;
   width: auto;
   ::placeholder {

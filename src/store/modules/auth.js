@@ -12,7 +12,7 @@ const { IS_FIRST_LOGIN, IS_LOGIN } = mutations
 const authStore = {
   namespaced: true,
   state: {
-    isLogin: Boolean(localStorage.getItem('vue_app_token'))
+    isLogin: Boolean(localStorage.getItem(process.env.VUE_APP_LS_TOKEN_KEY))
   },
   getters: {
     isLogin: ({ isLogin }) => isLogin

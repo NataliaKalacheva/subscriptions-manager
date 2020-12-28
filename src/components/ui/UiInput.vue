@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ui-input /deep/ {
+.ui-input ::v-deep {
   margin: 0;
   width: auto;
   ::placeholder {

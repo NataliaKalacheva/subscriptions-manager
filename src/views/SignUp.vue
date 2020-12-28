@@ -55,19 +55,19 @@ export default {
   align-items: stretch;
   flex-grow: 1;
 
-  /deep/ .ui-button {
+  ::v-deep .ui-button {
     margin-top: 60px;
   }
 
   @include mq-max($tab) {
-    /deep/ .ui-form {
+    ::v-deep .ui-form {
       display: flex;
       flex-direction: column;
       align-items: stretch;
       flex-grow: 1;
     }
 
-    /deep/ .ui-button {
+    ::v-deep .ui-button {
       margin-top: auto;
       align-self: center;
     }

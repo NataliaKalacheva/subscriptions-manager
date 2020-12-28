@@ -13,9 +13,9 @@
       <span class="subscription-form__currency" area-label="USD">$</span>
       <ui-input v-model.number="subscriptionForm.price" placeholder="$" type="number" />
     </ui-form-item>
-    <ui-form-item label="Next Payment" prop="nextPayment" :rules="formRules.nextPayment">
+    <ui-form-item label="Next Payment" prop="startDate" :rules="formRules.startDate">
       <ui-date-picker
-        v-model.number="subscriptionForm.nextPayment"
+        v-model.number="subscriptionForm.startDate"
         value-format="timestamp"
         type="date"
         placeholder="dd/mm/yyyy"
@@ -59,15 +59,14 @@ export default {
   data: () => ({
     subscriptionForm: {
       name: '',
-      // description: '',
+      description: '',
       price: 0,
-      // startDate: new Date(),
-      nextPayment: new Date(),
+      startDate: new Date(),
       dueDate: new Date(),
       period: BillingCycles[0].label,
-      currency: 'USD'
+      currency: 'USD',
       // userID: '',
-      // isPayed: true
+      isPayed: true
     },
     periodOptions: BillingCycles,
     formRules: {
@@ -76,9 +75,7 @@ export default {
         { required: true, message: 'Please input number', trigger: 'submit' },
         { validator: checkNumber, trigger: 'submit' }
       ],
-      nextPayment: [
-        { required: true, message: 'Please input next payment date', trigger: 'submit' }
-      ],
+      startDate: [{ required: true, message: 'Please input next payment date', trigger: 'submit' }],
       dueDate: [{ required: false }],
       period: [{ required: true, message: 'Please select billing cycle', trigger: 'submit' }]
     },
@@ -110,7 +107,7 @@ export default {
     color: $color-blue;
   }
 
-  /deep/ .ui-button {
+  &::v-deep .ui-button {
     margin-top: 60px;
   }
 
@@ -119,14 +116,14 @@ export default {
   }
 
   @include mq-max($tab) {
-    /deep/ {
+    &::v-deep {
       display: flex;
       flex-direction: column;
       align-items: stretch;
       flex-grow: 1;
     }
 
-    /deep/ .ui-button {
+    &::v-deep .ui-button {
       margin-top: auto;
       align-self: center;
     }

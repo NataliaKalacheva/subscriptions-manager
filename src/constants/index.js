@@ -1,19 +1,19 @@
 const billingCycles = [
   {
     label: 'Month',
-    value: 1
+    value: 'month'
   },
-  {
-    label: '3 Months',
-    value: 3
-  },
-  {
-    label: '6 Months',
-    value: 6
-  },
+  // {
+  //   label: '3 Months',
+  //   value: '3_month'
+  // },
+  // {
+  //   label: '6 Months',
+  //   value: '6_month'
+  // },
   {
     label: 'Year',
-    value: 12
+    value: 'year'
   }
 ]
 

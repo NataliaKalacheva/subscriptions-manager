@@ -18,19 +18,19 @@ export default {
 
 <style lang="scss" scoped>
 .ui-option {
-  & /deep/ {
+  & ::v-deep {
     font-family: Arial, sans-serif;
     color: $color-text-grey;
   }
-  &.is-disabled /deep/ {
+  &.is-disabled ::v-deep {
     color: rgba($color-text-grey, 0.7);
   }
-  &:hover /deep/,
-  &.hover /deep/,
-  &:focus /deep/ {
+  &:hover ::v-deep,
+  &.hover ::v-deep,
+  &:focus ::v-deep {
     background: $color-light-grey;
   }
-  &.selected /deep/ {
+  &.selected ::v-deep {
     color: $color-blue;
   }
 }

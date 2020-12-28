@@ -51,7 +51,7 @@ export default {
   background: white;
   color: $color-dark-blue;
 
-  /deep/ a {
+  ::v-deep a {
     color: $color-dark-blue;
     &:hover,
     &:focus {
