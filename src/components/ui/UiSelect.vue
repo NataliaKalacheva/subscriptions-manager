@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ui-select /deep/ {
+.ui-select ::v-deep {
   margin: 5px 0;
 
   .el-input {

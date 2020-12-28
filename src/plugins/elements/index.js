@@ -12,10 +12,11 @@ import {
   Option,
   Link,
   Notification,
-  Loading
+  Loading,
+  DatePicker
 } from 'element-ui'
 
-const elements = [Button, Card, Form, FormItem, Input, Select, Option, Link, Loading]
+const elements = [Button, Card, Form, FormItem, Input, Select, Option, Link, Loading, DatePicker]
 
 Vue.prototype.$notify = Notification
 

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import successMessage from '@/components/SuccessMessage'
+import successMessage from '@/components/common/SuccessMessage'
 
 export default {
   name: 'Success',

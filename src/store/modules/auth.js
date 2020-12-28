@@ -7,25 +7,20 @@ import {
 } from '@/services/firebase/auth.services'
 import router from '@/router'
 
-const { IS_FIRST_LOGIN, IS_LOGIN, SUCCESS_MESSAGE } = mutations
+const { IS_FIRST_LOGIN, IS_LOGIN } = mutations
 
 const authStore = {
   namespaced: true,
   state: {
-    isLogin: Boolean(localStorage.getItem('vue_app_token')),
-    successMessage: 'Successful'
+    isLogin: Boolean(localStorage.getItem(process.env.VUE_APP_LS_TOKEN_KEY))
   },
   getters: {
-    isLogin: ({ isLogin }) => isLogin,
-    successMessage: ({ successMessage }) => successMessage
+    isLogin: ({ isLogin }) => isLogin
   },
   mutations: {
     [IS_LOGIN](state, boolean) {
       console.log(state.isLogin)
       state.isLogin = boolean
-    },
-    [SUCCESS_MESSAGE](state, value) {
-      state.successMessage = value
     }
   },
   actions: {
@@ -34,9 +29,6 @@ const authStore = {
         commit(IS_LOGIN, boolean)
       },
       root: true
-    },
-    setSuccessMessage({ commit }, value) {
-      commit(SUCCESS_MESSAGE, value)
     },
     async signUp({ commit, dispatch }, { email, password }) {
       try {
@@ -94,8 +86,10 @@ const authStore = {
       try {
         dispatch('toggleLoader', true, { root: true })
         await firebaseResetPassword(email)
-        dispatch('setSuccessMessage', 'Please check your email to reset your password')
-        router.push({ path: '/success' })
+        dispatch('setSuccessMessage', 'Please check your email to reset your password', {
+          root: true
+        })
+        router.push({ name: 'Success', query: { type: 'reset-password' } })
       } catch (err) {
         dispatch(
           'showNotification',

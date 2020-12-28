@@ -2,6 +2,7 @@ body {
   margin: 0 0;
   color: $color-white;
   background: $color-blue;
+  font-family: Arial, sans-serif;
 }
 
 p {
@@ -12,9 +13,15 @@ p {
 
 a {
   color: $color-white;
+  transition: all .3s ease;
 
   &.router-link-exact-active {
     color: $color-grey;
+  }
+
+  &:hover, &:focus {
+    text-decoration: none;
+    opacity: .8;
   }
 }
 

@@ -1,10 +1,10 @@
 <template>
-  <el-input class="ui-input" v-bind="$attrs" v-on="$listeners" :style="inputStyles" />
+  <el-date-picker class="ui-date-picker" v-bind="$attrs" v-on="$listeners" :style="inputStyles" />
 </template>
 
 <script>
 export default {
-  name: 'UiInput',
+  name: 'UiDatePicker',
   props: {
     width: {
       type: [Number, String],
@@ -26,13 +26,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ui-input ::v-deep {
+.ui-date-picker ::v-deep {
   margin: 0;
   width: auto;
   ::placeholder {
     color: $color-text-grey;
   }
   .el-input__inner {
+    position: relative;
     height: 50px;
     padding-left: 25px;
     color: $color-dark-blue;
@@ -45,8 +46,20 @@ export default {
       border-color: $color-blue;
     }
   }
-  .el-input__clear {
+  .el-input__clear,
+  .el-icon-date {
     color: $color-blue;
   }
+  .el-input__prefix {
+    left: auto;
+    right: 8px;
+  }
+  .el-input__suffix {
+    display: none;
+  }
+}
+
+.el-date-picker {
+  font-family: Arial, sans-serif;
 }
 </style>

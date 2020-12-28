@@ -4,6 +4,7 @@ import firebase from '@/plugins/firebase'
 import auth from '@/store/modules/auth'
 import notifications from '@/store/modules/notifications'
 import subscriptions from '@/store/modules/subscriptions'
+import successMessage from '@/store/modules/successMessage'
 import loader from '@/store/modules/loader'
 import { getUserIdToken } from '@/services/firebase/auth.services'
 import router from '@/router'
@@ -19,7 +20,8 @@ const store = new Vuex.Store({
     auth,
     notifications,
     loader,
-    subscriptions
+    subscriptions,
+    successMessage
   }
 })
 

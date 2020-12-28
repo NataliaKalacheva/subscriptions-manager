@@ -38,5 +38,12 @@ export default {
     max-width: 768px;
     margin: 0 auto;
   }
+
+  &,
+  &__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
 }
 </style>
