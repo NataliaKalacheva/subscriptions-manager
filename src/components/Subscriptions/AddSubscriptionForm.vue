@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import checkNumber from '@/helpers/validators/checkNumber'
 import BillingCycles from '@/constants'
 
@@ -61,11 +61,10 @@ export default {
       name: '',
       description: '',
       price: 0,
-      startDate: new Date(),
-      dueDate: new Date(),
+      startDate: Date.now(),
+      dueDate: Date.now(),
       period: BillingCycles[0].label,
       currency: 'USD',
-      // userID: '',
       isPayed: true
     },
     periodOptions: BillingCycles,
@@ -81,13 +80,15 @@ export default {
     },
     labelPosition: 'top'
   }),
-  computed: {},
+  computed: {
+    ...mapGetters(['userId'])
+  },
   methods: {
-    ...mapActions('subscription', ['addSubscription']),
+    ...mapActions('subscriptions', ['addSubscription']),
     submitForm() {
       this.$refs.subscriptionForm.validate(valid => {
         if (valid) {
-          console.log('submit here', this.subscriptionForm)
+          this.addSubscription({ ...this.subscriptionForm, userId: this.userId })
         }
       })
     }

@@ -65,6 +65,7 @@ const subscriptionsStore = {
     async addSubscription({ dispatch }, subscription) {
       try {
         dispatch('toggleLoader', true, { root: true })
+        console.log(subscription)
         await axios.post(`/subscriptions`, subscription)
         dispatch('getSubscriptions')
       } catch (err) {
