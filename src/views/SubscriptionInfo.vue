@@ -21,7 +21,7 @@ export default {
   },
   data: () => ({
     subscription: {
-      name: 'Netflix',
+      name: 'Netflix Example',
       description: 'New description',
       startDate: 1594483747063,
       period: 'month',

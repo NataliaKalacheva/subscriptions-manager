@@ -38,9 +38,10 @@ export default {
   text-align: center;
 
   &__title {
-    margin: 0 0;
-    font-size: 26px;
-    letter-spacing: -0.98;
+    margin: 0 0 5px;
+    font-size: 20px;
+    line-height: 1.4;
+    letter-spacing: 0.39px;
   }
 }
 </style>
