@@ -27,6 +27,7 @@ export default {
   color: $color-dark-blue;
 
   &__content {
+    position: relative;
     max-width: 768px;
     margin: 0 auto;
   }

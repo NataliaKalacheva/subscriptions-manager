@@ -1,6 +1,7 @@
 <template>
   <div class="subscription-header">
     <ui-icon-bubble />
+    <breadcrumps />
     <subscription-icon :title="title" />
     <h1 class="subscription-header__title">{{ title }}</h1>
     <slot />
@@ -9,11 +10,13 @@
 
 <script>
 import { mapActions } from 'vuex'
+import Breadcrumps from '@/components/common/Breadcrumps'
 import SubscriptionIcon from '@/components/Subscriptions/SubscriptionIcon'
 
 export default {
   name: 'SubscriptionHeader',
   components: {
+    Breadcrumps,
     SubscriptionIcon
   },
   props: {
@@ -42,6 +45,15 @@ export default {
     font-size: 20px;
     line-height: 1.4;
     letter-spacing: 0.39px;
+  }
+
+  &__date {
+    margin: 30px auto 0;
+    padding: 5px 20px;
+    font-size: 0.8rem;
+    letter-spacing: -0.21px;
+    background: rgba($color-white, 0.2);
+    border-radius: 15px;
   }
 }
 </style>

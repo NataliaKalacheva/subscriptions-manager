@@ -2,7 +2,8 @@
   <div class="page-subscriptions">
     <div class="page-subscriptions__content">
       <subscription-header :title="subscription.name">
-        {{ subscription.description }}
+        <p>{{ subscription.description }}</p>
+        <div class="subscription-header__date">{{ subscription.startDate }}</div>
       </subscription-header>
       <ui-container>
         CONTENT HERE
@@ -33,3 +34,13 @@ export default {
   })
 }
 </script>
+
+<style lang="scss" scoped>
+.page-subscriptions {
+  &__content {
+    max-width: 768px;
+    margin: 0 auto;
+    position: relative;
+  }
+}
+</style>

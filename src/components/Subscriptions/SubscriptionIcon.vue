@@ -1,5 +1,5 @@
 <template>
-  <div class="subscription-icon">
+  <div class="subscription-icon" :class="iconClasses" v-bind="$attrs">
     <img v-if="icon" :src="icon" :alt="iconTitle" />
     <span v-else>{{ iconTitle }}</span>
   </div>
@@ -16,6 +16,14 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    isSmall: {
+      type: Boolean,
+      default: false
+    },
+    isXs: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -25,6 +33,12 @@ export default {
         .map(item => item[0])
         .join('')
         .toUpperCase()
+    },
+    iconClasses() {
+      return {
+        'is-small': this.isSmall,
+        'is-xs': this.isXs
+      }
     }
   }
 }
@@ -42,8 +56,21 @@ export default {
   background: $color-light-grey;
   color: $color-blue;
   font-weight: 900;
-  font-size: 36px;
+  font-size: 2rem;
   overflow: hidden;
+
+  &.is-small {
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+  }
+
+  &.is-xs {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
 
   & img {
     width: 100%;
