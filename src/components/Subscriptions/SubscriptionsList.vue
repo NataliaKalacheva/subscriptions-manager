@@ -29,13 +29,13 @@ export default {
   data: () => ({
     newSubscription: {
       name: 'Netflix',
-      description: 'New description',
-      startDate: 1594483747063,
+      // description: 'Some description',
+      dueDate: 1594483747063,
       period: 'month',
-      userId: 'meEgv9mwvvbvGXrHrt6mYKZPZ343',
-      isPayed: true,
-      price: 10,
-      currency: 'USD'
+      // userId: 'meEgv9mwvvbvGXrHrt6mYKZPZ343',
+      // isPayed: true,
+      price: 10
+      // currency: 'USD'
     },
     updated: {
       id: 'LUAkO7jnWq7lYtkU4fDD',
