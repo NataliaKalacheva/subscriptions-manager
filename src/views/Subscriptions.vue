@@ -1,18 +1,21 @@
 <template>
   <div class="page-subscriptions">
-    <div class="page-subscriptions__content">
+    <div class="page-subscriptions__header">
       <subscriptions-header />
     </div>
+    <subscriptions-list />
   </div>
 </template>
 
 <script>
 import SubscriptionsHeader from '@/components/Subscriptions/SubscriptionsAllHeader'
+import SubscriptionsList from '@/components/Subscriptions/SubscriptionsList'
 
 export default {
   name: 'Subscriptions',
   components: {
-    SubscriptionsHeader
+    SubscriptionsHeader,
+    SubscriptionsList
   }
 }
 </script>
@@ -26,7 +29,7 @@ export default {
   background-color: $color-light-grey;
   color: $color-dark-blue;
 
-  &__content {
+  &__header {
     position: relative;
     max-width: 768px;
     margin: 0 auto;

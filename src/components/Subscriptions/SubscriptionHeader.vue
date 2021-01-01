@@ -55,5 +55,9 @@ export default {
     background: rgba($color-white, 0.2);
     border-radius: 15px;
   }
+
+  ::v-deep .subscription-icon {
+    margin: 20px 0;
+  }
 }
 </style>
