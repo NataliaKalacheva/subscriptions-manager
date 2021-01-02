@@ -1,7 +1,9 @@
 <template>
   <li class="subscriptions-item">
     <div class="subscriptions-item__icon">
-      <subscription-icon :title="item.name" is-small />
+      <router-link :to="routerLink">
+        <subscription-icon :title="item.name" is-small />
+      </router-link>
     </div>
     <div class="subscriptions-item__info">
       <div class="subscriptions-item__title">
@@ -27,6 +29,11 @@ export default {
     item: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    routerLink() {
+      return { name: 'SubscriptionInfo', params: { subId: this.item.id } }
     }
   }
 }

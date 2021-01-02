@@ -7,9 +7,7 @@
           {{ subscription.startDate | moment('DD MMMM YYYY') }}
         </div>
       </subscription-header>
-      <ui-container>
-        CONTENT HERE
-      </ui-container>
+      <ui-container> CONTENT HERE for {{ subscriptionId }} </ui-container>
     </div>
   </div>
 </template>
@@ -18,7 +16,7 @@
 import SubscriptionHeader from '@/components/Subscriptions/SubscriptionHeader'
 
 export default {
-  name: 'Subscriptions',
+  name: 'SubscriptionInfo',
   components: {
     SubscriptionHeader
   },
@@ -33,7 +31,12 @@ export default {
       price: 10,
       currency: 'USD'
     }
-  })
+  }),
+  computed: {
+    subscriptionId() {
+      return this.$route.params.subId
+    }
+  }
 }
 </script>
 

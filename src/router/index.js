@@ -51,7 +51,7 @@ const routes = [
     component: () => import('../views/AddSubscription.vue')
   },
   {
-    path: '/subscription',
+    path: '/subscription/:subId',
     name: 'SubscriptionInfo',
     component: () => import('../views/SubscriptionInfo.vue')
   }
