@@ -3,7 +3,9 @@
     <div class="page-subscriptions__content">
       <subscription-header :title="subscription.name">
         <p>{{ subscription.description }}</p>
-        <div class="subscription-header__date">{{ subscription.startDate }}</div>
+        <div class="subscription-header__date">
+          {{ subscription.startDate | moment('DD MMMM YYYY') }}
+        </div>
       </subscription-header>
       <ui-container>
         CONTENT HERE

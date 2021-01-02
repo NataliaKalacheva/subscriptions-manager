@@ -2,6 +2,7 @@
   <div class="subscription-header">
     <ui-icon-bubble />
     <breadcrumps />
+    <subscription-actions />
     <subscription-icon :title="title" />
     <h1 class="subscription-header__title">{{ title }}</h1>
     <slot />
@@ -12,12 +13,14 @@
 import { mapActions } from 'vuex'
 import Breadcrumps from '@/components/common/Breadcrumps'
 import SubscriptionIcon from '@/components/Subscriptions/SubscriptionIcon'
+import SubscriptionActions from '@/components/Subscriptions/SubscriptionActions'
 
 export default {
   name: 'SubscriptionHeader',
   components: {
     Breadcrumps,
-    SubscriptionIcon
+    SubscriptionIcon,
+    SubscriptionActions
   },
   props: {
     title: {
