@@ -1,13 +1,17 @@
 <template>
   <li class="subscriptions-item">
     <div class="subscriptions-item__icon">
-      <router-link :to="routerLink">
+      <router-link :to="routerLink" class="subscriptions-item__link">
         <subscription-icon :title="item.name" is-small />
       </router-link>
     </div>
     <div class="subscriptions-item__info">
       <div class="subscriptions-item__title">
-        <h5 class="subscriptions-item__name">{{ item.name }}</h5>
+        <h5 class="subscriptions-item__name">
+          <router-link :to="routerLink" class="subscriptions-item__link">
+            {{ item.name }}
+          </router-link>
+        </h5>
         <span class="subscriptions-item__date">
           {{ item.startDate | moment('DD MMMM YYYY') }}
         </span>
@@ -70,8 +74,13 @@ export default {
   }
 
   &__price {
+    margin-right: 40px;
     font-size: 0.9rem;
     letter-spacing: 0.27px;
+  }
+
+  &__link {
+    text-decoration: none;
   }
 }
 </style>

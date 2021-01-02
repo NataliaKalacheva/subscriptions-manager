@@ -29,6 +29,7 @@ export default {
     subscriptions: [
       // temporary for ui
       {
+        id: 'DFGHJKL54567GHJKL',
         name: 'Netflix',
         description: 'Some description',
         startDate: 1594483747063,
@@ -76,9 +77,13 @@ export default {
   bottom: 0;
   left: 0;
 
+  ::v-deep .container {
+    padding-right: 0;
+  }
+
   &__list {
     margin: 0 0;
-    padding: 0 0;
+    padding: 0 0 0 10px;
     list-style: none;
   }
 }

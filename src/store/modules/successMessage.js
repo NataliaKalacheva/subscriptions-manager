@@ -4,7 +4,7 @@ const { SUCCESS_MESSAGE } = mutations
 
 const successMessage = {
   state: {
-    successMsg: 'Successful'
+    successMsg: 'Successfull'
   },
   getters: {
     successMsg: ({ successMsg }) => successMsg
@@ -15,7 +15,7 @@ const successMessage = {
     }
   },
   actions: {
-    setSuccessMessage({ commit }, msg = 'Successful') {
+    setSuccessMessage({ commit }, msg = 'Successfull') {
       commit(SUCCESS_MESSAGE, msg)
     }
   }

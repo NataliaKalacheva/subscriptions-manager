@@ -1,5 +1,6 @@
 import mutations from '@/store/mutations'
 import axios from '@/plugins/axios'
+import router from '@/router'
 import serializeSubscriptionsResponse from '../utils/serializeSubscriptionsResponse'
 
 const { SUBSCRIPTIONS, UPDATE_SUBSCRIPTION } = mutations
@@ -68,6 +69,7 @@ const subscriptionsStore = {
         console.log(subscription)
         await axios.post(`/subscriptions`, subscription)
         dispatch('getSubscriptions', subscription.userId)
+        router.push({ name: 'Success', query: { type: 'add-subscription' } })
       } catch (err) {
         dispatch(
           'showNotification',
