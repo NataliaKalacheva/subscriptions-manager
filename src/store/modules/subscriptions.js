@@ -23,12 +23,11 @@ const subscriptionsStore = {
     }
   },
   actions: {
-    async getSubscriptions({ commit, dispatch }, id) {
+    async getSubscriptions({ commit, dispatch }) {
       try {
         dispatch('toggleLoader', true, { root: true })
-        const response = await axios.get(`/subscriptions/${id}`)
+        const response = await axios.get(`/subscriptions`)
         const subscriptions = serializeSubscriptionsResponse(response)
-        console.log(response)
         commit(SUBSCRIPTIONS, subscriptions)
       } catch (err) {
         dispatch(
@@ -68,7 +67,7 @@ const subscriptionsStore = {
         dispatch('toggleLoader', true, { root: true })
         console.log(subscription)
         await axios.post(`/subscriptions`, subscription)
-        dispatch('getSubscriptions', subscription.userId)
+        dispatch('getSubscriptions')
         router.push({ name: 'Success', query: { type: 'add-subscription' } })
       } catch (err) {
         dispatch(

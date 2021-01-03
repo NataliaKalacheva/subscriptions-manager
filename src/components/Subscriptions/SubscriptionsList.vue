@@ -78,6 +78,7 @@ export default {
   left: 0;
 
   ::v-deep .container {
+    height: calc(100vh - 340px);
     padding-right: 0;
   }
 

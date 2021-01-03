@@ -3,19 +3,24 @@
     <div class="page-subscriptions__header">
       <subscriptions-header />
     </div>
+
+    <upcoming />
+
     <subscriptions-list />
   </div>
 </template>
 
 <script>
 import SubscriptionsHeader from '@/components/Subscriptions/SubscriptionsAllHeader'
+import Upcoming from '@/components/Subscriptions/Upcoming'
 import SubscriptionsList from '@/components/Subscriptions/SubscriptionsList'
 
 export default {
   name: 'Subscriptions',
   components: {
     SubscriptionsHeader,
-    SubscriptionsList
+    SubscriptionsList,
+    Upcoming
   }
 }
 </script>
@@ -24,7 +29,9 @@ export default {
 .page-subscriptions {
   padding: 0 $page-container-padding;
   box-sizing: border-box;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
   width: 100%;
   background-color: $color-light-grey;
   color: $color-dark-blue;
