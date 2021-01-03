@@ -15,17 +15,20 @@
       <span class="upcoming-item__type">
         App type
       </span>
+      <subscription-countdown :daysLeft="relatedTime" />
     </div>
   </div>
 </template>
 
 <script>
 import SubscriptionIcon from '@/components/Subscriptions/SubscriptionIcon'
+import SubscriptionCountdown from '@/components/Subscriptions/SubscriptionCountdown'
 
 export default {
   name: 'UpcomingItem',
   components: {
-    SubscriptionIcon
+    SubscriptionIcon,
+    SubscriptionCountdown
   },
   props: {
     item: {
@@ -36,6 +39,9 @@ export default {
   computed: {
     routerLink() {
       return { name: 'SubscriptionInfo', params: { subId: this.item.id } }
+    },
+    relatedTime() {
+      return this.$moment(this.item.dueDate).diff(this.$moment(), 'd')
     }
   }
 }

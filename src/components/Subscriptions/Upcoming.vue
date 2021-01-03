@@ -3,10 +3,13 @@
     <h3 class="h3">{{ title }}</h3>
     <template v-if="isExist">
       <carousel :per-page="2.3" :pagination-enabled="false">
-        <slide data-index="0" data-name="MySlideName" v-for="item in subscriptions" :key="item.id">
+        <slide data-index="0" data-name="MySlideName" v-for="item in upcomingList" :key="item.id">
           <upcoming-item :item="item" />
         </slide>
       </carousel>
+    </template>
+    <template v-else>
+      All subscriptions is up to date!
     </template>
   </div>
 </template>
@@ -36,7 +39,7 @@ export default {
         currency: 'USD'
       },
       {
-        id: 'LUAkO7jnWq7lYtkU4fDD',
+        id: 'sdsdfghjhgfdsa',
         name: 'Netflix',
         description: 'UPDATED',
         startDate: 1594483747063,
@@ -48,7 +51,7 @@ export default {
         currency: 'USD'
       },
       {
-        id: 'DFGHJKL54567GHJKL',
+        id: 'tfgyhujikolp;sdsd',
         name: 'Netflix',
         description: 'Some description',
         startDate: 1594483747063,
@@ -64,9 +67,9 @@ export default {
         name: 'Netflix',
         description: 'UPDATED',
         startDate: 1594483747063,
-        dueDate: 1612026000000, // 31 jan
+        dueDate: 1609833763,
         period: 'month',
-        userId: 'meEgv9mwvvbvGXrHrt6mYKZPZ343',
+        userId: 'fghjkfghjkl',
         isPayed: true,
         price: 10,
         currency: 'USD'
@@ -74,37 +77,11 @@ export default {
     ]
   }),
   computed: {
-    //  ...mapGetters('subscriptions', ['subscriptions', 'total']),
     isExist() {
-      // return Boolean(this.total)
-      return true
+      return Boolean(this.upcomingList.length)
     },
     upcomingList() {
-      return this.subscriptions
-    },
-    momentCheck() {
-      console.log(this.$moment)
-      this.$moment.updateLocale('en', {
-        relativeTime: {
-          future: 'in %s',
-          past: '%s ago',
-          s: 'a few seconds',
-          ss: '%d seconds',
-          m: 'a minute',
-          mm: '%d minutes',
-          h: 'an hour',
-          hh: '%d hours',
-          d: 'a day',
-          dd: '%d days',
-          w: 'a week',
-          ww: '%d weeks',
-          M: 'a month',
-          MM: '%d months',
-          y: 'a year',
-          yy: '%d years'
-        }
-      })
-      return this.$moment(this.subscriptions[0].dueDate).fromNow(true)
+      return this.subscriptions.filter(item => this.isUpcoming(item.dueDate))
     }
   },
   methods: {
@@ -113,7 +90,13 @@ export default {
       'addSubscription',
       'deleteSubscription',
       'updateSubscription'
-    ])
+    ]),
+    isUpcoming(date) {
+      return (
+        this.$moment(date).diff(this.$moment(), 'd') < 30 &&
+        this.$moment(date).diff(this.$moment(), 'd') >= 0
+      )
+    }
   }
 }
 </script>
