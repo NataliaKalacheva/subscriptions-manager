@@ -9,8 +9,15 @@
     <ui-form-item label="Name" prop="name" :rules="formRules.name">
       <ui-input v-model="subscriptionForm.name" />
     </ui-form-item>
-    <ui-form-item label="App Type" prop="app" :rules="formRules.name">
-      <ui-input v-model="subscriptionForm.name" />
+    <ui-form-item label="App Type" prop="type" :rules="formRules.type">
+      <ui-select v-model="subscriptionForm.type" :isFullWidth="true" size="large">
+        <ui-option
+          v-for="option in appTypesList"
+          :key="option.name"
+          :value="option.publicName"
+          :label="option.publicName"
+        />
+      </ui-select>
     </ui-form-item>
     <ui-form-item label="Amount" prop="price" :rules="formRules.price">
       <span class="subscription-form__currency" area-label="USD">$</span>
@@ -68,7 +75,8 @@ export default {
       dueDate: Date.now(),
       period: BillingCycles[0].label,
       currency: 'USD',
-      isPayed: true
+      isPayed: true,
+      type: ''
     },
     periodOptions: BillingCycles,
     formRules: {
@@ -84,7 +92,7 @@ export default {
     labelPosition: 'top'
   }),
   computed: {
-    ...mapGetters(['userId'])
+    ...mapGetters(['userId', 'appTypesList'])
   },
   methods: {
     ...mapActions('subscriptions', ['addSubscription']),

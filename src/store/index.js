@@ -5,6 +5,7 @@ import auth from '@/store/modules/auth'
 import notifications from '@/store/modules/notifications'
 import subscriptions from '@/store/modules/subscriptions'
 import successMessage from '@/store/modules/successMessage'
+import appTypes from '@/store/modules/appTypes'
 import user from '@/store/modules/user'
 import loader from '@/store/modules/loader'
 import { getUserIdToken } from '@/services/firebase/auth.services'
@@ -23,7 +24,8 @@ const store = new Vuex.Store({
     loader,
     subscriptions,
     successMessage,
-    user
+    user,
+    appTypes
   }
 })
 
@@ -38,5 +40,7 @@ firebase.auth().onAuthStateChanged(async userData => {
     localStorage.removeItem(process.env.VUE_APP_LS_TOKEN_KEY)
   }
 })
+
+store.dispatch('getAppAllTypes')
 
 export default store
