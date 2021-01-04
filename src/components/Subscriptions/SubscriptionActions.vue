@@ -1,9 +1,8 @@
 <template>
   <div>
-    <Slide right no-overlay>
-      <a id="home" href="#">
-        <span>Home</span>
-      </a>
+    <Slide right no-overlay width="500">
+      <router-link :to="{ name: 'EditSubscription' }">Edit</router-link>
+      <a href="#">Delete</a>
     </Slide>
   </div>
 </template>
@@ -22,6 +21,7 @@ export default {
 <style lang="scss" scoped>
 ::v-deep {
   .bm-menu {
+    max-width: 100%;
     background-color: $color-white;
 
     &,
@@ -47,6 +47,11 @@ export default {
   .line-style {
     width: 4px;
     border-radius: 50%;
+  }
+
+  .bm-cross-button {
+    left: 25px;
+    right: auto;
   }
 }
 </style>

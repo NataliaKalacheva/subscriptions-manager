@@ -58,18 +58,14 @@ import checkNumber from '@/helpers/validators/checkNumber'
 import BillingCycles from '@/constants'
 
 export default {
-  name: 'subscriptionForm',
-  data: () => ({
+  name: 'EditForm',
+  props: {
     subscriptionForm: {
-      name: '',
-      description: '',
-      price: 0,
-      startDate: Date.now(),
-      dueDate: Date.now(),
-      period: BillingCycles[0].label,
-      currency: 'USD',
-      isPayed: true
-    },
+      type: Object,
+      required: true
+    }
+  },
+  data: () => ({
     periodOptions: BillingCycles,
     formRules: {
       name: [{ required: true, message: 'Please input subscription', trigger: 'submit' }],
@@ -87,11 +83,11 @@ export default {
     ...mapGetters(['userId'])
   },
   methods: {
-    ...mapActions('subscriptions', ['addSubscription']),
+    ...mapActions('subscriptions', ['updateSubscription']),
     submitForm() {
       this.$refs.subscriptionForm.validate(valid => {
         if (valid) {
-          this.addSubscription({ ...this.subscriptionForm, userId: this.userId })
+          this.updateSubscription({ ...this.subscriptionForm, userId: this.userId })
         }
       })
     }
