@@ -1,6 +1,6 @@
 <template>
-  <transition :name="transitionName">
-    <div v-if="show" class="container" :class="containerClasses">
+  <transition appear :name="transitionName">
+    <div class="container" :class="containerClasses">
       <slot />
     </div>
   </transition>
@@ -16,27 +16,13 @@ export default {
     }
   },
   data: () => ({
-    transitionName: 'fade',
-    show: false
+    transitionName: 'fade'
   }),
   computed: {
     containerClasses() {
       return {
         'is-rounded': this.isRounded
       }
-    }
-  },
-  watch: {
-    $route: {
-      handler: 'activateTransition',
-      immediate: true
-    }
-  },
-  methods: {
-    activateTransition() {
-      setTimeout(() => {
-        this.show = true
-      }, 0)
     }
   }
 }
