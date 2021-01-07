@@ -1,6 +1,6 @@
 <template>
   <div class="breadcrumps">
-    <router-link :to="{ name: redirectLink }">
+    <router-link :to="{ path: redirectLink }">
       <ui-icon-base><ui-arrow-left /></ui-icon-base>
     </router-link>
   </div>
@@ -11,15 +11,17 @@ export default {
   name: 'Breadcrumps',
   computed: {
     redirectLink() {
-      const type = this.$route.path
+      const type = this.$route.name
 
       switch (type) {
-        case '/subscription':
-          return 'Subscriptions'
-        case '/add-subscription':
-          return 'Subscriptions'
+        case 'SubscriptionInfo':
+          return '/subscriptions'
+        case 'AddSubscription':
+          return '/subscriptions'
+        case 'EditSubscription':
+          return `/subscription/${this.$route.params.subId}`
         default:
-          return 'Home'
+          return '/'
       }
     }
   }

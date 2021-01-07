@@ -1,11 +1,11 @@
 <template>
   <div class="page-subscriptions">
     <div class="page-subscriptions__content">
-      <subscription-header :title="subscription.name">
+      <subscription-header :title="subscription.name" :id="subscriptionId">
         <p>Please, change details which you want to update.</p>
       </subscription-header>
       <ui-container>
-        CONTENT HERE for {{ subscriptionId }}
+        CONTENT HERE for {{ subscriptionId }} {{ subscriptionById }}
         <edit-form :subscriptionForm="subscription" />
       </ui-container>
     </div>
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import SubscriptionHeader from '@/components/Subscriptions/SubscriptionHeader'
 import EditForm from '@/components/Subscriptions/EditForm'
 
@@ -24,6 +25,7 @@ export default {
   },
   data: () => ({
     subscription: {
+      // temporary for ui
       name: 'Netflix Example',
       description: 'New description',
       startDate: 1594483747063,
@@ -37,7 +39,13 @@ export default {
   computed: {
     subscriptionId() {
       return this.$route.params.subId
+    },
+    subscriptionById() {
+      return this.getSubscriptionById(this.subscriptionId)
     }
+  },
+  methods: {
+    ...mapActions('subscriptions', ['getSubscriptionById'])
   }
 }
 </script>

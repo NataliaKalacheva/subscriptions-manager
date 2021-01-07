@@ -2,7 +2,7 @@
   <div class="subscription-header">
     <ui-icon-bubble />
     <breadcrumps />
-    <subscription-actions />
+    <subscription-actions :id="id" />
     <subscription-icon :title="title" />
     <h1 class="subscription-header__title">{{ title }}</h1>
     <slot />
@@ -24,6 +24,10 @@ export default {
   },
   props: {
     title: {
+      type: String,
+      required: true
+    },
+    id: {
       type: String,
       required: true
     }

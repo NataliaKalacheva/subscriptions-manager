@@ -2,18 +2,28 @@
   <div>
     <Slide right no-overlay width="500">
       <router-link :to="{ name: 'EditSubscription' }">Edit</router-link>
-      <a href="#">Delete</a>
+      <a href="#" @click.prevent="deleteSubscription(id)">Delete</a>
     </Slide>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import { Slide } from 'vue-burger-menu'
 
 export default {
   name: 'SubscriptionActions',
   components: {
     Slide // burger menu with slide effect
+  },
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    ...mapActions('subscriptions', ['deleteSubscription'])
   }
 }
 </script>

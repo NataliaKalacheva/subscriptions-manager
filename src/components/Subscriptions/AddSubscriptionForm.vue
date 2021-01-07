@@ -23,7 +23,7 @@
       <span class="subscription-form__currency" area-label="USD">$</span>
       <ui-input v-model.number="subscriptionForm.price" placeholder="$" type="number" />
     </ui-form-item>
-    <ui-form-item label="Next Payment" prop="startDate" :rules="formRules.startDate">
+    <ui-form-item label="Start Date" prop="startDate" :rules="formRules.startDate">
       <ui-date-picker
         v-model.number="subscriptionForm.startDate"
         value-format="timestamp"
@@ -85,7 +85,7 @@ export default {
         { required: true, message: 'Please input number', trigger: 'submit' },
         { validator: checkNumber, trigger: 'submit' }
       ],
-      startDate: [{ required: true, message: 'Please input next payment date', trigger: 'submit' }],
+      startDate: [{ required: true, message: 'Please input start date', trigger: 'submit' }],
       dueDate: [{ required: false }],
       period: [{ required: true, message: 'Please select billing cycle', trigger: 'submit' }]
     },

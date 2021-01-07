@@ -1,18 +1,19 @@
 <template>
   <div class="page-subscriptions">
     <div class="page-subscriptions__content">
-      <subscription-header :title="subscription.name">
+      <subscription-header :title="subscription.name" :id="subscriptionId">
         <p>{{ subscription.description }}</p>
         <div class="subscription-header__date">
           {{ subscription.startDate | moment('DD MMMM YYYY') }}
         </div>
       </subscription-header>
-      <ui-container> CONTENT HERE for {{ subscriptionId }} </ui-container>
+      <ui-container> CONTENT HERE for {{ subscriptionId }} {{ subscriptionById }}</ui-container>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import SubscriptionHeader from '@/components/Subscriptions/SubscriptionHeader'
 
 export default {
@@ -35,7 +36,13 @@ export default {
   computed: {
     subscriptionId() {
       return this.$route.params.subId
+    },
+    subscriptionById() {
+      return this.getSubscriptionById(this.subscriptionId)
     }
+  },
+  methods: {
+    ...mapActions('subscriptions', ['getSubscriptionById'])
   }
 }
 </script>

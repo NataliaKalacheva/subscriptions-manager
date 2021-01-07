@@ -88,6 +88,7 @@ const subscriptionsStore = {
         dispatch('toggleLoader', true, { root: true })
         await axios.delete(`/subscriptions/${subscriptionId}`)
         dispatch('getSubscriptions')
+        router.push({ name: 'Subscriptions' })
       } catch (err) {
         dispatch(
           'showNotification',
