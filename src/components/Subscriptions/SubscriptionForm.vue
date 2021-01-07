@@ -20,7 +20,9 @@
       </ui-select>
     </ui-form-item>
     <ui-form-item label="Amount" prop="price" :rules="formRules.price">
-      <span class="subscription-form__currency" area-label="USD">$</span>
+      <span class="subscription-form__currency" :area-label="subscriptionForm.currency.type">
+        {{ subscriptionForm.currency.icon }}
+      </span>
       <ui-input v-model.number="subscriptionForm.price" placeholder="$" type="number" />
     </ui-form-item>
     <ui-form-item label="Start Date" prop="startDate" :rules="formRules.startDate">
@@ -66,6 +68,12 @@ import BillingCycles from '@/constants'
 
 export default {
   name: 'subscriptionForm',
+  props: {
+    subscriptionData: {
+      type: Object,
+      default: () => ({})
+    }
+  },
   data: () => ({
     subscriptionForm: {
       name: '',
@@ -74,7 +82,7 @@ export default {
       startDate: Date.now(),
       dueDate: Date.now(),
       period: BillingCycles[0].label,
-      currency: 'USD',
+      currency: { icon: '$', type: 'USD' },
       isPayed: true,
       type: ''
     },
@@ -92,13 +100,33 @@ export default {
     labelPosition: 'top'
   }),
   computed: {
-    ...mapGetters(['userId', 'appTypesList'])
+    ...mapGetters(['userId', 'appTypesList']),
+    isExistSubscription() {
+      return Boolean(this.subscriptionData.id)
+    }
+  },
+  watch: {
+    subscriptionData: {
+      handler: 'setInitialFormData',
+      immediate: true
+    }
   },
   methods: {
-    ...mapActions('subscriptions', ['addSubscription']),
+    ...mapActions('subscriptions', ['addSubscription', 'updateSubscription']),
+    setInitialFormData(data) {
+      if (!data.id) return
+      Object.entries(data).forEach(([key, value]) => {
+        if (key in this.subscriptionForm) {
+          this.$set(this.subscriptionForm, key, value)
+        }
+      })
+    },
     submitForm() {
       this.$refs.subscriptionForm.validate(valid => {
-        if (valid) {
+        if (!valid) return
+        if (this.isExistSubscription) {
+          this.updateSubscription({ ...this.subscriptionForm, userId: this.userId })
+        } else {
           this.addSubscription({ ...this.subscriptionForm, userId: this.userId })
         }
       })

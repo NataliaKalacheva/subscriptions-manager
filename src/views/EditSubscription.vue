@@ -6,7 +6,7 @@
       </subscription-header>
       <ui-container>
         CONTENT HERE for {{ subscriptionId }} {{ subscriptionById }}
-        <edit-form :subscriptionForm="subscription" />
+        <edit-form :subscription-data="subscription" />
       </ui-container>
     </div>
   </div>
@@ -15,7 +15,7 @@
 <script>
 import { mapActions } from 'vuex'
 import SubscriptionHeader from '@/components/Subscriptions/SubscriptionHeader'
-import EditForm from '@/components/Subscriptions/EditForm'
+import EditForm from '@/components/Subscriptions/SubscriptionForm'
 
 export default {
   name: 'SubscriptionInfo',
@@ -33,7 +33,8 @@ export default {
       userId: 'meEgv9mwvvbvGXrHrt6mYKZPZ343',
       isPayed: true,
       price: 10,
-      currency: 'USD'
+      currency: 'USD',
+      id: 'srdtfyuigdfsakl'
     }
   }),
   computed: {

@@ -12,7 +12,7 @@
 
 <script>
 import SubscriptionsHeader from '@/components/common/SectionHeader'
-import SubscriptionForm from '@/components/Subscriptions/AddSubscriptionForm'
+import SubscriptionForm from '@/components/Subscriptions/SubscriptionForm'
 import Breadcrumps from '../components/common/Breadcrumps.vue'
 
 export default {
