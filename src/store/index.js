@@ -5,6 +5,7 @@ import auth from '@/store/modules/auth'
 import notifications from '@/store/modules/notifications'
 import subscriptions from '@/store/modules/subscriptions'
 import successMessage from '@/store/modules/successMessage'
+import user from '@/store/modules/user'
 import loader from '@/store/modules/loader'
 import { getUserIdToken } from '@/services/firebase/auth.services'
 import router from '@/router'
@@ -21,17 +22,16 @@ const store = new Vuex.Store({
     notifications,
     loader,
     subscriptions,
-    successMessage
+    successMessage,
+    user
   }
 })
 
 firebase.auth().onAuthStateChanged(async userData => {
-  console.log(userData)
   store.dispatch('setIsLoggedInState', Boolean(userData))
-  // store.dispatch('setUserState', userData)
+  store.dispatch('setUser', userData)
   if (userData) {
     const token = await getUserIdToken()
-    console.log(process.env)
     localStorage.setItem(process.env.VUE_APP_LS_TOKEN_KEY, token)
   } else {
     router.push({ path: 'Login' })
