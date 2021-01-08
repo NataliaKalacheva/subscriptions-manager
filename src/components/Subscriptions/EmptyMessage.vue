@@ -13,6 +13,7 @@ export default {
 
 <style scoped>
 .empty-message {
+  margin: 60px auto;
   text-align: center;
 }
 </style>

@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import UpcomingItem from '@/components/Subscriptions/UpcomingItem'
 import { Carousel, Slide } from 'vue-carousel'
 
@@ -23,60 +23,10 @@ export default {
   name: 'Upcoming',
   components: { UpcomingItem, Carousel, Slide },
   data: () => ({
-    title: 'Upcoming',
-    subscriptions: [
-      // temporary for ui
-      {
-        id: 'DFGHJKL54567GHJKL',
-        name: 'Netflix',
-        description: 'Some description',
-        startDate: 1594483747063,
-        dueDate: 1611939600000,
-        period: 'month',
-        userId: '1Bks9Pzp5hZML8eGev7cA18UzmQ2',
-        isPayed: true,
-        price: 10,
-        currency: 'USD'
-      },
-      {
-        id: 'sdsdfghjhgfdsa',
-        name: 'Netflix',
-        description: 'UPDATED',
-        startDate: 1594483747063,
-        dueDate: 1612026000000, // 31 jan
-        period: 'month',
-        userId: 'meEgv9mwvvbvGXrHrt6mYKZPZ343',
-        isPayed: true,
-        price: 10,
-        currency: 'USD'
-      },
-      {
-        id: 'tfgyhujikolp;sdsd',
-        name: 'Netflix',
-        description: 'Some description',
-        startDate: 1594483747063,
-        dueDate: 1611939600000,
-        period: 'month',
-        userId: '1Bks9Pzp5hZML8eGev7cA18UzmQ2',
-        isPayed: true,
-        price: 10,
-        currency: 'USD'
-      },
-      {
-        id: 'LUAkO7jnWq7lYtkU4fDD',
-        name: 'Netflix',
-        description: 'UPDATED',
-        startDate: 1594483747063,
-        dueDate: 1609833763,
-        period: 'month',
-        userId: 'fghjkfghjkl',
-        isPayed: true,
-        price: 10,
-        currency: 'USD'
-      }
-    ]
+    title: 'Upcoming'
   }),
   computed: {
+    ...mapGetters('subscriptions', ['subscriptions']),
     isExist() {
       return Boolean(this.upcomingList.length)
     },
@@ -85,12 +35,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions('subscriptions', [
-      'getSubscriptions',
-      'addSubscription',
-      'deleteSubscription',
-      'updateSubscription'
-    ]),
     isUpcoming(date) {
       return (
         this.$moment(date).diff(this.$moment(), 'd') < 30 &&

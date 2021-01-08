@@ -10,7 +10,7 @@
       <ui-input v-model="subscriptionForm.name" />
     </ui-form-item>
     <ui-form-item label="App Type" prop="type" :rules="formRules.type">
-      <ui-select v-model="subscriptionForm.type" :isFullWidth="true" size="large">
+      <ui-select v-model="subscriptionForm.appType" :isFullWidth="true" size="large">
         <ui-option
           v-for="option in appTypesList"
           :key="option.name"
@@ -84,7 +84,8 @@ export default {
       period: BillingCycles[0].label,
       currency: { icon: '$', type: 'USD' },
       isPayed: true,
-      type: ''
+      appType: '',
+      id: null
     },
     periodOptions: BillingCycles,
     formRules: {
@@ -125,6 +126,7 @@ export default {
       this.$refs.subscriptionForm.validate(valid => {
         if (!valid) return
         if (this.isExistSubscription) {
+          console.log({ ...this.subscriptionForm, userId: this.userId })
           this.updateSubscription({ ...this.subscriptionForm, userId: this.userId })
         } else {
           this.addSubscription({ ...this.subscriptionForm, userId: this.userId })

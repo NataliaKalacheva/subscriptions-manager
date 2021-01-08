@@ -1,19 +1,19 @@
 <template>
   <div class="page-subscriptions">
     <div class="page-subscriptions__content">
-      <subscription-header :title="subscription.name" :id="subscriptionId">
-        <p>{{ subscription.description }}</p>
+      <subscription-header :title="currentSubscription.name" :id="currentSubscription.id">
+        <p>{{ currentSubscription.description }}</p>
         <div class="subscription-header__date">
-          {{ subscription.startDate | moment('DD MMMM YYYY') }}
+          {{ currentSubscription.startDate | moment('DD MMMM YYYY') }}
         </div>
       </subscription-header>
-      <ui-container> CONTENT HERE for {{ subscriptionId }} {{ subscriptionById }}</ui-container>
+      <ui-container> CONTENT HERE for {{ currentSubscription }}</ui-container>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import SubscriptionHeader from '@/components/Subscriptions/SubscriptionHeader'
 
 export default {
@@ -21,25 +21,11 @@ export default {
   components: {
     SubscriptionHeader
   },
-  data: () => ({
-    subscription: {
-      name: 'Netflix Example',
-      description: 'New description',
-      startDate: 1594483747063,
-      period: 'month',
-      userId: 'meEgv9mwvvbvGXrHrt6mYKZPZ343',
-      isPayed: true,
-      price: 10,
-      currency: 'USD'
-    }
-  }),
+  mounted() {
+    this.getSubscriptionById(this.$route.params.subId)
+  },
   computed: {
-    subscriptionId() {
-      return this.$route.params.subId
-    },
-    subscriptionById() {
-      return this.getSubscriptionById(this.subscriptionId)
-    }
+    ...mapGetters('subscriptions', ['currentSubscription'])
   },
   methods: {
     ...mapActions('subscriptions', ['getSubscriptionById'])

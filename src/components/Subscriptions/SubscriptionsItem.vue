@@ -16,7 +16,7 @@
           {{ item.startDate | moment('DD MMMM YYYY') }}
         </span>
       </div>
-      <div class="subscriptions-item__price">{{ item.currency }} {{ item.price }}</div>
+      <div class="subscriptions-item__price">{{ item.currency.icon }}{{ item.price }}</div>
     </div>
   </li>
 </template>

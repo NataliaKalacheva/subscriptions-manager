@@ -3,14 +3,14 @@
     <div class="page-subscriptions__header">
       <subscriptions-header />
     </div>
-
     <upcoming />
-    <subscriptions-list />
-    <empty-message />
+    <subscriptions-list v-if="isExist" />
+    <empty-message v-else />
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 import SubscriptionsHeader from '@/components/Subscriptions/SubscriptionsAllHeader'
 import Upcoming from '@/components/Subscriptions/Upcoming'
 import SubscriptionsList from '@/components/Subscriptions/SubscriptionsList'
@@ -23,6 +23,18 @@ export default {
     SubscriptionsList,
     Upcoming,
     EmptyMessage
+  },
+  mounted() {
+    this.getSubscriptions()
+  },
+  computed: {
+    ...mapGetters('subscriptions', ['total']),
+    isExist() {
+      return Boolean(this.total)
+    }
+  },
+  methods: {
+    ...mapActions('subscriptions', ['getSubscriptions'])
   }
 }
 </script>

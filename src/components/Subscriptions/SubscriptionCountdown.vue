@@ -7,7 +7,7 @@
       :value="daysLeft"
       :read-only="true"
       path-color="#fff"
-      range-color="url(#gradient)"
+      :range-color="`url(#${gradientId})`"
       handle-size="0"
       line-cap="round"
       width="2"
@@ -15,7 +15,7 @@
     />
     <svg width="0" height="0">
       <defs>
-        <linearGradient id="gradient" v-html="linearGradient"></linearGradient>
+        <linearGradient :id="gradientId" v-html="linearGradient"></linearGradient>
       </defs>
     </svg>
 
@@ -32,12 +32,19 @@ export default {
     RoundSlider
   },
   props: {
+    id: {
+      type: String,
+      default: String(Math.random())
+    },
     daysLeft: {
       type: Number,
       required: true
     }
   },
   computed: {
+    gradientId() {
+      return `gradient-${this.id}`
+    },
     linearGradient() {
       if (this.daysLeft <= 10) {
         return `
@@ -46,7 +53,6 @@ export default {
         <stop offset="50%" style="stop-color:rgb(206, 87, 87);stop-opacity:.8;" />
         <stop offset="75%" style="stop-color:rgb(200, 200, 200);stop-opacity:1;" />
         <stop offset="100%" style="stop-color:rgb(255, 255, 255);stop-opacity:1;" />
-
       `
       }
       return `

@@ -4,7 +4,7 @@
       <router-link :to="routerLink" class="upcoming-item__link">
         <subscription-icon :title="item.name" size="xs" />
       </router-link>
-      <span class="upcoming-item__price">{{ item.currency }} {{ item.price }}</span>
+      <span class="upcoming-item__price">{{ item.currency.icon }}{{ item.price }}</span>
     </div>
     <div class="upcoming-item__info">
       <h5 class="upcoming-item__name">
@@ -13,9 +13,9 @@
         </router-link>
       </h5>
       <span class="upcoming-item__type">
-        App type
+        {{ item.appType }}
       </span>
-      <subscription-countdown :daysLeft="relatedTime" />
+      <subscription-countdown :daysLeft="relatedTime" :id="item.id" />
     </div>
   </div>
 </template>

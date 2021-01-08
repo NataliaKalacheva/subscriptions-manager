@@ -1,19 +1,19 @@
 <template>
   <div class="page-subscriptions">
     <div class="page-subscriptions__content">
-      <subscription-header :title="subscription.name" :id="subscriptionId">
+      <subscription-header :title="currentSubscription.name" :id="currentSubscription.id">
         <p>Please, change details which you want to update.</p>
       </subscription-header>
       <ui-container>
-        CONTENT HERE for {{ subscriptionId }} {{ subscriptionById }}
-        <edit-form :subscription-data="subscription" />
+        CONTENT HERE for {{ currentSubscription.id }}
+        <edit-form :subscription-data="currentSubscription" />
       </ui-container>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import SubscriptionHeader from '@/components/Subscriptions/SubscriptionHeader'
 import EditForm from '@/components/Subscriptions/SubscriptionForm'
 
@@ -23,27 +23,11 @@ export default {
     SubscriptionHeader,
     EditForm
   },
-  data: () => ({
-    subscription: {
-      // temporary for ui
-      name: 'Netflix Example',
-      description: 'New description',
-      startDate: 1594483747063,
-      period: 'month',
-      userId: 'meEgv9mwvvbvGXrHrt6mYKZPZ343',
-      isPayed: true,
-      price: 10,
-      currency: 'USD',
-      id: 'srdtfyuigdfsakl'
-    }
-  }),
+  mounted() {
+    this.getSubscriptionById(this.$route.params.subId)
+  },
   computed: {
-    subscriptionId() {
-      return this.$route.params.subId
-    },
-    subscriptionById() {
-      return this.getSubscriptionById(this.subscriptionId)
-    }
+    ...mapGetters('subscriptions', ['currentSubscription'])
   },
   methods: {
     ...mapActions('subscriptions', ['getSubscriptionById'])
