@@ -17,13 +17,9 @@ export default {
       type: String,
       required: true
     },
-    isSmall: {
-      type: Boolean,
-      default: false
-    },
-    isXs: {
-      type: Boolean,
-      default: false
+    size: {
+      type: String,
+      default: 'default'
     }
   },
   computed: {
@@ -35,9 +31,13 @@ export default {
         .toUpperCase()
     },
     iconClasses() {
-      return {
-        'is-small': this.isSmall,
-        'is-xs': this.isXs
+      switch (this.size) {
+        case 'small':
+          return 'is-small'
+        case 'xs':
+          return 'is-xs'
+        default:
+          return 'default'
       }
     }
   }

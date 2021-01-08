@@ -1,7 +1,7 @@
 import mutations from '@/store/mutations'
 import axios from '@/plugins/axios'
 import router from '@/router'
-import serializeSubscriptionsResponse from '../utils/serializeSubscriptionsResponse'
+import serializeSubscriptionsResponse from '@/store/utils/serializeSubscriptionsResponse'
 
 const { SUBSCRIPTIONS, UPDATE_SUBSCRIPTION } = mutations
 

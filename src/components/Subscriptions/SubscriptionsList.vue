@@ -6,10 +6,6 @@
         <template v-if="isExist">
           <subscriptions-item v-for="item in subscriptions" :key="item.id" :item="item" />
         </template>
-
-        <template v-else>
-          <div>No subscriptions</div>
-        </template>
       </ul>
     </ui-container>
   </div>

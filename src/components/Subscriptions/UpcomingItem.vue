@@ -2,7 +2,7 @@
   <div class="upcoming-item">
     <div class="upcoming-item__header">
       <router-link :to="routerLink" class="upcoming-item__link">
-        <subscription-icon :title="item.name" is-xs />
+        <subscription-icon :title="item.name" size="xs" />
       </router-link>
       <span class="upcoming-item__price">{{ item.currency }} {{ item.price }}</span>
     </div>

@@ -2,7 +2,7 @@
   <li class="subscriptions-item">
     <div class="subscriptions-item__icon">
       <router-link :to="routerLink" class="subscriptions-item__link">
-        <subscription-icon :title="item.name" is-small />
+        <subscription-icon :title="item.name" size="small" />
       </router-link>
     </div>
     <div class="subscriptions-item__info">

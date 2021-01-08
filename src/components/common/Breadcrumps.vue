@@ -15,7 +15,6 @@ export default {
 
       switch (type) {
         case 'SubscriptionInfo':
-          return '/subscriptions'
         case 'AddSubscription':
           return '/subscriptions'
         case 'EditSubscription':

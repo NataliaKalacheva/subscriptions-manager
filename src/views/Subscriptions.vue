@@ -5,8 +5,8 @@
     </div>
 
     <upcoming />
-
     <subscriptions-list />
+    <empty-message />
   </div>
 </template>
 
@@ -14,13 +14,15 @@
 import SubscriptionsHeader from '@/components/Subscriptions/SubscriptionsAllHeader'
 import Upcoming from '@/components/Subscriptions/Upcoming'
 import SubscriptionsList from '@/components/Subscriptions/SubscriptionsList'
+import EmptyMessage from '@/components/Subscriptions/EmptyMessage'
 
 export default {
   name: 'Subscriptions',
   components: {
     SubscriptionsHeader,
     SubscriptionsList,
-    Upcoming
+    Upcoming,
+    EmptyMessage
   }
 }
 </script>
