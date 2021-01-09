@@ -1,17 +1,19 @@
 import mutations from '@/store/mutations'
 import axios from '@/plugins/axios'
-import serializeSubscriptionsResponse from '../utils/serializeSubscriptionsResponse'
+import serializeSubscriptionsResponse from '@/store/utils/serializeSubscriptionsResponse'
 
-const { SUBSCRIPTIONS, UPDATE_SUBSCRIPTION } = mutations
+const { SUBSCRIPTIONS, UPDATE_SUBSCRIPTION, CURRENT_SUBSCRIPTION } = mutations
 
 const subscriptionsStore = {
   namespaced: true,
   state: {
-    subscriptions: {}
+    subscriptions: {},
+    currentSubscription: {}
   },
   getters: {
     subscriptions: ({ subscriptions }) => Object.values(subscriptions),
-    total: ({ subscriptions }) => Object.keys(subscriptions).length
+    total: ({ subscriptions }) => Object.keys(subscriptions).length,
+    currentSubscription: ({ currentSubscription }) => currentSubscription
   },
   mutations: {
     [SUBSCRIPTIONS](state, value = {}) {
@@ -19,6 +21,9 @@ const subscriptionsStore = {
     },
     [UPDATE_SUBSCRIPTION](state, subscription) {
       state.subscriptions[subscription.id] = subscription
+    },
+    [CURRENT_SUBSCRIPTION](state, obj) {
+      state.currentSubscription = obj
     }
   },
   actions: {
@@ -27,7 +32,6 @@ const subscriptionsStore = {
         dispatch('toggleLoader', true, { root: true })
         const response = await axios.get(`/subscriptions`)
         const subscriptions = serializeSubscriptionsResponse(response)
-        console.log(response)
         commit(SUBSCRIPTIONS, subscriptions)
       } catch (err) {
         dispatch(
@@ -47,7 +51,7 @@ const subscriptionsStore = {
       try {
         dispatch('toggleLoader', true, { root: true })
         const response = await axios.get(`/subscriptions/${id}`)
-        commit('UPDATE_SUBSCRIPTION', response)
+        commit('CURRENT_SUBSCRIPTION', response)
       } catch (err) {
         dispatch(
           'showNotification',
@@ -65,6 +69,7 @@ const subscriptionsStore = {
     async addSubscription({ dispatch }, subscription) {
       try {
         dispatch('toggleLoader', true, { root: true })
+        console.log(subscription)
         await axios.post(`/subscriptions`, subscription)
         dispatch('getSubscriptions')
       } catch (err) {

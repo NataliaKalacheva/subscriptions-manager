@@ -9,11 +9,23 @@
     <ui-form-item label="Name" prop="name" :rules="formRules.name">
       <ui-input v-model="subscriptionForm.name" />
     </ui-form-item>
+    <ui-form-item label="App Type" prop="type" :rules="formRules.type">
+      <ui-select v-model="subscriptionForm.appType" :isFullWidth="true" size="large">
+        <ui-option
+          v-for="option in appTypesList"
+          :key="option.name"
+          :value="option.publicName"
+          :label="option.publicName"
+        />
+      </ui-select>
+    </ui-form-item>
     <ui-form-item label="Amount" prop="price" :rules="formRules.price">
-      <span class="subscription-form__currency" area-label="USD">$</span>
+      <span class="subscription-form__currency" :area-label="subscriptionForm.currency.type">
+        {{ subscriptionForm.currency.icon }}
+      </span>
       <ui-input v-model.number="subscriptionForm.price" placeholder="$" type="number" />
     </ui-form-item>
-    <ui-form-item label="Next Payment" prop="startDate" :rules="formRules.startDate">
+    <ui-form-item label="Start Date" prop="startDate" :rules="formRules.startDate">
       <ui-date-picker
         v-model.number="subscriptionForm.startDate"
         value-format="timestamp"
@@ -40,7 +52,7 @@
       </ui-select>
     </ui-form-item>
 
-    <ui-button type="primary" size="large" @click.prevent="submitForm"
+    <ui-button type="primary" size="large" @click.prevent="validateForm"
       >Add subscription
       <ui-icon-base is-circle is-shadow>
         <ui-arrow-right />
@@ -50,23 +62,31 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+import router from '@/router'
 import checkNumber from '@/helpers/validators/checkNumber'
 import BillingCycles from '@/constants'
 
 export default {
   name: 'subscriptionForm',
+  props: {
+    subscriptionData: {
+      type: Object,
+      default: () => ({})
+    }
+  },
   data: () => ({
     subscriptionForm: {
       name: '',
       description: '',
       price: 0,
-      startDate: new Date(),
-      dueDate: new Date(),
+      startDate: Date.now(),
+      dueDate: Date.now(),
       period: BillingCycles[0].label,
-      currency: 'USD',
-      // userID: '',
-      isPayed: true
+      currency: { icon: '$', type: 'USD' },
+      isPayed: true,
+      appType: '',
+      id: null
     },
     periodOptions: BillingCycles,
     formRules: {
@@ -75,21 +95,52 @@ export default {
         { required: true, message: 'Please input number', trigger: 'submit' },
         { validator: checkNumber, trigger: 'submit' }
       ],
-      startDate: [{ required: true, message: 'Please input next payment date', trigger: 'submit' }],
+      startDate: [{ required: true, message: 'Please input start date', trigger: 'submit' }],
       dueDate: [{ required: false }],
       period: [{ required: true, message: 'Please select billing cycle', trigger: 'submit' }]
     },
     labelPosition: 'top'
   }),
-  computed: {},
+  computed: {
+    ...mapGetters(['userId', 'appTypesList']),
+    isExistSubscription() {
+      return Boolean(this.subscriptionData.id)
+    }
+  },
+  watch: {
+    subscriptionData: {
+      handler: 'setInitialFormData',
+      immediate: true
+    }
+  },
   methods: {
-    ...mapActions('subscription', ['addSubscription']),
-    submitForm() {
-      this.$refs.subscriptionForm.validate(valid => {
-        if (valid) {
-          console.log('submit here', this.subscriptionForm)
+    ...mapActions('subscriptions', ['addSubscription', 'updateSubscription']),
+    setInitialFormData(data) {
+      if (!data.id) return
+      Object.entries(data).forEach(([key, value]) => {
+        if (key in this.subscriptionForm) {
+          this.$set(this.subscriptionForm, key, value)
         }
       })
+    },
+    validateForm() {
+      this.$refs.subscriptionForm.validate(valid => {
+        if (!valid) return
+        this.submitForm()
+      })
+    },
+    async submitForm() {
+      try {
+        if (this.isExistSubscription) {
+          await this.updateSubscription({ ...this.subscriptionForm, userId: this.userId })
+          router.push({ name: 'Success', query: { type: 'update-subscription' } })
+        } else {
+          await this.addSubscription({ ...this.subscriptionForm, userId: this.userId })
+          router.push({ name: 'Success', query: { type: 'add-subscription' } })
+        }
+      } catch (err) {
+        throw new Error(err)
+      }
     }
   }
 }

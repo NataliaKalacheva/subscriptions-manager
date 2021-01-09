@@ -20,7 +20,7 @@ export default {
 
 <style lang="scss" scoped>
 .subscriptions-header {
-  margin: 20px 0 40px;
+  margin: 20px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;

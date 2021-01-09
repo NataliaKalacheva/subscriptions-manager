@@ -5,19 +5,15 @@
       You are logged in!
       <ui-button @click="signOut">Sign out</ui-button>
     </h2>
-    <subscriptions-list />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import SubscriptionsList from '@/components/Subscriptions/SubscriptionsList'
 
 export default {
   name: 'Home',
-  components: {
-    SubscriptionsList
-  },
+
   computed: {
     ...mapGetters('auth', ['isLogin'])
   },

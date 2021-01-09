@@ -1,6 +1,7 @@
 <template>
   <div class="page-subscriptions">
     <div class="page-subscriptions__content">
+      <breadcrumps />
       <subscriptions-header :title="title"> {{ description }}</subscriptions-header>
       <ui-container>
         <subscription-form />
@@ -11,11 +12,13 @@
 
 <script>
 import SubscriptionsHeader from '@/components/common/SectionHeader'
-import SubscriptionForm from '@/components/Subscriptions/AddSubscriptionForm'
+import SubscriptionForm from '@/components/Subscriptions/SubscriptionForm'
+import Breadcrumps from '../components/common/Breadcrumps.vue'
 
 export default {
   name: 'Subscriptions',
   components: {
+    Breadcrumps,
     SubscriptionsHeader,
     SubscriptionForm
   },
@@ -35,6 +38,7 @@ export default {
   width: 100%;
 
   &__content {
+    position: relative;
     max-width: 768px;
     margin: 0 auto;
   }
