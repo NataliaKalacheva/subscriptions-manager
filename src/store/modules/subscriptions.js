@@ -1,6 +1,5 @@
 import mutations from '@/store/mutations'
 import axios from '@/plugins/axios'
-import router from '@/router'
 import serializeSubscriptionsResponse from '@/store/utils/serializeSubscriptionsResponse'
 
 const { SUBSCRIPTIONS, UPDATE_SUBSCRIPTION, CURRENT_SUBSCRIPTION } = mutations
@@ -73,7 +72,6 @@ const subscriptionsStore = {
         console.log(subscription)
         await axios.post(`/subscriptions`, subscription)
         dispatch('getSubscriptions')
-        router.push({ name: 'Success', query: { type: 'add-subscription' } })
       } catch (err) {
         dispatch(
           'showNotification',
@@ -93,7 +91,6 @@ const subscriptionsStore = {
         dispatch('toggleLoader', true, { root: true })
         await axios.delete(`/subscriptions/${subscriptionId}`)
         dispatch('getSubscriptions')
-        router.push({ name: 'Subscriptions' })
       } catch (err) {
         dispatch(
           'showNotification',

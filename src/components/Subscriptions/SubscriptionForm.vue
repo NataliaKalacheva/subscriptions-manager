@@ -52,7 +52,7 @@
       </ui-select>
     </ui-form-item>
 
-    <ui-button type="primary" size="large" @click.prevent="submitForm"
+    <ui-button type="primary" size="large" @click.prevent="validateForm"
       >Add subscription
       <ui-icon-base is-circle is-shadow>
         <ui-arrow-right />
@@ -63,6 +63,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import router from '@/router'
 import checkNumber from '@/helpers/validators/checkNumber'
 import BillingCycles from '@/constants'
 
@@ -122,16 +123,24 @@ export default {
         }
       })
     },
-    submitForm() {
+    validateForm() {
       this.$refs.subscriptionForm.validate(valid => {
         if (!valid) return
-        if (this.isExistSubscription) {
-          console.log({ ...this.subscriptionForm, userId: this.userId })
-          this.updateSubscription({ ...this.subscriptionForm, userId: this.userId })
-        } else {
-          this.addSubscription({ ...this.subscriptionForm, userId: this.userId })
-        }
+        this.submitForm()
       })
+    },
+    async submitForm() {
+      try {
+        if (this.isExistSubscription) {
+          await this.updateSubscription({ ...this.subscriptionForm, userId: this.userId })
+          router.push({ name: 'Success', query: { type: 'update-subscription' } })
+        } else {
+          await this.addSubscription({ ...this.subscriptionForm, userId: this.userId })
+          router.push({ name: 'Success', query: { type: 'add-subscription' } })
+        }
+      } catch (err) {
+        throw new Error(err)
+      }
     }
   }
 }

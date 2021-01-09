@@ -2,12 +2,13 @@
   <div>
     <Slide right no-overlay width="500">
       <router-link :to="{ name: 'EditSubscription' }">Edit</router-link>
-      <a href="#" @click.prevent="deleteSubscription(id)">Delete</a>
+      <a href="#" @click.prevent="initDeleteSubscription()">Delete</a>
     </Slide>
   </div>
 </template>
 
 <script>
+import router from '@/router'
 import { mapActions } from 'vuex'
 import { Slide } from 'vue-burger-menu'
 
@@ -23,7 +24,15 @@ export default {
     }
   },
   methods: {
-    ...mapActions('subscriptions', ['deleteSubscription'])
+    ...mapActions('subscriptions', ['deleteSubscription']),
+    async initDeleteSubscription() {
+      try {
+        await this.deleteSubscription(this.id)
+        router.push({ name: 'Subscriptions' })
+      } catch (err) {
+        throw new Error(err)
+      }
+    }
   }
 }
 </script>

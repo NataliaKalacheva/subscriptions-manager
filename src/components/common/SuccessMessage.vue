@@ -23,6 +23,7 @@ export default {
         case 'reset-password':
           return 'Login'
         case 'add-subscription':
+        case 'update-subscription':
           return 'Subscriptions'
         default:
           return 'Home'

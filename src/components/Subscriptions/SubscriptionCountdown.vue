@@ -7,7 +7,7 @@
       :value="daysLeft"
       :read-only="true"
       path-color="#fff"
-      :range-color="`url(#${gradientId})`"
+      :range-color="gradientUrl"
       handle-size="0"
       line-cap="round"
       width="2"
@@ -44,6 +44,9 @@ export default {
   computed: {
     gradientId() {
       return `gradient-${this.id}`
+    },
+    gradientUrl() {
+      return `url(#${this.gradientId})`
     },
     linearGradient() {
       if (this.daysLeft <= 10) {
