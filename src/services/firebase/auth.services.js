@@ -18,6 +18,15 @@ export const firebaseSignUp = async (email, password) => {
   }
 }
 
+export const getUser = async () => {
+  try {
+    const data = await firebase.auth().currentUser
+    return data
+  } catch (err) {
+    throw new Error(err)
+  }
+}
+
 export const getUserIdToken = async () => {
   try {
     const data = await firebase.auth().currentUser.getIdToken()
