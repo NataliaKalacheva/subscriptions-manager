@@ -33,6 +33,7 @@ export default {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   padding: 15px 33px;
   background: white;
   color: $color-dark-blue;
