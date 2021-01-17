@@ -1,9 +1,10 @@
 import mutations from '@/store/mutations'
-import axios from '@/plugins/axios'
+import { getUser } from '@/services/firebase/auth.services'
 
 const { USER } = mutations
 
 const userStore = {
+  namespaced: true,
   state: {
     user: {}
   },
@@ -17,13 +18,16 @@ const userStore = {
     }
   },
   actions: {
-    setUser({ dispatch }, user) {
-      if (!user) return
-      dispatch('getUser', user.uid)
+    setUser: {
+      handler({ dispatch }, user) {
+        if (!user) return
+        dispatch('getUser', user.uid)
+      },
+      root: true
     },
-    async getUser({ commit }, id) {
+    async getUser({ commit }) {
       try {
-        const user = await axios.get(`/user/${id}`)
+        const user = await getUser()
         commit(USER, user)
       } catch (err) {
         console.log(err)

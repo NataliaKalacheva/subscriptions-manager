@@ -3,7 +3,7 @@
     <h3 class="h3">{{ title }}</h3>
     <template v-if="isExist">
       <carousel :per-page="2.3" :pagination-enabled="false">
-        <slide data-index="0" data-name="MySlideName" v-for="item in upcomingList" :key="item.id">
+        <slide data-index="0" data-name="MySlideName" v-for="item in sortedUpcoming" :key="item.id">
           <upcoming-item :item="item" />
         </slide>
       </carousel>
@@ -32,6 +32,10 @@ export default {
     },
     upcomingList() {
       return this.subscriptions.filter(item => this.isUpcoming(item.dueDate))
+    },
+    sortedUpcoming() {
+      const list = this.upcomingList
+      return list.sort((prev, next) => (prev.dueDate > next.dueDate ? 1 : -1))
     }
   },
   methods: {

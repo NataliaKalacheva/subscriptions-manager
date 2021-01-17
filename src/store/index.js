@@ -41,6 +41,6 @@ firebase.auth().onAuthStateChanged(async userData => {
   }
 })
 
-store.dispatch('getAppAllTypes')
+store.dispatch('appTypes/getAppAllTypes')
 
 export default store

@@ -20,8 +20,8 @@
       </ui-select>
     </ui-form-item>
     <ui-form-item label="Amount" prop="price" :rules="formRules.price">
-      <span class="subscription-form__currency" :area-label="subscriptionForm.currency.type">
-        {{ subscriptionForm.currency.icon }}
+      <span class="subscription-form__currency" :area-label="supportedCurrency.type">
+        {{ supportedCurrency.icon }}
       </span>
       <ui-input v-model.number="subscriptionForm.price" placeholder="$" type="number" />
     </ui-form-item>
@@ -65,7 +65,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import router from '@/router'
 import checkNumber from '@/helpers/validators/checkNumber'
-import BillingCycles from '@/constants'
+import { billingCycles, supportedCurrency } from '@/constants'
 
 export default {
   name: 'subscriptionForm',
@@ -82,13 +82,12 @@ export default {
       price: 0,
       startDate: Date.now(),
       dueDate: Date.now(),
-      period: BillingCycles[0].label,
-      currency: { icon: '$', type: 'USD' },
+      period: billingCycles[0].label,
       isPayed: true,
       appType: '',
       id: null
     },
-    periodOptions: BillingCycles,
+    periodOptions: billingCycles,
     formRules: {
       name: [{ required: true, message: 'Please input subscription', trigger: 'submit' }],
       price: [
@@ -102,7 +101,13 @@ export default {
     labelPosition: 'top'
   }),
   computed: {
-    ...mapGetters(['userId', 'appTypesList']),
+    ...mapGetters({
+      userId: 'user/userId',
+      appTypesList: 'appTypes/appTypesList'
+    }),
+    supportedCurrency() {
+      return supportedCurrency
+    },
     isExistSubscription() {
       return Boolean(this.subscriptionData.id)
     }
@@ -130,16 +135,28 @@ export default {
       })
     },
     async submitForm() {
-      try {
-        if (this.isExistSubscription) {
-          await this.updateSubscription({ ...this.subscriptionForm, userId: this.userId })
+      if (this.isExistSubscription) {
+        try {
+          await this.updateSubscription({
+            ...this.subscriptionForm,
+            userId: this.userId,
+            currency: this.supportedCurrency.type
+          })
           router.push({ name: 'Success', query: { type: 'update-subscription' } })
-        } else {
-          await this.addSubscription({ ...this.subscriptionForm, userId: this.userId })
-          router.push({ name: 'Success', query: { type: 'add-subscription' } })
+        } catch (err) {
+          throw new Error(err)
         }
-      } catch (err) {
-        throw new Error(err)
+      } else {
+        try {
+          await this.addSubscription({
+            ...this.subscriptionForm,
+            userId: this.userId,
+            currency: this.supportedCurrency.type
+          })
+          router.push({ name: 'Success', query: { type: 'add-subscription' } })
+        } catch (err) {
+          throw new Error(err)
+        }
       }
     }
   }
