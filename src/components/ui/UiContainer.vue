@@ -21,7 +21,7 @@ export default {
   computed: {
     containerClasses() {
       return {
-        'is-rounded': this.isRounded
+        'container--rounded': this.isRounded
       }
     }
   }
@@ -46,7 +46,7 @@ export default {
     }
   }
 
-  &.is-rounded {
+  &--rounded {
     border-radius: 50px 50px 0 0;
   }
 

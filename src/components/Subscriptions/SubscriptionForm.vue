@@ -101,10 +101,8 @@ export default {
     labelPosition: 'top'
   }),
   computed: {
-    ...mapGetters({
-      userId: 'user/userId',
-      appTypesList: 'appTypes/appTypesList'
-    }),
+    ...mapGetters('user', ['userId']),
+    ...mapGetters('appTypes', ['appTypesList']),
     supportedCurrency() {
       return supportedCurrency
     },
@@ -136,27 +134,33 @@ export default {
     },
     async submitForm() {
       if (this.isExistSubscription) {
-        try {
-          await this.updateSubscription({
-            ...this.subscriptionForm,
-            userId: this.userId,
-            currency: this.supportedCurrency.type
-          })
-          router.push({ name: 'Success', query: { type: 'update-subscription' } })
-        } catch (err) {
-          throw new Error(err)
-        }
-      } else {
-        try {
-          await this.addSubscription({
-            ...this.subscriptionForm,
-            userId: this.userId,
-            currency: this.supportedCurrency.type
-          })
-          router.push({ name: 'Success', query: { type: 'add-subscription' } })
-        } catch (err) {
-          throw new Error(err)
-        }
+        this.handleSubscriptionUpdate()
+        return
+      }
+      this.handleSubscriptionAdd()
+    },
+    async handleSubscriptionUpdate() {
+      try {
+        await this.updateSubscription({
+          ...this.subscriptionForm,
+          userId: this.userId,
+          currency: this.supportedCurrency.type
+        })
+        router.push({ name: 'Success', query: { type: 'update-subscription' } })
+      } catch (err) {
+        throw new Error(err)
+      }
+    },
+    async handleSubscriptionAdd() {
+      try {
+        await this.addSubscription({
+          ...this.subscriptionForm,
+          userId: this.userId,
+          currency: this.supportedCurrency.type
+        })
+        router.push({ name: 'Success', query: { type: 'add-subscription' } })
+      } catch (err) {
+        throw new Error(err)
       }
     }
   }

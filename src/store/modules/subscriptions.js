@@ -62,6 +62,7 @@ const subscriptionsStore = {
           },
           { root: true }
         )
+        throw new Error(err)
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }
@@ -82,6 +83,7 @@ const subscriptionsStore = {
           },
           { root: true }
         )
+        throw new Error(err)
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }
@@ -120,6 +122,7 @@ const subscriptionsStore = {
           },
           { root: true }
         )
+        throw new Error(err)
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }

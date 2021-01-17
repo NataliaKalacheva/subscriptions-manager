@@ -29,7 +29,7 @@ export default {
     ...mapGetters('subscriptions', ['subscriptions']),
     listClasses() {
       return {
-        'is-expanded': this.isExpanded
+        'container--expanded': this.isExpanded
       }
     }
   },
@@ -53,9 +53,10 @@ export default {
     padding-right: 0;
     transition: height 0.4s linear;
 
-    &.is-expanded {
+    &.container--expanded {
       height: 100vh;
       overflow-y: auto;
+      border-radius: 0;
       transition: height 0.4s linear;
     }
   }
