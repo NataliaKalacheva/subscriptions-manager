@@ -42,5 +42,8 @@ export default {
     margin: 0 auto;
     position: relative;
   }
+  @include mq-max($tab) {
+    padding: 0 0;
+  }
 }
 </style>

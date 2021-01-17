@@ -49,5 +49,9 @@ export default {
     display: flex;
     flex-direction: column;
   }
+
+  @include mq-max($tab) {
+    padding: 0 0;
+  }
 }
 </style>

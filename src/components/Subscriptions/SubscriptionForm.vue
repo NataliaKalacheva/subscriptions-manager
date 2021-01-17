@@ -23,7 +23,11 @@
       <span class="subscription-form__currency" :area-label="supportedCurrency.type">
         {{ supportedCurrency.icon }}
       </span>
-      <ui-input v-model.number="subscriptionForm.price" placeholder="$" type="number" />
+      <ui-input
+        v-model.number="subscriptionForm.price"
+        :placeholder="subscriptionForm.price"
+        type="number"
+      />
     </ui-form-item>
     <ui-form-item label="Start Date" prop="startDate" :rules="formRules.startDate">
       <ui-date-picker
@@ -174,17 +178,13 @@ export default {
     top: 50%;
     left: 12px;
     z-index: 1;
-    padding: 3px 0 0;
+    padding: 1px 0 0;
     transform: translateY(-50%);
-    color: $color-blue;
+    color: $color-dark-blue;
   }
 
   &::v-deep .ui-button {
     margin-top: 60px;
-  }
-
-  .reset-link {
-    margin-left: 18px;
   }
 
   @include mq-max($tab) {

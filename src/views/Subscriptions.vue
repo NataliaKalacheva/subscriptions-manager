@@ -55,5 +55,14 @@ export default {
     max-width: 768px;
     margin: 0 auto;
   }
+
+  @include mq-max($tab) {
+    padding: 0 0;
+
+    &__header,
+    .upcoming {
+      padding: 0 $page-container-padding;
+    }
+  }
 }
 </style>

@@ -37,7 +37,16 @@ const authStore = {
         commit(IS_FIRST_LOGIN, true)
         router.push({ path: '/' })
       } catch (err) {
-        console.log(err)
+        dispatch(
+          'showNotification',
+          {
+            type: 'error',
+            message: err,
+            title: ''
+          },
+          { root: true }
+        )
+        throw new Error(err)
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }
@@ -58,6 +67,7 @@ const authStore = {
           },
           { root: true }
         )
+        throw new Error(err)
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }
@@ -68,7 +78,6 @@ const authStore = {
         await firebaseSignOut()
         commit(IS_LOGIN, false)
       } catch (err) {
-        console.log(err)
         dispatch(
           'showNotification',
           {
@@ -78,6 +87,7 @@ const authStore = {
           },
           { root: true }
         )
+        throw new Error(err)
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }
@@ -100,6 +110,7 @@ const authStore = {
           },
           { root: true }
         )
+        throw new Error(err)
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }
