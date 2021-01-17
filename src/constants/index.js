@@ -1,4 +1,4 @@
-const billingCycles = [
+export const billingCycles = [
   {
     label: 'Month',
     value: 'month'
@@ -17,4 +17,7 @@ const billingCycles = [
   }
 ]
 
-export default billingCycles
+export const supportedCurrency = {
+  type: 'USD',
+  icon: '$'
+}
