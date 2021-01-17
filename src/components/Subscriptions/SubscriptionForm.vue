@@ -83,7 +83,7 @@ export default {
       startDate: Date.now(),
       dueDate: Date.now(),
       period: BillingCycles[0].label,
-      currency: { icon: '$', type: 'USD' },
+      currency: 'USD',
       isPayed: true,
       appType: '',
       id: null
@@ -102,7 +102,10 @@ export default {
     labelPosition: 'top'
   }),
   computed: {
-    ...mapGetters(['userId', 'appTypesList']),
+    ...mapGetters({
+      userId: 'user/userId',
+      appTypesList: 'appTypes/appTypesList'
+    }),
     isExistSubscription() {
       return Boolean(this.subscriptionData.id)
     }

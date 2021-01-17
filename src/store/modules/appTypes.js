@@ -4,6 +4,7 @@ import axios from '@/plugins/axios'
 const { APP_TYPES } = mutations
 
 const appTypes = {
+  namespaced: true,
   state: {
     appTypesList: {}
   },
