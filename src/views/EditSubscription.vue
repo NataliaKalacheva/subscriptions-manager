@@ -1,7 +1,11 @@
 <template>
   <div class="page-subscriptions">
     <div class="page-subscriptions__content">
-      <subscription-header :title="currentSubscription.name" :id="currentSubscription.id">
+      <subscription-header
+        :title="currentSubscription.name"
+        :id="currentSubscription.id"
+        :icon="currentSubscription.icon"
+      >
         <p>Please, change details which you want to update.</p>
       </subscription-header>
       <ui-container>

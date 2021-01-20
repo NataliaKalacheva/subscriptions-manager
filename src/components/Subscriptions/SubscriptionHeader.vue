@@ -3,7 +3,7 @@
     <ui-icon-bubble />
     <breadcrumps />
     <subscription-actions :id="id" />
-    <subscription-icon :title="title" />
+    <subscription-icon :title="title" :icon="icon" />
     <h1 class="subscription-header__title">{{ title }}</h1>
     <slot />
   </div>
@@ -28,6 +28,10 @@ export default {
       required: true
     },
     id: {
+      type: String,
+      required: true
+    },
+    icon: {
       type: String,
       required: true
     }

@@ -50,14 +50,14 @@
         <ui-option
           v-for="option in periodOptions"
           :key="option.value"
-          :value="option.label"
-          :label="option.label"
+          :value="option.value"
+          :label="option.value"
         />
       </ui-select>
     </ui-form-item>
 
-    <ui-button type="primary" size="large" @click.prevent="validateForm"
-      >Add subscription
+    <ui-button type="primary" size="large" @click.prevent="validateForm">
+      {{ submitTitle }}
       <ui-icon-base is-circle is-shadow>
         <ui-arrow-right />
       </ui-icon-base>
@@ -112,6 +112,9 @@ export default {
     },
     isExistSubscription() {
       return Boolean(this.subscriptionData.id)
+    },
+    submitTitle() {
+      return this.isExistSubscription ? 'Update subscription' : 'Add subscription'
     }
   },
   watch: {
