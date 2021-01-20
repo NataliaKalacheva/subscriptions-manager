@@ -41,7 +41,7 @@ export default {
       return { name: 'SubscriptionInfo', params: { subId: this.item.id } }
     },
     relatedTime() {
-      return this.$moment(this.item.dueDate).diff(this.$moment(), 'd')
+      return this.$moment(this.item.nextPaymentDate).diff(this.$moment(), 'd')
     }
   }
 }
