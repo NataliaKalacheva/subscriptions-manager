@@ -25,13 +25,16 @@ const userStore = {
       },
       root: true
     },
-    async getUser({ commit }) {
-      try {
-        const user = await getUser()
-        commit(USER, user)
-      } catch (err) {
-        console.log(err)
-      }
+    getUser: {
+      async handler({ commit }) {
+        try {
+          const user = await getUser()
+          commit(USER, user)
+        } catch (err) {
+          console.log(err)
+        }
+      },
+      root: true
     }
   }
 }

@@ -11,12 +11,17 @@ export default {
     isShadow: {
       type: Boolean,
       default: false
+    },
+    isLink: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
     buttonClasses() {
       return {
-        'is-shadow': this.isShadow
+        'is-shadow': this.isShadow,
+        'is-link': this.isLink
       }
     }
   }
@@ -42,6 +47,20 @@ export default {
 
   &.is-shadow ::v-deep {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.16);
+  }
+
+  &.is-link {
+    margin: 0 0;
+    padding: 0 0;
+    background: transparent;
+    border: none;
+
+    &:hover,
+    &:focus {
+      background: transparent;
+      border: none;
+      color: currentColor;
+    }
   }
 
   &.is-disabled ::v-deep {

@@ -1,8 +1,10 @@
 <template>
   <div class="page-settings">
     <div class="page-settings__content">
-      <settings-header :title="title" />
-      <ui-container></ui-container>
+      <settings-header :title="title" :userName="'Test Name'" />
+      <ui-container>
+        <settings-content />
+      </ui-container>
     </div>
   </div>
 </template>
@@ -10,11 +12,13 @@
 <script>
 import { mapGetters } from 'vuex'
 import SettingsHeader from '@/components/Profile/SettingsHeader'
+import SettingsContent from '@/components/Profile/SettingsContent'
 
 export default {
   name: 'Settings',
   components: {
-    SettingsHeader
+    SettingsHeader,
+    SettingsContent
   },
   data: () => ({
     title: 'Settings'
@@ -35,6 +39,10 @@ export default {
     flex-direction: column;
     min-height: 100vh;
     box-sizing: border-box;
+  }
+
+  ::v-deep .container {
+    padding-right: 0;
   }
 
   @include mq-max($tab) {

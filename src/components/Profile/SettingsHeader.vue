@@ -3,10 +3,10 @@
     <ui-icon-bubble />
     <h1 class="settings-header__title">{{ title }}</h1>
     <div class="settings-header__user">
-      <profile-icon :title="title" :icon="icon" />
+      <profile-icon :title="userName" :icon="icon" />
       <div class="settings-header__user-data">
         <div class="settings-header__user-name h3">
-          Stephen Tosan
+          {{ userName }}
         </div>
         <router-link :to="{ name: 'EditProfile' }" class="settings-header__user-edit">
           Edit profile
@@ -31,7 +31,11 @@ export default {
     },
     icon: {
       type: String,
-      required: true
+      default: null
+    },
+    userName: {
+      type: String,
+      default: 'User Name'
     }
   }
 }
