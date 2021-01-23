@@ -51,8 +51,8 @@ export default {
   }
 
   @include mq($tab) {
+    width: 100%;
     max-width: 768px;
-    width: 90%;
     margin: 0 auto;
   }
 }

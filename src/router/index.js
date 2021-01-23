@@ -59,6 +59,16 @@ const routes = [
     path: '/edit-subscription/:subId',
     name: 'EditSubscription',
     component: () => import('../views/EditSubscription.vue')
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: () => import('../views/Settings.vue')
+  },
+  {
+    path: '/edit-profile',
+    name: 'EditProfile',
+    component: () => import('../views/EditProfile.vue')
   }
 ]
 

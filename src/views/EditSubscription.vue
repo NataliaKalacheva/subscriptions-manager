@@ -9,7 +9,6 @@
         <p>Please, change details which you want to update.</p>
       </subscription-header>
       <ui-container>
-        CONTENT HERE for {{ currentSubscription.id }}
         <edit-form :subscription-data="currentSubscription" />
       </ui-container>
     </div>
