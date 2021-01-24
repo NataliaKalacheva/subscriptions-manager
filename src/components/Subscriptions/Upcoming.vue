@@ -31,11 +31,11 @@ export default {
       return Boolean(this.upcomingList.length)
     },
     upcomingList() {
-      return this.subscriptions.filter(item => this.isUpcoming(item.dueDate))
+      return this.subscriptions.filter(item => this.isUpcoming(item.nextPaymentDate))
     },
     sortedUpcoming() {
       const list = this.upcomingList
-      return list.sort((prev, next) => (prev.dueDate > next.dueDate ? 1 : -1))
+      return list.sort((prev, next) => (prev.nextPaymentDate > next.nextPaymentDate ? 1 : -1))
     }
   },
   methods: {

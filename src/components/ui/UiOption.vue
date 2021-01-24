@@ -21,6 +21,7 @@ export default {
   & ::v-deep {
     font-family: Arial, sans-serif;
     color: $color-text-grey;
+    text-transform: capitalize;
   }
   &.is-disabled ::v-deep {
     color: rgba($color-text-grey, 0.7);

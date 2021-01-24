@@ -19,6 +19,8 @@ export default {
           return '/subscriptions'
         case 'EditSubscription':
           return `/subscription/${this.$route.params.subId}`
+        case 'EditProfile':
+          return `/settings`
         default:
           return '/'
       }

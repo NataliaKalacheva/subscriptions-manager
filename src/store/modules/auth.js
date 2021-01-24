@@ -3,11 +3,12 @@ import {
   firebaseSignUp,
   firebaseLogin,
   firebaseSignOut,
-  firebaseResetPassword
+  firebaseResetPassword,
+  firebaseUpdateUser
 } from '@/services/firebase/auth.services'
 import router from '@/router'
 
-const { IS_FIRST_LOGIN, IS_LOGIN } = mutations
+const { IS_LOGIN } = mutations
 
 const authStore = {
   namespaced: true,
@@ -19,7 +20,6 @@ const authStore = {
   },
   mutations: {
     [IS_LOGIN](state, boolean) {
-      console.log(state.isLogin)
       state.isLogin = boolean
     }
   },
@@ -30,14 +30,40 @@ const authStore = {
       },
       root: true
     },
-    async signUp({ commit, dispatch }, { email, password }) {
+    async signUp({ dispatch }, { email, password }) {
       try {
         dispatch('toggleLoader', true, { root: true })
         await firebaseSignUp(email, password)
-        commit(IS_FIRST_LOGIN, true)
-        router.push({ path: '/' })
       } catch (err) {
-        console.log(err)
+        dispatch(
+          'showNotification',
+          {
+            type: 'error',
+            message: err,
+            title: ''
+          },
+          { root: true }
+        )
+        throw new Error(err)
+      } finally {
+        dispatch('toggleLoader', false, { root: true })
+      }
+    },
+    async updateUser({ dispatch }, user) {
+      try {
+        dispatch('toggleLoader', true, { root: true })
+        await firebaseUpdateUser(user)
+      } catch (err) {
+        dispatch(
+          'showNotification',
+          {
+            type: 'error',
+            message: err,
+            title: ''
+          },
+          { root: true }
+        )
+        throw new Error(err)
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }
@@ -58,6 +84,7 @@ const authStore = {
           },
           { root: true }
         )
+        throw new Error(err)
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }
@@ -68,7 +95,6 @@ const authStore = {
         await firebaseSignOut()
         commit(IS_LOGIN, false)
       } catch (err) {
-        console.log(err)
         dispatch(
           'showNotification',
           {
@@ -78,6 +104,7 @@ const authStore = {
           },
           { root: true }
         )
+        throw new Error(err)
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }
@@ -100,6 +127,7 @@ const authStore = {
           },
           { root: true }
         )
+        throw new Error(err)
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }

@@ -5,20 +5,20 @@
       Or <router-link :to="{ name: 'Login' }">Login</router-link>
     </section-header>
     <ui-container>
-      <sign-up-form />
+      <user-form />
     </ui-container>
   </div>
 </template>
 
 <script>
 import SectionHeader from '@/components/common/SectionHeader'
-import SignUpForm from '@/components/Auth/SignUpForm'
+import UserForm from '@/components/Auth/UserForm'
 
 export default {
   name: 'SignUp',
   components: {
     SectionHeader,
-    SignUpForm
+    UserForm
   },
   data: () => ({
     title: 'Welcome',

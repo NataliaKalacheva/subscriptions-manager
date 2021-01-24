@@ -21,7 +21,7 @@ export default {
   computed: {
     containerClasses() {
       return {
-        'is-rounded': this.isRounded
+        'container--rounded': this.isRounded
       }
     }
   }
@@ -46,13 +46,13 @@ export default {
     }
   }
 
-  &.is-rounded {
+  &--rounded {
     border-radius: 50px 50px 0 0;
   }
 
   @include mq($tab) {
+    width: 100%;
     max-width: 768px;
-    width: 90%;
     margin: 0 auto;
   }
 }

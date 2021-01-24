@@ -1,7 +1,11 @@
 <template>
-  <div class="page-subscriptions">
+  <div class="page-subscriptions" v-if="currentSubscription.id">
     <div class="page-subscriptions__content">
-      <subscription-header :title="currentSubscription.name" :id="currentSubscription.id">
+      <subscription-header
+        :title="currentSubscription.name"
+        :id="currentSubscription.id"
+        :icon="currentSubscription.icon"
+      >
         <p>{{ currentSubscription.description }}</p>
         <div class="subscription-header__date">
           {{ currentSubscription.startDate | moment('DD MMMM YYYY') }}

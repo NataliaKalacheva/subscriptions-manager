@@ -7,14 +7,14 @@
     hide-required-asterisk
   >
     <ui-form-item label="Email" prop="email" :rules="formRules.email">
-      <ui-input v-model="loginForm.email" />
+      <ui-input v-model="loginForm.email" @focus="clearValidate" />
     </ui-form-item>
     <ui-form-item label="Password" prop="password" :rules="formRules.password">
       <ui-input v-model="loginForm.password" placeholder="Password" show-password />
-      <div class="reset-link">
-        <router-link :to="{ name: 'ResetPassword' }">Forgot password?</router-link>
-      </div>
     </ui-form-item>
+    <div class="reset-link">
+      <router-link :to="{ name: 'ResetPassword' }">Forgot password?</router-link>
+    </div>
     <ui-button type="primary" size="large" @click.prevent="submitForm"
       >Login
       <ui-icon-base is-circle is-shadow>
@@ -44,7 +44,7 @@ export default {
         }
       ],
       password: [
-        { required: true, message: 'Please input number', trigger: 'submit' },
+        { required: true, message: 'Please input password', trigger: 'submit' },
         {
           min: 4,
           message: 'Min length: 4',
@@ -62,6 +62,9 @@ export default {
           this.login({ ...this.loginForm })
         }
       })
+    },
+    clearValidate() {
+      this.$refs.loginForm.clearValidate()
     }
   }
 }
@@ -75,6 +78,9 @@ export default {
 
   .reset-link {
     margin-left: 18px;
+    margin-top: 20px;
+    text-align: left;
+    font-size: 0.9rem;
   }
 
   @include mq-max($tab) {

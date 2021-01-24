@@ -25,6 +25,8 @@ export default {
         case 'add-subscription':
         case 'update-subscription':
           return 'Subscriptions'
+        case 'update-user':
+          return 'Settings'
         default:
           return 'Home'
       }

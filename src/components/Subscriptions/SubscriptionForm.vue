@@ -23,7 +23,11 @@
       <span class="subscription-form__currency" :area-label="supportedCurrency.type">
         {{ supportedCurrency.icon }}
       </span>
-      <ui-input v-model.number="subscriptionForm.price" placeholder="$" type="number" />
+      <ui-input
+        v-model.number="subscriptionForm.price"
+        :placeholder="subscriptionForm.price"
+        type="number"
+      />
     </ui-form-item>
     <ui-form-item label="Start Date" prop="startDate" :rules="formRules.startDate">
       <ui-date-picker
@@ -46,14 +50,14 @@
         <ui-option
           v-for="option in periodOptions"
           :key="option.value"
-          :value="option.label"
-          :label="option.label"
+          :value="option.value"
+          :label="option.value"
         />
       </ui-select>
     </ui-form-item>
 
-    <ui-button type="primary" size="large" @click.prevent="validateForm"
-      >Add subscription
+    <ui-button type="primary" size="large" @click.prevent="validateForm">
+      {{ submitTitle }}
       <ui-icon-base is-circle is-shadow>
         <ui-arrow-right />
       </ui-icon-base>
@@ -101,15 +105,16 @@ export default {
     labelPosition: 'top'
   }),
   computed: {
-    ...mapGetters({
-      userId: 'user/userId',
-      appTypesList: 'appTypes/appTypesList'
-    }),
+    ...mapGetters('user', ['userId']),
+    ...mapGetters('appTypes', ['appTypesList']),
     supportedCurrency() {
       return supportedCurrency
     },
     isExistSubscription() {
       return Boolean(this.subscriptionData.id)
+    },
+    submitTitle() {
+      return this.isExistSubscription ? 'Update subscription' : 'Add subscription'
     }
   },
   watch: {
@@ -136,27 +141,33 @@ export default {
     },
     async submitForm() {
       if (this.isExistSubscription) {
-        try {
-          await this.updateSubscription({
-            ...this.subscriptionForm,
-            userId: this.userId,
-            currency: this.supportedCurrency.type
-          })
-          router.push({ name: 'Success', query: { type: 'update-subscription' } })
-        } catch (err) {
-          throw new Error(err)
-        }
-      } else {
-        try {
-          await this.addSubscription({
-            ...this.subscriptionForm,
-            userId: this.userId,
-            currency: this.supportedCurrency.type
-          })
-          router.push({ name: 'Success', query: { type: 'add-subscription' } })
-        } catch (err) {
-          throw new Error(err)
-        }
+        this.handleSubscriptionUpdate()
+        return
+      }
+      this.handleSubscriptionAdd()
+    },
+    async handleSubscriptionUpdate() {
+      try {
+        await this.updateSubscription({
+          ...this.subscriptionForm,
+          userId: this.userId,
+          currency: this.supportedCurrency.type
+        })
+        router.push({ name: 'Success', query: { type: 'update-subscription' } })
+      } catch (err) {
+        throw new Error(err)
+      }
+    },
+    async handleSubscriptionAdd() {
+      try {
+        await this.addSubscription({
+          ...this.subscriptionForm,
+          userId: this.userId,
+          currency: this.supportedCurrency.type
+        })
+        router.push({ name: 'Success', query: { type: 'add-subscription' } })
+      } catch (err) {
+        throw new Error(err)
       }
     }
   }
@@ -170,17 +181,13 @@ export default {
     top: 50%;
     left: 12px;
     z-index: 1;
-    padding: 3px 0 0;
+    padding: 1px 0 0;
     transform: translateY(-50%);
-    color: $color-blue;
+    color: $color-dark-blue;
   }
 
   &::v-deep .ui-button {
     margin-top: 60px;
-  }
-
-  .reset-link {
-    margin-left: 18px;
   }
 
   @include mq-max($tab) {

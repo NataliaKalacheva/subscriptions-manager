@@ -10,6 +10,9 @@ export default {
   methods: {
     validate(cb) {
       this.$refs.uiForm.validate(cb)
+    },
+    clearValidate(cb) {
+      this.$refs.uiForm.clearValidate(cb)
     }
   }
 }
