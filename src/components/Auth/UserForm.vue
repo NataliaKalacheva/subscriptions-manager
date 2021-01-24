@@ -1,10 +1,10 @@
 <template>
-  <ui-form :label-position="labelPosition" :model="UserForm" ref="UserForm" hide-required-asterisk>
+  <ui-form :label-position="labelPosition" :model="userForm" ref="userForm" hide-required-asterisk>
     <ui-form-item label="Full name" prop="displayName" :rules="formRules.displayName">
-      <ui-input v-model="UserForm.displayName" />
+      <ui-input v-model="userForm.displayName" />
     </ui-form-item>
     <ui-form-item label="Email" prop="email" :rules="formRules.email">
-      <ui-input v-model="UserForm.email" />
+      <ui-input v-model="userForm.email" />
     </ui-form-item>
     <ui-form-item
       v-if="isLogin"
@@ -12,10 +12,10 @@
       prop="phoneNumber"
       :rules="formRules.phoneNumber"
     >
-      <ui-input v-model.number="UserForm.phoneNumber" />
+      <ui-input v-model.number="userForm.phoneNumber" />
     </ui-form-item>
     <ui-form-item v-if="!isLogin" label="Password" prop="password" :rules="formRules.password">
-      <ui-input v-model="UserForm.password" placeholder="Password" show-password />
+      <ui-input v-model="userForm.password" placeholder="Password" show-password />
     </ui-form-item>
     <ui-form-item
       v-if="!isLogin"
@@ -23,7 +23,7 @@
       prop="repeatPassword"
       :rules="formRules.repeatPassword"
     >
-      <ui-input v-model="UserForm.repeatPassword" placeholder="Password" show-password />
+      <ui-input v-model="userForm.repeatPassword" placeholder="Password" show-password />
     </ui-form-item>
     <ui-button type="primary" size="large" @click.prevent="submitForm">
       {{ submitButtonText }}
@@ -48,7 +48,7 @@ export default {
   },
   data() {
     return {
-      UserForm: {
+      userForm: {
         displayName: '',
         email: '',
         phoneNumber: null,
@@ -111,13 +111,13 @@ export default {
     setInitialFormData(data) {
       if (!data.uid) return
       Object.entries(data).forEach(([key, value]) => {
-        if (key in this.UserForm) {
-          this.$set(this.UserForm, key, value)
+        if (key in this.userForm) {
+          this.$set(this.userForm, key, value)
         }
       })
     },
     submitForm() {
-      this.$refs.UserForm.validate(valid => {
+      this.$refs.userForm.validate(valid => {
         if (!valid) return
 
         if (this.isLogin) {
@@ -132,7 +132,7 @@ export default {
       if (!value) {
         callback(new Error('Please repeat the password'))
       }
-      if (value !== this.UserForm.password) {
+      if (value !== this.userForm.password) {
         callback(new Error('Passwords must match'))
       } else {
         callback()
@@ -140,7 +140,7 @@ export default {
     },
     async handleSignUp() {
       try {
-        await this.signUp({ ...this.UserForm })
+        await this.signUp({ ...this.userForm })
         router.push({ path: '/' })
       } catch (err) {
         throw new Error(err)
@@ -148,7 +148,7 @@ export default {
     },
     async handleUpdateUser() {
       try {
-        const data = await this.updateUser({ ...this.UserForm })
+        const data = await this.updateUser({ ...this.userForm })
         router.push({ path: '/success', query: { type: 'update-user' } })
         return data
       } catch (err) {

@@ -7,7 +7,7 @@
     hide-required-asterisk
   >
     <ui-form-item label="Email" prop="email" :rules="formRules.email">
-      <ui-input v-model="loginForm.email" @focus="clearValidate()" />
+      <ui-input v-model="loginForm.email" @focus="clearValidate" />
     </ui-form-item>
     <ui-form-item label="Password" prop="password" :rules="formRules.password">
       <ui-input v-model="loginForm.password" placeholder="Password" show-password />
