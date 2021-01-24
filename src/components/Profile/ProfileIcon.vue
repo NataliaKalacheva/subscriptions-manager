@@ -36,6 +36,8 @@ export default {
           return 'is-small'
         case 'xs':
           return 'is-xs'
+        case 'large':
+          return 'is-large'
         default:
           return 'default'
       }
@@ -54,7 +56,7 @@ export default {
   margin-left: 10px;
   border-radius: 50%;
   border: 4px solid $color-white;
-  box-shadow: 0 2px 9px;
+  box-shadow: 0 2px 9px $color-text-grey;
   background: $color-light-grey;
   box-sizing: border-box;
   color: $color-blue;
@@ -72,7 +74,12 @@ export default {
     width: 34px;
     height: 34px;
     font-size: 1rem;
-    border-radius: 10px;
+  }
+
+  &.is-large {
+    width: 111px;
+    height: 111px;
+    font-size: 2rem;
   }
 
   & img {

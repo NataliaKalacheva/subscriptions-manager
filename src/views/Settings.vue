@@ -1,7 +1,7 @@
 <template>
   <div class="page-settings">
     <div class="page-settings__content">
-      <settings-header :title="title" :userName="'Test Name'" />
+      <settings-header :title="title" :userName="user.displayName || ''" />
       <ui-container>
         <settings-content />
       </ui-container>

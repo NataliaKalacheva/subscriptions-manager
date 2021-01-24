@@ -53,3 +53,12 @@ export const firebaseResetPassword = async email => {
     throw new Error(err)
   }
 }
+
+export const firebaseUpdateUser = async profile => {
+  try {
+    const data = await firebase.auth().currentUser.updateProfile(profile)
+    return data
+  } catch (err) {
+    throw new Error(err)
+  }
+}

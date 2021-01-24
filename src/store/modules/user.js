@@ -10,7 +10,8 @@ const userStore = {
   },
   getters: {
     user: ({ user }) => user,
-    userId: ({ user }) => user.uid
+    userId: ({ user }) => user.uid,
+    userName: ({ user }) => user.displayName
   },
   mutations: {
     [USER](state, user) {
@@ -31,7 +32,7 @@ const userStore = {
           const user = await getUser()
           commit(USER, user)
         } catch (err) {
-          console.log(err)
+          throw new Error(err)
         }
       },
       root: true
