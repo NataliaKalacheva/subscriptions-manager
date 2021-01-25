@@ -9,7 +9,6 @@ import appTypes from '@/store/modules/appTypes'
 import user from '@/store/modules/user'
 import loader from '@/store/modules/loader'
 import { getUserIdToken } from '@/services/firebase/auth.services'
-import router from '@/router'
 
 Vue.use(Vuex)
 
@@ -37,7 +36,6 @@ firebase.auth().onAuthStateChanged(async userData => {
     const token = await getUserIdToken()
     localStorage.setItem(process.env.VUE_APP_LS_TOKEN_KEY, token)
   } else {
-    router.push({ path: 'Login' })
     localStorage.removeItem(process.env.VUE_APP_LS_TOKEN_KEY)
   }
 })
