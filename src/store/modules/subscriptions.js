@@ -126,6 +126,25 @@ const subscriptionsStore = {
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }
+    },
+    async renewSubscription({ dispatch }, id) {
+      try {
+        dispatch('toggleLoader', true, { root: true })
+        await axios.post(`/payments/add-payment/${id}`)
+      } catch (err) {
+        dispatch(
+          'showNotification',
+          {
+            type: 'error',
+            message: err,
+            title: ''
+          },
+          { root: true }
+        )
+        throw new Error(err)
+      } finally {
+        dispatch('toggleLoader', false, { root: true })
+      }
     }
   }
 }

@@ -3,6 +3,7 @@
     <Slide right no-overlay width="500">
       <router-link :to="{ name: 'EditSubscription' }">Edit</router-link>
       <a href="#" @click.prevent="initDeleteSubscription()">Delete</a>
+      <a href="#" @click.prevent="initRenewSubscription()">Renew</a>
     </Slide>
   </div>
 </template>
@@ -24,10 +25,18 @@ export default {
     }
   },
   methods: {
-    ...mapActions('subscriptions', ['deleteSubscription']),
+    ...mapActions('subscriptions', ['deleteSubscription', 'renewSubscription']),
     async initDeleteSubscription() {
       try {
         await this.deleteSubscription(this.id)
+        router.push({ name: 'Subscriptions' })
+      } catch (err) {
+        throw new Error(err)
+      }
+    },
+    async initRenewSubscription() {
+      try {
+        await this.renewSubscription(this.id)
         router.push({ name: 'Subscriptions' })
       } catch (err) {
         throw new Error(err)
