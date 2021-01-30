@@ -5,6 +5,7 @@
       You are logged in!
       <ui-button @click="signOut">Sign out</ui-button>
     </h2>
+    <p>{{ userId }}</p>
   </div>
 </template>
 
@@ -13,12 +14,17 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Home',
-
+  mounted() {
+    console.log(this.user)
+    this.getOverview(this.userId)
+  },
   computed: {
-    ...mapGetters('auth', ['isLogin'])
+    ...mapGetters('auth', ['isLogin']),
+    ...mapGetters('user', ['user', 'userId'])
   },
   methods: {
-    ...mapActions('auth', ['signOut'])
+    ...mapActions('auth', ['signOut']),
+    ...mapActions('overview', ['getOverview'])
   }
 }
 </script>
