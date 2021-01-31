@@ -17,12 +17,10 @@ const overviewStore = {
     }
   },
   actions: {
-    async getOverview({ commit, dispatch, rootGetters }, userId) {
+    async getOverview({ commit, dispatch, rootGetters }) {
       try {
         dispatch('toggleLoader', true, { root: true })
-        console.log(rootGetters)
-        console.log(rootGetters['user/userId'])
-
+        const userId = rootGetters['user/userId']
         const overview = await axios.get(`/overview/${userId}`)
         commit(OVERVIEW, overview)
       } catch (err) {
