@@ -1,6 +1,9 @@
 <template>
   <div class="overview">
-    Overview
+    <h3 class="h3 overview__toggle">
+      {{ title }}
+      <ui-button class="overview__toggle-btn" type="info"><ui-arrow dir="down"/></ui-button>
+    </h3>
   </div>
 </template>
 
@@ -11,15 +14,21 @@ export default {
   name: 'OverviewToggle',
   components: {},
   data: () => ({
-    groupId: 'overviewToggle',
-    item: {
-      id: 1,
-      active: false,
-      title: 'Celebration',
-      details: `
-      <p>Come on, this is a Bluth family celebration. It's no place for children.</p>
-    `
-    }
+    title: 'Overview'
   })
 }
 </script>
+
+<style lang="scss" scoped>
+.overview {
+  &__toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__toggle-btn {
+    max-height: 32px;
+  }
+}
+</style>

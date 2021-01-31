@@ -3,7 +3,7 @@
     <ui-icon-bubble />
     <current-date />
     <expense v-if="isOverview" :total="totalForMonth" />
-    <ui-container>
+    <ui-container :color="'#ECF0F8'">
       <overview-toggle />
     </ui-container>
   </div>

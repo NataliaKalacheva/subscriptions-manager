@@ -1,6 +1,6 @@
 <template>
   <transition appear :name="transitionName">
-    <div class="container" :class="containerClasses">
+    <div class="container" :class="containerClasses" :style="containerStyles">
       <slot />
     </div>
   </transition>
@@ -13,6 +13,10 @@ export default {
     isRounded: {
       type: Boolean,
       default: true
+    },
+    color: {
+      type: String,
+      default: 'white'
     }
   },
   data: () => ({
@@ -22,6 +26,11 @@ export default {
     containerClasses() {
       return {
         'container--rounded': this.isRounded
+      }
+    },
+    containerStyles() {
+      return {
+        backgroundColor: this.color
       }
     }
   }

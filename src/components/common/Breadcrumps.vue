@@ -1,7 +1,7 @@
 <template>
   <div class="breadcrumps">
     <router-link :to="{ path: redirectLink }">
-      <ui-icon-base><ui-arrow-left /></ui-icon-base>
+      <ui-arrow dir="left" />
     </router-link>
   </div>
 </template>
