@@ -68,12 +68,10 @@ const authStore = {
         dispatch('toggleLoader', false, { root: true })
       }
     },
-    async login({ commit, dispatch }, { email, password }) {
+    async login({ dispatch }, { email, password }) {
       try {
         dispatch('toggleLoader', true, { root: true })
         await firebaseLogin(email, password)
-        commit(IS_LOGIN, true)
-        router.push({ path: '/' })
       } catch (err) {
         dispatch(
           'showNotification',
@@ -94,6 +92,7 @@ const authStore = {
         dispatch('toggleLoader', true, { root: true })
         await firebaseSignOut()
         commit(IS_LOGIN, false)
+        router.push({ name: 'Login' })
       } catch (err) {
         dispatch(
           'showNotification',

@@ -3,6 +3,9 @@
     <ui-icon-bubble />
     <current-date />
     <expense v-if="isOverview" :total="totalForMonth" />
+    <ui-container>
+      <overview-toggle />
+    </ui-container>
   </div>
 </template>
 
@@ -11,12 +14,14 @@
 import { mapGetters, mapActions } from 'vuex'
 import CurrentDate from '@/components/Overview/CurrentDate'
 import Expense from '@/components/Overview/Expense'
+import OverviewToggle from '@/components/Overview/OverviewToggle'
 
 export default {
   name: 'Home',
   components: {
     CurrentDate,
-    Expense
+    Expense,
+    OverviewToggle
   },
   watch: {
     userId() {

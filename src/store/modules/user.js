@@ -7,7 +7,7 @@ const userStore = {
   namespaced: true,
   state: {
     user: {},
-    userId: null
+    userId: {}
   },
   getters: {
     user: ({ user }) => user,
