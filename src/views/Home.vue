@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <ui-icon-bubble />
+    <current-date />
     <expense v-if="isOverview" :total="totalForMonth" />
   </div>
 </template>
@@ -8,11 +9,13 @@
 <script>
 // @ts-nocheck
 import { mapGetters, mapActions } from 'vuex'
+import CurrentDate from '@/components/Overview/CurrentDate'
 import Expense from '@/components/Overview/Expense'
 
 export default {
   name: 'Home',
   components: {
+    CurrentDate,
     Expense
   },
   watch: {
@@ -40,3 +43,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.home {
+  margin: 40px 0 0;
+}
+</style>

@@ -41,7 +41,7 @@ export default {
 <style lang="scss" scoped>
 .expense {
   max-width: 768px;
-  margin: 40px auto 20px;
+  margin: 20px auto;
   text-align: center;
 
   &__money {
