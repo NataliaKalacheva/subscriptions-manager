@@ -4,7 +4,11 @@
     <current-date />
     <expense v-if="isOverview" :total="totalForMonth" />
     <ui-container :color="'#ECF0F8'">
-      <overview-toggle />
+      <overview-toggle>
+        <template v-slot:closedContent>
+          <overview-chart :overview="overview" />
+        </template>
+      </overview-toggle>
     </ui-container>
   </div>
 </template>
@@ -15,13 +19,15 @@ import { mapGetters, mapActions } from 'vuex'
 import CurrentDate from '@/components/Overview/CurrentDate'
 import Expense from '@/components/Overview/Expense'
 import OverviewToggle from '@/components/Overview/OverviewToggle'
+import OverviewChart from '@/components/Overview/OverviewChart'
 
 export default {
   name: 'Home',
   components: {
     CurrentDate,
     Expense,
-    OverviewToggle
+    OverviewToggle,
+    OverviewChart
   },
   watch: {
     userId() {
