@@ -20,7 +20,12 @@ export default {
       legend: {
         display: false
       },
-      percentageInnerCutout: 1
+      cutoutPercentage: 80,
+      plugins: {
+        datalabels: {
+          display: false
+        }
+      }
     }
   }),
   mounted() {

@@ -4,6 +4,7 @@
     :height="height"
     :aria-labelledby="iconName"
     role="presentation"
+    class="arrow"
     :class="arrowClasses"
   >
     <title lang="en">{{ iconName }} icon</title>
@@ -57,6 +58,9 @@ export default {
 </script>
 
 <style scoped>
+.arrow {
+  transition: transform 0.4s ease-in-out;
+}
 .arrow--right {
   transform: rotate(-180deg);
 }

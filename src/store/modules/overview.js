@@ -1,19 +1,24 @@
 import mutations from '@/store/mutations'
 import axios from '@/plugins/axios'
 
-const { OVERVIEW } = mutations
+const { OVERVIEW, SHOW_DETAILS } = mutations
 
 const overviewStore = {
   namespaced: true,
   state: {
-    overview: {}
+    overview: {},
+    showDetails: false
   },
   getters: {
-    overview: ({ overview }) => overview
+    overview: ({ overview }) => overview,
+    showDetails: ({ showDetails }) => showDetails
   },
   mutations: {
     [OVERVIEW](state, value = {}) {
       state.overview = value
+    },
+    [SHOW_DETAILS](state, value = {}) {
+      state.showDetails = value
     }
   },
   actions: {
@@ -37,6 +42,10 @@ const overviewStore = {
       } finally {
         dispatch('toggleLoader', false, { root: true })
       }
+    },
+    toggleDetails({ commit, getters }) {
+      const showDetails = !getters.showDetails
+      commit(SHOW_DETAILS, showDetails)
     }
   }
 }

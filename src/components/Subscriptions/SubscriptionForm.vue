@@ -14,8 +14,8 @@
         <ui-option
           v-for="option in appTypesList"
           :key="option.name"
-          :value="option.publicName"
-          :label="option.publicName"
+          :value="option.name"
+          :label="option.name"
         />
       </ui-select>
     </ui-form-item>

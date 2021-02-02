@@ -5,8 +5,8 @@
     <expense v-if="isOverview" :total="totalForMonth" />
     <ui-container :color="'#ECF0F8'">
       <overview-toggle>
-        <template v-slot:closedContent>
-          <doughnut-chart :chartData="chartData" :height="200" />
+        <template v-slot:introContent>
+          <categories-per-month :overviewMonth="overviewMonth" />
           <overview-chart :overview="overview" />
         </template>
       </overview-toggle>
@@ -21,7 +21,7 @@ import CurrentDate from '@/components/Overview/CurrentDate'
 import Expense from '@/components/Overview/Expense'
 import OverviewToggle from '@/components/Overview/OverviewToggle'
 import OverviewChart from '@/components/Overview/OverviewChart'
-import DoughnutChart from '@/components/Overview/DoughnutChart'
+import CategoriesPerMonth from '@/components/Overview/CategoriesPerMonthChart'
 
 export default {
   name: 'Home',
@@ -30,27 +30,13 @@ export default {
     Expense,
     OverviewToggle,
     OverviewChart,
-    DoughnutChart
+    CategoriesPerMonth
   },
   watch: {
     userId() {
       this.getOverview()
     }
   },
-  data: () => ({
-    chartData: {
-      datasets: [
-        {
-          data: [10, 20, 30],
-          backgroundColor: 'red',
-          borderWidth: 0
-        }
-      ],
-
-      // These labels appear in the legend and in the tooltips when hovering different arcs
-      labels: ['Red', 'Yellow', 'Blue']
-    }
-  }),
   computed: {
     ...mapGetters('auth', ['isLogin']),
     ...mapGetters('user', ['user', 'userId']),
@@ -63,6 +49,9 @@ export default {
     },
     totalForMonth() {
       return this.overview[this.currentMonth].total
+    },
+    overviewMonth() {
+      return this.overview[this.currentMonth]
     }
   },
   methods: {

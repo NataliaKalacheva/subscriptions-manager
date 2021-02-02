@@ -1,15 +1,18 @@
 <template>
   <div class="overview">
-    <h3 class="h3 overview__toggle" @click="toggleContent">
+    <h3 class="h3 overview__toggle" @click="toggleDetails">
       {{ title }}
-      <ui-button class="overview__toggle-btn" type="info"><ui-arrow dir="down"/></ui-button>
+      <ui-button class="overview__toggle-btn" type="info">
+        <ui-arrow :dir="arrowDirection" />
+      </ui-button>
     </h3>
     <div class="overview__content">
-      <slot name="closedContent"></slot>
+      <slot name="introContent"></slot>
     </div>
     <transition name="fade">
-      <div v-if="isExpanded" class="overview__hidden">
+      <div v-if="showDetails" class="overview__hidden">
         Invisible content
+        <slot name="closedContent"></slot>
       </div>
     </transition>
   </div>
@@ -17,16 +20,20 @@
 
 <script>
 // @ts-nocheck
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'OverviewToggle',
   data: () => ({
-    title: 'Overview',
-    isExpanded: false
+    title: 'Overview'
   }),
   methods: {
-    toggleContent() {
-      this.isExpanded = !this.isExpanded
+    ...mapActions('overview', ['toggleDetails'])
+  },
+  computed: {
+    ...mapGetters('overview', ['showDetails']),
+    arrowDirection() {
+      return this.showDetails ? 'up' : 'down'
     }
   }
 }
@@ -42,6 +49,11 @@ export default {
 
   &__toggle-btn {
     max-height: 32px;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
   }
 }
 .fade-enter-active {
