@@ -1,7 +1,6 @@
 <template>
   <div>
-    {{ labels }} {{ totalPerMonth }}
-    <basic-chart :chartData="chartData" :options="options" />
+    <basic-chart :chartData="chartData" :height="200" />
   </div>
 </template>
 
@@ -19,34 +18,12 @@ export default {
       default: null
     }
   },
-  data: () => ({
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      legend: {
-        display: false
-      },
-      layout: {
-        padding: {
-          left: 50,
-          right: 0,
-          top: 0,
-          bottom: 0
-        }
-      },
-      title: {
-        display: true,
-        text: 'Custom Chart Title'
-      },
-      height: 200,
-      tooltips: {
-        mode: 'point'
-      }
-    }
-  }),
   computed: {
     labels() {
       return Object.keys(this.overview)
+    },
+    uppercasedLabels() {
+      return this.labels.map(month => month.toUpperCase())
     },
     totalPerMonth() {
       return this.labels.map(month => this.overview[month].total)
@@ -59,7 +36,7 @@ export default {
     },
     chartData() {
       return {
-        labels: this.labels,
+        labels: this.uppercasedLabels,
         datasets: [
           {
             label: '$',

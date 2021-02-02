@@ -6,6 +6,7 @@
     <ui-container :color="'#ECF0F8'">
       <overview-toggle>
         <template v-slot:closedContent>
+          <doughnut-chart :chartData="chartData" :height="200" />
           <overview-chart :overview="overview" />
         </template>
       </overview-toggle>
@@ -20,6 +21,7 @@ import CurrentDate from '@/components/Overview/CurrentDate'
 import Expense from '@/components/Overview/Expense'
 import OverviewToggle from '@/components/Overview/OverviewToggle'
 import OverviewChart from '@/components/Overview/OverviewChart'
+import DoughnutChart from '@/components/Overview/DoughnutChart'
 
 export default {
   name: 'Home',
@@ -27,13 +29,28 @@ export default {
     CurrentDate,
     Expense,
     OverviewToggle,
-    OverviewChart
+    OverviewChart,
+    DoughnutChart
   },
   watch: {
     userId() {
       this.getOverview()
     }
   },
+  data: () => ({
+    chartData: {
+      datasets: [
+        {
+          data: [10, 20, 30],
+          backgroundColor: 'red',
+          borderWidth: 0
+        }
+      ],
+
+      // These labels appear in the legend and in the tooltips when hovering different arcs
+      labels: ['Red', 'Yellow', 'Blue']
+    }
+  }),
   computed: {
     ...mapGetters('auth', ['isLogin']),
     ...mapGetters('user', ['user', 'userId']),
