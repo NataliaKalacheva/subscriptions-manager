@@ -52,8 +52,11 @@ export default {
   }
 
   &__content {
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 30px;
   }
 }
 .fade-enter-active {

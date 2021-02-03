@@ -33,15 +33,16 @@ export default {
       return {
         responsive: true,
         maintainAspectRatio: false,
+        animation: {
+          duration: 0
+        },
         plugins: {
           datalabels: {
             display: this.showDetails,
             anchor: 'end',
             align: 'top',
             fontColor: '#77869E',
-            font: {
-              size: 10
-            },
+            fontSize: 10,
             formatter(value) {
               return `$ ${value}`
             }
@@ -65,7 +66,8 @@ export default {
                 display: false
               },
               ticks: {
-                fontColor: '#042C5C'
+                fontColor: '#042C5C',
+                fontSize: 10
               }
             }
           ],

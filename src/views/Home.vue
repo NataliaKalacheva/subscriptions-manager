@@ -2,12 +2,19 @@
   <div class="home">
     <ui-icon-bubble />
     <current-date />
-    <expense v-if="isOverview" :total="totalForMonth" />
+    <expense v-if="isOverview" :total="currentMonth.total" />
     <ui-container :color="'#ECF0F8'">
       <overview-toggle>
         <template v-slot:introContent>
-          <categories-per-month :overviewMonth="overviewMonth" />
-          <overview-chart :overview="overview" />
+          <categories-per-month v-if="!showDetails" :overviewMonth="currentMonth" />
+          <overview-chart :overview="overview" :lastOverview="lastSixMonths" />
+        </template>
+        <template v-slot:closedContent>
+          <categories-per-month
+            v-for="item in lastSixMonths"
+            :key="item.month"
+            :overviewMonth="item"
+          />
         </template>
       </overview-toggle>
     </ui-container>
@@ -40,18 +47,15 @@ export default {
   computed: {
     ...mapGetters('auth', ['isLogin']),
     ...mapGetters('user', ['user', 'userId']),
-    ...mapGetters('overview', ['overview']),
+    ...mapGetters('overview', ['overview', 'showDetails', 'lastSixMonths']),
     isOverview() {
-      return Object.keys(this.overview).length
+      return this.lastSixMonths.length
     },
     currentMonth() {
-      return this.$moment(new Date()).format('MMMM')
+      return this.lastSixMonths[0]
     },
-    totalForMonth() {
-      return this.overview[this.currentMonth].total
-    },
-    overviewMonth() {
-      return this.overview[this.currentMonth]
+    prevMonth() {
+      return this.lastSixMonths[1]
     }
   },
   methods: {

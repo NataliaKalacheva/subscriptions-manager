@@ -11,7 +11,14 @@ const overviewStore = {
   },
   getters: {
     overview: ({ overview }) => overview,
-    showDetails: ({ showDetails }) => showDetails
+    showDetails: ({ showDetails }) => showDetails,
+    lastSixMonths: ({ overview }) => {
+      const sortLabels = Object.keys(overview)
+        .sort((a, b) => overview[b].timestamp - overview[a].timestamp)
+        .map(month => overview[month])
+
+      return sortLabels.slice(0, 6)
+    }
   },
   mutations: {
     [OVERVIEW](state, value = {}) {

@@ -1,5 +1,6 @@
 <template>
   <div v-if="Boolean(overviewMonth)" class="categories-chart">
+    {{ overviewMonth.month }}
     <doughnut-chart :chartData="chartData" :height="150" :width="150" />
   </div>
 </template>
@@ -59,6 +60,6 @@ export default {
 
 <style scoped>
 .categories-chart {
-  padding: 0 20px;
+  padding-right: 40px;
 }
 </style>
