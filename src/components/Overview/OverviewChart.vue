@@ -1,6 +1,9 @@
 <template>
   <div class="overview-bars">
-    <p v-if="showDetails" class="overview-bars__note">{{ curWithPrev }}</p>
+    <p v-if="showDetails" class="overview-bars__note">
+      You've spent {{ diff.total }} <span :class="diff.class">{{ diff.note }}</span>
+      <span class="note-grey"> than last month</span>
+    </p>
     <basic-chart :chartData="chartData" :style="chartStyles" />
   </div>
 </template>
@@ -51,18 +54,26 @@ export default {
     prevMonth() {
       return this.lastOverview[1]
     },
-    curWithPrev() {
+    diff() {
       const diff = this.currentMonth.total - this.prevMonth.total
+      const diffObj = {}
+
       if (diff > 0) {
-        return `You've spent $ ${diff} more than last month`
+        diffObj.total = `$${diff}`
+        diffObj.note = `more`
+        diffObj.class = `note-danger`
       }
       if (diff === 0) {
-        return `You've spent the same as last month`
+        diffObj.total = ''
+        diffObj.note = `no more, no less`
+        diffObj.class = `note-info`
       }
       if (diff < 0) {
-        return `You've spent $ ${Math.abs(diff)} less than last month`
+        diffObj.total = `$ ${Math.abs(diff)}`
+        diffObj.note = `less`
+        diffObj.class = `note-info`
       }
-      return `Sorry, calculation failed`
+      return diffObj
     },
     colors() {
       return this.labels.map(month => (this.currentMonth.month === month ? '#2879FE' : '#C2D9FF'))
@@ -85,11 +96,28 @@ export default {
 
 <style lang="scss" scoped>
 .overview-bars {
+  position: relative;
+  padding-top: 30px;
   &__note {
     position: absolute;
-    top: -10px;
-    transform: translateY(-100%);
+    top: 0;
+    width: 100%;
     margin: 0 0;
+    text-align: center;
+    color: $color-text-grey;
+    font-size: 0.7rem;
+    transform: translateY(-100%);
+  }
+  .note-grey {
+    color: $color-grey;
+  }
+
+  .note-danger {
+    color: $color-danger;
+  }
+
+  .note-info {
+    color: $color-blue;
   }
 }
 </style>
