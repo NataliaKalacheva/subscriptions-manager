@@ -11,7 +11,6 @@
     </div>
     <transition name="fade">
       <div v-if="showDetails" class="overview__hidden">
-        Invisible content
         <slot name="closedContent"></slot>
       </div>
     </transition>
@@ -54,6 +53,7 @@ export default {
   &__content {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
   }
 }

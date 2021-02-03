@@ -10,11 +10,9 @@
           <overview-chart :overview="overview" :lastOverview="lastSixMonths" />
         </template>
         <template v-slot:closedContent>
-          <categories-per-month
-            v-for="item in lastSixMonths"
-            :key="item.month"
-            :overviewMonth="item"
-          />
+          <template v-for="item in lastSixMonths">
+            <categories-per-month :key="item.month" :overviewMonth="item" detailed />
+          </template>
         </template>
       </overview-toggle>
     </ui-container>

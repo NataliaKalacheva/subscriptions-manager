@@ -1,13 +1,47 @@
 <template>
-  <div v-if="Boolean(overviewMonth)" class="categories-chart">
-    {{ overviewMonth.month }}
-    <doughnut-chart :chartData="chartData" :height="150" :width="150" />
+  <div v-if="Boolean(overviewMonth.month)" class="categories-chart">
+    <template v-if="detailed">
+      <div class="categories-chart__header">
+        <h3 class="h3">{{ overviewMonth.month }}</h3>
+        <span class="categories-chart__total">
+          {{ supportedCurrency.icon }} {{ overviewMonth.total }}
+        </span>
+      </div>
+    </template>
+
+    <div class="categories-chart__body">
+      <doughnut-chart
+        class="categories-chart__doughut"
+        :chartData="chartData"
+        :height="chartEdge"
+        :width="chartEdge"
+      />
+
+      <template v-if="detailed">
+        <div class="categories-chart__aside">
+          <ul class="categories-chart__list">
+            <template v-for="category in overviewMonth.categories">
+              <li :key="category.name" class="categories-chart__list-item">
+                <span
+                  class="categories-chart__swatch"
+                  :style="{ backgroundColor: categoryColors[category.name] }"
+                ></span>
+                <span class="categories-chart__category">{{ category.name }}</span>
+                <span class="categories-chart__price">
+                  {{ supportedCurrency.icon }} {{ category.total }}
+                </span>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
 <script>
 import DoughnutChart from '@/components/Overview/DoughnutChart'
-import { categoryColors } from '@/constants'
+import { categoryColors, supportedCurrency } from '@/constants'
 
 export default {
   name: 'CategoriesPerMonth',
@@ -15,6 +49,10 @@ export default {
     DoughnutChart
   },
   props: {
+    detailed: {
+      type: Boolean,
+      default: false
+    },
     overviewMonth: {
       type: Object,
       default: () => {}
@@ -33,13 +71,14 @@ export default {
     categoryColors() {
       return categoryColors
     },
+    supportedCurrency() {
+      return supportedCurrency
+    },
     colors() {
-      return this.labels.map(category => {
-        if (categoryColors[category]) {
-          return categoryColors[category]
-        }
-        return 'green'
-      })
+      return this.labels.map(category => categoryColors[category] || 'green')
+    },
+    chartEdge() {
+      return this.detailed ? '100px' : '75px'
     },
     chartData() {
       return {
@@ -58,8 +97,46 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .categories-chart {
-  padding-right: 40px;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__body,
+  &__list-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  &__aside {
+    flex-grow: 1;
+    max-width: 300px;
+  }
+  &__doughut {
+    margin-right: 40px;
+  }
+  &__total {
+    font-weight: 700;
+    font-size: 1.3rem;
+  }
+  &__list {
+    @include reset(ul);
+  }
+  &__swatch {
+    display: block;
+    margin-right: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  &__category {
+    min-width: 40%;
+  }
+  &__price {
+    margin-left: auto;
+    margin-right: 0;
+  }
 }
 </style>
