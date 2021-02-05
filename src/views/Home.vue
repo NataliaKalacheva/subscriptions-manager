@@ -7,7 +7,7 @@
       <overview-toggle>
         <template v-slot:introContent>
           <categories-per-month v-if="!showDetails" :overviewMonth="currentMonth" />
-          <overview-chart :overview="overview" :lastOverview="lastSixMonths" />
+          <overview-chart :lastOverview="lastSixMonths" />
         </template>
         <template v-slot:closedContent>
           <template v-for="item in lastSixMonths">
@@ -45,7 +45,7 @@ export default {
   computed: {
     ...mapGetters('auth', ['isLogin']),
     ...mapGetters('user', ['user', 'userId']),
-    ...mapGetters('overview', ['overview', 'showDetails', 'lastSixMonths']),
+    ...mapGetters('overview', ['showDetails', 'lastSixMonths']),
     isOverview() {
       return this.lastSixMonths.length
     },
@@ -65,6 +65,15 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  margin: 40px 0 0;
+  min-height: 100vh;
+  padding: 40px 0 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  ::v-deep .container {
+    transition: height 0.4s linear;
+  }
 }
 </style>

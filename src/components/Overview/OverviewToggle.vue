@@ -9,7 +9,7 @@
     <div class="overview__content">
       <slot name="introContent"></slot>
     </div>
-    <transition name="fade">
+    <transition name="slide-out">
       <div v-if="showDetails" class="overview__hidden">
         <slot name="closedContent"></slot>
       </div>
@@ -61,14 +61,16 @@ export default {
     }
   }
 }
-.fade-enter-active {
-  transition: all 0.6s ease-in-out;
+
+.slide-out-enter-active,
+.slide-out-leave-active {
+  transition: all 0.3s;
 }
-.fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.fade-enter,
-.fade-leave-to {
+
+.slide-out-enter,
+.slide-out-leave-to {
   opacity: 0;
+  transform: translateY(-100px);
+  margin-bottom: -100px;
 }
 </style>

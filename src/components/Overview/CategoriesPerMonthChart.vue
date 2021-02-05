@@ -1,5 +1,5 @@
 <template>
-  <div v-if="Boolean(overviewMonth.month)" class="categories-chart">
+  <div v-if="Boolean(overviewMonth)" class="categories-chart">
     <template v-if="detailed">
       <div class="categories-chart__header">
         <h3 class="h3">{{ overviewMonth.month }}</h3>
@@ -78,7 +78,7 @@ export default {
       return this.labels.map(category => categoryColors[category] || 'green')
     },
     chartEdge() {
-      return this.detailed ? '100px' : '75px'
+      return this.detailed ? 100 : 75
     },
     chartData() {
       return {

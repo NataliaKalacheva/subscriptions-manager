@@ -18,10 +18,6 @@ export default {
     BasicChart
   },
   props: {
-    overview: {
-      type: Object,
-      default: () => ({})
-    },
     lastOverview: {
       type: Array,
       default: () => []
@@ -36,17 +32,16 @@ export default {
         position: 'relative'
       }
     },
-    labels() {
-      const sortLabels = Object.keys(this.overview).sort(
-        (a, b) => this.overview[a].timestamp - this.overview[b].timestamp
-      )
-      return this.showDetails ? sortLabels.slice(-6) : sortLabels.slice(-2)
+    revertedOverview() {
+      const revertedOverview = this.lastOverview.slice().reverse()
+      console.log(revertedOverview)
+      return this.showDetails ? revertedOverview.slice(-6) : revertedOverview.slice(-2)
     },
-    labelsToShow() {
-      return this.labels.map(month => month.slice(0, 3).toUpperCase())
+    labels() {
+      return this.revertedOverview.map(item => item.month.slice(0, 3).toUpperCase())
     },
     totalPerMonth() {
-      return this.labels.map(month => this.overview[month].total)
+      return this.revertedOverview.map(item => item.total)
     },
     currentMonth() {
       return this.lastOverview[0]
@@ -76,11 +71,13 @@ export default {
       return diffObj
     },
     colors() {
-      return this.labels.map(month => (this.currentMonth.month === month ? '#2879FE' : '#C2D9FF'))
+      return this.revertedOverview.map(item =>
+        this.currentMonth.month === item.month ? '#2879FE' : '#C2D9FF'
+      )
     },
     chartData() {
       return {
-        labels: this.labelsToShow,
+        labels: this.labels,
         datasets: [
           {
             label: '$',
