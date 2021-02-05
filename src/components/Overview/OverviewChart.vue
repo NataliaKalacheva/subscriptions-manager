@@ -106,6 +106,7 @@ export default {
     text-align: center;
     color: $color-text-grey;
     font-size: 0.7rem;
+    font-weight: 500;
     transform: translateY(-100%);
   }
   .note-grey {

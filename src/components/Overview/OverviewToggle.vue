@@ -53,8 +53,12 @@ export default {
   &__content {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     flex-wrap: wrap;
+
+    ::v-deep .categories-chart {
+      margin-bottom: 40px;
+    }
   }
 }
 .fade-enter-active {

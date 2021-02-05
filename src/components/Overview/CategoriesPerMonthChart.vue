@@ -99,10 +99,20 @@ export default {
 
 <style lang="scss" scoped>
 .categories-chart {
+  &:first-child .categories-chart__header {
+    border-top: none;
+  }
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 20px 0;
+    padding-top: 20px;
+    border-top: 1px solid $color-divider-darker;
+
+    h3 {
+      margin: 0 0;
+    }
   }
   &__body,
   &__list-item {
@@ -110,12 +120,18 @@ export default {
     flex-wrap: wrap;
     align-items: center;
   }
+  &__list-item {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: $color-text-grey;
+    letter-spacing: -0.24px;
+  }
   &__aside {
     flex-grow: 1;
     max-width: 300px;
   }
   &__doughut {
-    margin-right: 40px;
+    margin: 10px 40px 10px 0;
   }
   &__total {
     font-weight: 700;
