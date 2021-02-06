@@ -17,6 +17,7 @@
       </overview-toggle>
       <ui-container inner>
         <upgrade-banner />
+        <discount-banner />
       </ui-container>
     </ui-container>
   </div>
@@ -31,6 +32,7 @@ import OverviewToggle from '@/components/Overview/OverviewToggle'
 import OverviewChart from '@/components/Overview/OverviewChart'
 import CategoriesPerMonth from '@/components/Overview/CategoriesPerMonthChart'
 import UpgradeBanner from '@/components/Promo/UpgradeBanner'
+import DiscountBanner from '@/components/Promo/DiscountBanner'
 
 export default {
   name: 'Home',
@@ -40,7 +42,8 @@ export default {
     OverviewToggle,
     OverviewChart,
     CategoriesPerMonth,
-    UpgradeBanner
+    UpgradeBanner,
+    DiscountBanner
   },
   watch: {
     userId() {

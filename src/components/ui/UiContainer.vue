@@ -48,7 +48,7 @@ export default {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 15px 33px;
+  padding: 15px 33px 0;
   background: white;
   color: $color-dark-blue;
 
@@ -63,7 +63,6 @@ export default {
   &--inner {
     margin-left: -33px;
     margin-right: -33px;
-    padding: 15px 15px;
   }
 
   &--rounded {

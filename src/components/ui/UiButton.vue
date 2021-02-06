@@ -36,7 +36,6 @@ export default {
   transition: all 0.3s linear;
 
   & ::v-deep {
-    margin: 10px;
     font-family: Arial, sans-serif;
   }
 

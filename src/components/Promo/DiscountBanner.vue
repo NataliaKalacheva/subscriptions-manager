@@ -1,11 +1,11 @@
 <template>
-  <div class="upgrade-banner__wrapper">
-    <div class="upgrade-banner" :class="bannerClasses" :style="bannerStyles">
-      <ui-icon-ellipse class="upgrade-banner__ellipse"></ui-icon-ellipse>
-      <h4 class="upgrade-banner__title">{{ title }}</h4>
-      <p class="upgrade-banner__text">{{ text }}</p>
-      <ui-button class="upgrade-banner__button" size="xs">{{ cta }}</ui-button>
-      <ui-icon-bubble class="upgrade-banner__bubble" :top-position="false"></ui-icon-bubble>
+  <div class="discount-banner__wrapper">
+    <div class="discount-banner" :class="bannerClasses" :style="bannerStyles">
+      <h4 class="discount-banner__title">{{ title }}</h4>
+      <p class="discount-banner__text">{{ text }}</p>
+      <img class="discount-banner__img" src="@/assets/finance.png" :alt="title" />
+      <ui-button class="discount-banner__button" type="primary" size="xs">{{ info }}</ui-button>
+      <ui-button class="discount-banner__button" size="xs">{{ cta }}</ui-button>
     </div>
   </div>
 </template>
@@ -16,15 +16,19 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Upgrade to premium'
+      default: 'Bill too high?'
     },
     text: {
       type: String,
-      default: 'Sync statement, Get discounts, Premium chartsand more!'
+      default: 'We can help you negotiate or provide discount options.'
     },
     cta: {
       type: String,
-      default: 'Upgrade'
+      default: 'Dismiss'
+    },
+    info: {
+      type: String,
+      default: 'Learn more'
     }
   },
   computed: {
@@ -44,24 +48,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.upgrade-banner {
-  position: relative;
+.discount-banner {
   display: grid;
   grid-template-areas:
-    'a b'
-    'c b';
+    'a img'
+    'c img'
+    'btn e';
   min-height: 90px;
+  margin-bottom: 40px;
   padding: 15px;
-  background: $color-blue;
-  border-radius: 25px;
-  box-shadow: inset 0 1px 3px rgba($color-black, 0.5);
-  color: $color-white;
+  color: $color-text-grey;
   overflow: hidden;
-  &__wrapper {
-    margin: 15px 0;
-    border-radius: 25px;
-    box-shadow: 0 2px 4px rgba($color-black, 0.5);
-  }
+
   &__title {
     max-width: 180px;
     margin: 0 0 0;
@@ -69,19 +67,29 @@ export default {
     font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.27px;
+    color: $color-dark-blue;
   }
   &__text {
     max-width: 180px;
     margin: 0 0;
     font-size: 0.7rem;
+    font-weight: 500;
     letter-spacing: -0.21px;
-    text-shadow: 0 2px 4px rgba($color-black, 0.5);
   }
-  &__button {
-    grid-area: b;
+  &__img {
+    max-width: 130px;
+    grid-area: img;
+  }
+  ::v-deep &__button {
     width: auto;
+    margin-top: 15px;
     height: 50px;
     align-self: center;
+
+    &:first-of-type {
+      grid-area: btn;
+      margin-right: 30px;
+    }
   }
   &__ellipse {
     position: absolute;
