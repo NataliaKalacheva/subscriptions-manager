@@ -14,6 +14,10 @@ export default {
       type: Boolean,
       default: true
     },
+    inner: {
+      type: Boolean,
+      default: false
+    },
     color: {
       type: String,
       default: 'white'
@@ -25,7 +29,8 @@ export default {
   computed: {
     containerClasses() {
       return {
-        'container--rounded': this.isRounded
+        'container--rounded': this.isRounded,
+        'container--inner': this.inner
       }
     },
     containerStyles() {
@@ -53,6 +58,12 @@ export default {
     &:focus {
       color: $color-blue;
     }
+  }
+
+  &--inner {
+    margin-left: -33px;
+    margin-right: -33px;
+    padding: 15px 15px;
   }
 
   &--rounded {

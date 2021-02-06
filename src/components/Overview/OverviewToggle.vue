@@ -40,6 +40,7 @@ export default {
 
 <style lang="scss" scoped>
 .overview {
+  margin-bottom: 30px;
   &__toggle {
     display: flex;
     justify-content: space-between;

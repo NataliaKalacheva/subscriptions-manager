@@ -15,6 +15,9 @@
           </template>
         </template>
       </overview-toggle>
+      <ui-container inner>
+        <upgrade-banner />
+      </ui-container>
     </ui-container>
   </div>
 </template>
@@ -27,6 +30,7 @@ import Expense from '@/components/Overview/Expense'
 import OverviewToggle from '@/components/Overview/OverviewToggle'
 import OverviewChart from '@/components/Overview/OverviewChart'
 import CategoriesPerMonth from '@/components/Overview/CategoriesPerMonthChart'
+import UpgradeBanner from '@/components/Promo/UpgradeBanner'
 
 export default {
   name: 'Home',
@@ -35,7 +39,8 @@ export default {
     Expense,
     OverviewToggle,
     OverviewChart,
-    CategoriesPerMonth
+    CategoriesPerMonth,
+    UpgradeBanner
   },
   watch: {
     userId() {
@@ -71,9 +76,5 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
-  ::v-deep .container {
-    transition: height 0.4s linear;
-  }
 }
 </style>
