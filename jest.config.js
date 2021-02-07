@@ -3,6 +3,9 @@ module.exports = {
   collectCoverageFrom: ['src/**/*.js'],
   coverageDirectory: 'coverage',
   moduleFileExtensions: ['js'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1'
+  },
   testMatch: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec|test).js?(x)'],
   testPathIgnorePatterns: ['/node_modules/'],
   transformIgnorePatterns: ['<rootDir>/public/', '<rootDir>/node_modules/'],

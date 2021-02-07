@@ -1,4 +1,4 @@
-import serializeSubscriptionsResponse from './serializeSubscriptionsResponse'
+import serializeSubscriptionsResponse from '@/store/utils/serializeSubscriptionsResponse'
 
 describe('serializeSubscriptionsResponse.js', () => {
   it('check that response modified to object', () => {
@@ -18,4 +18,11 @@ describe('serializeSubscriptionsResponse.js', () => {
     const expected = {}
     expect(serializeSubscriptionsResponse(arrayForTest)).toMatchObject(expected)
   })
+
+  it('check that incorrect data returns blank object', () => {
+    const arrayForTest = null;
+    const expected = {}
+    expect(serializeSubscriptionsResponse(arrayForTest)).toMatchObject(expected)
+  })
+
 })

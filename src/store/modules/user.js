@@ -1,7 +1,7 @@
 import mutations from '@/store/mutations'
 import { getUser } from '@/services/firebase/auth.services'
 
-const { USER } = mutations
+export const { USER } = mutations
 
 const userStore = {
   namespaced: true,
