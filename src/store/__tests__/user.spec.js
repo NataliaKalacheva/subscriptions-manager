@@ -1,17 +1,32 @@
 import userStore from '@/store/modules/user'
 
-const { getUser, setUser } = userStore.actions;
+const user = {
+  uid: 39,
+  displayName: 'Kalacheva Natalia',
+  email: 'test@gmail.com'
+}
+
+jest.mock('@/services/firebase/auth.services', () => {
+  return {
+    __esModule: true,
+    firebaseGetUser: jest.fn(() => user)
+  }
+})
+
 
 describe('test user getters', () => {
   const { user, userId, userName } = userStore.getters;
+  let store;
 
-  const state = {
-    user:  {
-      uid: 39,
-      displayName: 'Kalacheva Natalia',
-      email: 'test@gmail.com'
+  beforeEach(() => {
+    store = {
+      user:  {
+        uid: 39,
+        displayName: 'Kalacheva Natalia',
+        email: 'test@gmail.com'
+      }
     }
-  }
+  })
 
   it('user', () => {
     const expectedUser = {
@@ -20,15 +35,17 @@ describe('test user getters', () => {
       email: 'test@gmail.com'
     }
 
-    expect(user(state)).toMatchObject(expectedUser)
+    expect(user(store)).toEqual(expectedUser)
   })
 
   it('user id', () => {
-    expect(userId(state)).toBe(39)
+    expect(userId(store)).toBeDefined()
+    expect(userId(store)).toBe(39)
   })
 
   it('user name', () => {
-    expect(userName(state)).toBe('Kalacheva Natalia')
+    expect(userId(store)).toBeDefined()
+    expect(userName(store)).toBe('Kalacheva Natalia')
   })
 })
 
@@ -49,6 +66,21 @@ describe('test user mutations', () => {
     }
 
     USER(state, user);
-    expect(state).toMatchObject(expectedState)
+    expect(state).toEqual(expectedState)
+  })
+})
+
+describe('test user actions', () => {
+  const { getUser, setUser } = userStore.actions;
+
+  const context = {
+    commit: jest.fn()
+  }
+
+  it('getUser action commits user mutation', async () => {
+    await getUser.handler(context)
+    expect(context.commit).toBeCalled()
+    expect(context.commit).toBeCalledTimes(1)
+    expect(context.commit).toHaveBeenCalledWith('USER', user)
   })
 })

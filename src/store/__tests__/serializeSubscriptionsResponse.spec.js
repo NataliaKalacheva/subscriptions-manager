@@ -10,19 +10,19 @@ describe('serializeSubscriptionsResponse.js', () => {
       1: { id: 1, name: 'Test' },
       2: { id: 2, name: 'Example' }
     }
-    expect(serializeSubscriptionsResponse(arrayForTest)).toMatchObject(expected)
+    expect(serializeSubscriptionsResponse(arrayForTest)).toEqual(expected)
   })
 
   it('check that empty array returns blank object', () => {
     const arrayForTest = []
     const expected = {}
-    expect(serializeSubscriptionsResponse(arrayForTest)).toMatchObject(expected)
+    expect(serializeSubscriptionsResponse(arrayForTest)).toEqual(expected)
   })
 
   it('check that incorrect data returns blank object', () => {
     const arrayForTest = null;
     const expected = {}
-    expect(serializeSubscriptionsResponse(arrayForTest)).toMatchObject(expected)
+    expect(serializeSubscriptionsResponse(arrayForTest)).toEqual(expected)
   })
 
 })

@@ -1,5 +1,5 @@
 import mutations from '@/store/mutations'
-import { getUser } from '@/services/firebase/auth.services'
+import { firebaseGetUser } from '@/services/firebase/auth.services'
 
 export const { USER } = mutations
 
@@ -29,7 +29,7 @@ const userStore = {
     getUser: {
       async handler({ commit }) {
         try {
-          const user = await getUser()
+          const user = await firebaseGetUser()
           commit(USER, user)
         } catch (err) {
           throw new Error(err)

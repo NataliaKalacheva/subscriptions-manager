@@ -18,7 +18,7 @@ export const firebaseSignUp = async (email, password) => {
   }
 }
 
-export const getUser = async () => {
+export const firebaseGetUser = async () => {
   try {
     const data = await firebase.auth().currentUser
     return data
