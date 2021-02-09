@@ -1,6 +1,6 @@
 import userStore from '@/store/modules/user'
 
-const user = {
+const mockOfUser = {
   uid: 39,
   displayName: 'Kalacheva Natalia',
   email: 'test@gmail.com'
@@ -9,7 +9,7 @@ const user = {
 jest.mock('@/services/firebase/auth.services', () => {
   return {
     __esModule: true,
-    firebaseGetUser: jest.fn(() => user)
+    firebaseGetUser: jest.fn(() => mockOfUser)
   }
 })
 
@@ -20,22 +20,12 @@ describe('test user getters', () => {
 
   beforeEach(() => {
     store = {
-      user:  {
-        uid: 39,
-        displayName: 'Kalacheva Natalia',
-        email: 'test@gmail.com'
-      }
+      user: mockOfUser
     }
   })
 
   it('user', () => {
-    const expectedUser = {
-      uid: 39,
-      displayName: 'Kalacheva Natalia',
-      email: 'test@gmail.com'
-    }
-
-    expect(user(store)).toEqual(expectedUser)
+    expect(user(store)).toEqual(mockOfUser)
   })
 
   it('user id', () => {
@@ -72,9 +62,8 @@ describe('test user mutations', () => {
 
 describe('test user actions', () => {
   const { getUser } = userStore.actions;
-
+  const user = mockOfUser;
   const context = {
-    dispatch: jest.fn(),
     commit: jest.fn()
   }
 
@@ -84,8 +73,4 @@ describe('test user actions', () => {
     expect(context.commit).toBeCalledTimes(1)
     expect(context.commit).toHaveBeenCalledWith('USER', user)
   })
-
-  // it('getUser action commits user mutation', async () => {
-  //   await getUser.handler(context)
-  // })
 })

@@ -10,8 +10,8 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/'],
   transformIgnorePatterns: ['<rootDir>/public/', '<rootDir>/node_modules/'],
   transform: {
-    '.+\\.(css|styl|less|sass|scss|png|svg|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
-    '\\.[jt]sx?$': 'babel-jest',
+    '^.+\\.(css|style|less|sass|scss|png|jpg|ttf|woff|woff2|svg)$': 'jest-transform-stub',
+    '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
     '^.+\\.vue$': 'vue-jest'
   }
 }

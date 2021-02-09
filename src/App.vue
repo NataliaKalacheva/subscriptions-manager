@@ -1,13 +1,15 @@
 <template>
   <div id="app">
-    <ui-loader />
-    <notification />
-    <router-view />
+    <div class="app-content">
+      <ui-loader />
+      <notification />
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
-import Notification from '@/components/Notification'
+import Notification from '@/components/Notification.vue'
 
 export default {
   name: 'App',
@@ -18,7 +20,7 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
+.app-content {
   display: flex;
   flex-direction: column;
   min-height: 100vh;

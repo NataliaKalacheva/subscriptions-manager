@@ -15,7 +15,7 @@
     <div class="reset-link">
       <router-link :to="{ name: 'ResetPassword' }">Forgot password?</router-link>
     </div>
-    <ui-button type="primary" size="large" @click.prevent="submitForm"
+    <ui-button class="login-submit" type="primary" size="large" @click.prevent="submitForm"
       >Login
       <ui-icon-base is-circle is-shadow>
         <ui-arrow-right />
