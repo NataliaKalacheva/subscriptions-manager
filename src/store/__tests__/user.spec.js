@@ -71,9 +71,10 @@ describe('test user mutations', () => {
 })
 
 describe('test user actions', () => {
-  const { getUser, setUser } = userStore.actions;
+  const { getUser } = userStore.actions;
 
   const context = {
+    dispatch: jest.fn(),
     commit: jest.fn()
   }
 
@@ -83,4 +84,8 @@ describe('test user actions', () => {
     expect(context.commit).toBeCalledTimes(1)
     expect(context.commit).toHaveBeenCalledWith('USER', user)
   })
+
+  // it('getUser action commits user mutation', async () => {
+  //   await getUser.handler(context)
+  // })
 })

@@ -19,13 +19,6 @@ const userStore = {
     }
   },
   actions: {
-    setUser: {
-      handler({ dispatch }, user) {
-        if (!user) return
-        dispatch('getUser', user.uid)
-      },
-      root: true
-    },
     getUser: {
       async handler({ commit }) {
         try {
