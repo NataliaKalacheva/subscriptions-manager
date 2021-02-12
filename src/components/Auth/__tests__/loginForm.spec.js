@@ -55,15 +55,17 @@ describe('LoginForm', () => {
     expect(submitFormStub.called).toBe(true)
   })
 
-  // it('call "clearValidate" method, when focus on input"', () => {
-  //   const wrapper = mount(LoginForm)
-  //   const clearValidateStub = sinon.stub()
-  //   const input = wrapper.find('.ui-input')
+  it('call "clearValidate" method, when focus on input"', () => {
+    const wrapper = mount(LoginForm)
+    const clearValidateStub = sinon.stub()
+    const input = wrapper.findAll('.login-input')
 
-  //   wrapper.setMethods({ clearValidate: clearValidateStub })
-  //   input.trigger('focus')
-  //   expect(clearValidateStub.called).toBe(true)
-  // })
+    wrapper.setMethods({ clearValidate: clearValidateStub })
+    input.trigger('focus')
+
+    expect(input.exists()).toBe(true)
+    expect(clearValidateStub.called).toBe(true)
+  })
 
   // it('call "login" action, when submit valid form"', () => {
   //   const wrapper = mount(LoginForm, { store, localVue })
