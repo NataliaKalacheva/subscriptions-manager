@@ -93,6 +93,15 @@ const subscriptionsStore = {
         dispatch('toggleLoader', true, { root: true })
         await axios.delete(`/subscriptions/${subscriptionId}`)
         dispatch('getSubscriptions')
+        dispatch(
+          'showNotification',
+          {
+            type: 'success',
+            message: 'Subscription successfully deleted',
+            title: ''
+          },
+          { root: true }
+        )
       } catch (err) {
         dispatch(
           'showNotification',
@@ -112,6 +121,15 @@ const subscriptionsStore = {
         dispatch('toggleLoader', true, { root: true })
         await axios.patch(`/subscriptions/${item.id}`, item)
         dispatch('getSubscriptionById', item.id)
+        dispatch(
+          'showNotification',
+          {
+            type: 'success',
+            message: 'Subscription successfully updated',
+            title: ''
+          },
+          { root: true }
+        )
       } catch (err) {
         dispatch(
           'showNotification',
@@ -131,6 +149,15 @@ const subscriptionsStore = {
       try {
         dispatch('toggleLoader', true, { root: true })
         await axios.post(`/payments/add-payment/${id}`)
+        dispatch(
+          'showNotification',
+          {
+            type: 'success',
+            message: 'Subscription successfully updated',
+            title: ''
+          },
+          { root: true }
+        )
       } catch (err) {
         dispatch(
           'showNotification',

@@ -14,7 +14,6 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'SuccessMessage',
   computed: {
-    ...mapGetters('auth', ['isLogin']),
     ...mapGetters(['successMsg']),
     redirectLink() {
       const { type } = this.$route.query

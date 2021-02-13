@@ -4,17 +4,22 @@
     <current-date />
     <expense v-if="isOverview" :total="currentMonth.total" />
     <ui-container :color="'#ECF0F8'">
-      <overview-toggle>
-        <template v-slot:introContent>
-          <categories-per-month v-if="!showDetails" :overviewMonth="currentMonth" />
-          <overview-chart :lastOverview="lastSixMonths" />
-        </template>
-        <template v-slot:closedContent>
-          <template v-for="item in lastSixMonths">
-            <categories-per-month :key="item.month" :overviewMonth="item" detailed />
+      <template v-if="isOverview">
+        <overview-toggle>
+          <template v-slot:introContent>
+            <categories-per-month v-if="!showDetails" :overviewMonth="currentMonth" />
+            <overview-chart :lastOverview="lastSixMonths" />
           </template>
-        </template>
-      </overview-toggle>
+          <template v-slot:closedContent>
+            <template v-for="item in lastSixMonths">
+              <categories-per-month :key="item.month" :overviewMonth="item" detailed />
+            </template>
+          </template>
+        </overview-toggle>
+      </template>
+      <template v-else>
+        <overview-empty />
+      </template>
       <ui-container inner>
         <upgrade-banner />
         <discount-banner />
@@ -30,6 +35,7 @@ import CurrentDate from '@/components/Overview/CurrentDate'
 import Expense from '@/components/Overview/Expense'
 import OverviewToggle from '@/components/Overview/OverviewToggle'
 import OverviewChart from '@/components/Overview/OverviewChart'
+import OverviewEmpty from '@/components/Overview/OverviewEmpty'
 import CategoriesPerMonth from '@/components/Overview/CategoriesPerMonthChart'
 import UpgradeBanner from '@/components/Promo/UpgradeBanner'
 import DiscountBanner from '@/components/Promo/DiscountBanner'
@@ -41,6 +47,7 @@ export default {
     Expense,
     OverviewToggle,
     OverviewChart,
+    OverviewEmpty,
     CategoriesPerMonth,
     UpgradeBanner,
     DiscountBanner
@@ -48,20 +55,27 @@ export default {
   watch: {
     userId() {
       this.getOverview()
+    },
+    isLogin() {
+      if (this.isLogin) {
+        this.getOverview()
+      }
     }
   },
   computed: {
-    ...mapGetters('auth', ['isLogin']),
     ...mapGetters('user', ['user', 'userId']),
+    ...mapGetters('auth', ['isLogin']),
     ...mapGetters('overview', ['showDetails', 'lastSixMonths']),
     isOverview() {
       return this.lastSixMonths.length
     },
     currentMonth() {
-      return this.lastSixMonths[0]
+      const [firstMonth] = this.lastSixMonths
+      return firstMonth
     },
     prevMonth() {
-      return this.lastSixMonths[1]
+      const [, secondMonth] = this.lastSixMonths
+      return secondMonth
     }
   },
   methods: {

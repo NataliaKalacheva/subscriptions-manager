@@ -1,7 +1,8 @@
 <template>
   <div class="overview-bars">
     <p v-if="showDetails" class="overview-bars__note">
-      You've spent {{ diff.total }} <span :class="diff.class">{{ diff.note }}</span>
+      You've spent {{ diffTotal }}
+      <span :class="diffClass">{{ diffNote }}</span>
       <span class="note-grey"> than last month</span>
     </p>
     <basic-chart :chartData="chartData" :style="chartStyles" />
@@ -10,6 +11,7 @@
 
 <script>
 import BasicChart from '@/components/Overview/BasicChart'
+import { barColors } from '@/constants'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -23,6 +25,9 @@ export default {
       default: () => []
     }
   },
+  data: () => ({
+    barColors
+  }),
   computed: {
     ...mapGetters('overview', ['showDetails']),
     chartStyles() {
@@ -50,29 +55,26 @@ export default {
       return this.lastOverview[1]
     },
     diff() {
-      const diff = this.currentMonth.total - this.prevMonth.total
-      const diffObj = {}
-
-      if (diff > 0) {
-        diffObj.total = `$${diff}`
-        diffObj.note = `more`
-        diffObj.class = `note-danger`
+      return this.currentMonth.total - this.prevMonth.total
+    },
+    diffClass() {
+      return this.diff > 0 ? 'note-danger' : 'note-info'
+    },
+    diffNote() {
+      if (this.diff > 0) {
+        return 'more'
       }
-      if (diff === 0) {
-        diffObj.total = ''
-        diffObj.note = `no more, no less`
-        diffObj.class = `note-info`
+      if (this.diff === 0) {
+        return 'no more, no less'
       }
-      if (diff < 0) {
-        diffObj.total = `$ ${Math.abs(diff)}`
-        diffObj.note = `less`
-        diffObj.class = `note-info`
-      }
-      return diffObj
+      return 'less'
+    },
+    diffTotal() {
+      return `$ ${Math.abs(this.diff)}`
     },
     colors() {
       return this.revertedOverview.map(item =>
-        this.currentMonth.month === item.month ? '#2879FE' : '#C2D9FF'
+        this.currentMonth.month === item.month ? barColors.accent : barColors.general
       )
     },
     chartData() {

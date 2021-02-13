@@ -18,22 +18,7 @@
       />
 
       <template v-if="detailed">
-        <div class="categories-chart__aside">
-          <ul class="categories-chart__list">
-            <template v-for="category in overviewMonth.categories">
-              <li :key="category.name" class="categories-chart__list-item">
-                <span
-                  class="categories-chart__swatch"
-                  :style="{ backgroundColor: categoryColors[category.name] }"
-                ></span>
-                <span class="categories-chart__category">{{ category.name }}</span>
-                <span class="categories-chart__price">
-                  {{ supportedCurrency.icon }} {{ category.total }}
-                </span>
-              </li>
-            </template>
-          </ul>
-        </div>
+        <categories-details :categories="categories" />
       </template>
     </div>
   </div>
@@ -42,11 +27,13 @@
 <script>
 import DoughnutChart from '@/components/Overview/DoughnutChart'
 import { categoryColors, supportedCurrency } from '@/constants'
+import CategoriesDetails from '@/components/Overview/CategoriesDetails'
 
 export default {
   name: 'CategoriesPerMonth',
   components: {
-    DoughnutChart
+    DoughnutChart,
+    CategoriesDetails
   },
   props: {
     detailed: {
@@ -58,6 +45,10 @@ export default {
       default: () => {}
     }
   },
+  data: () => ({
+    categoryColors,
+    supportedCurrency
+  }),
   computed: {
     categories() {
       return this.overviewMonth.categories
@@ -67,12 +58,6 @@ export default {
     },
     totals() {
       return this.labels.map(category => this.categories[category].total || 0)
-    },
-    categoryColors() {
-      return categoryColors
-    },
-    supportedCurrency() {
-      return supportedCurrency
     },
     colors() {
       return this.labels.map(category => categoryColors[category] || 'green')
@@ -114,21 +99,10 @@ export default {
       margin: 0 0;
     }
   }
-  &__body,
-  &__list-item {
+  &__body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-  }
-  &__list-item {
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: $color-text-grey;
-    letter-spacing: -0.24px;
-  }
-  &__aside {
-    flex-grow: 1;
-    max-width: 300px;
   }
   &__doughut {
     margin: 10px 40px 10px 0;
@@ -136,23 +110,6 @@ export default {
   &__total {
     font-weight: 700;
     font-size: 1.3rem;
-  }
-  &__list {
-    @include reset(ul);
-  }
-  &__swatch {
-    display: block;
-    margin-right: 10px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-  }
-  &__category {
-    min-width: 40%;
-  }
-  &__price {
-    margin-left: auto;
-    margin-right: 0;
   }
 }
 </style>

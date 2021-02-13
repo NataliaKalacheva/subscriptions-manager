@@ -141,7 +141,6 @@ export default {
     async handleSignUp() {
       try {
         await this.signUp({ ...this.userForm })
-        router.push({ path: '/' })
       } catch (err) {
         throw new Error(err)
       }

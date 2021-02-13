@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 import LogoutIcon from '@/components/Profile/LogoutIcon'
 
 export default {
@@ -24,9 +24,6 @@ export default {
   data: () => ({
     title: 'App'
   }),
-  computed: {
-    ...mapGetters('auth', ['isLogin'])
-  },
   methods: {
     ...mapActions('auth', ['signOut'])
   }

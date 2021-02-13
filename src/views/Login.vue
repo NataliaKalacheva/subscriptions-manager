@@ -13,6 +13,7 @@
 <script>
 import SectionHeader from '@/components/common/SectionHeader'
 import LoginForm from '@/components/Auth/LoginForm'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Login',
@@ -22,9 +23,20 @@ export default {
   },
   data: () => ({
     title: 'Welcome',
-    subtitle: 'Please login to your account.',
-    labelPosition: 'top'
-  })
+    subtitle: 'Please login to your account.'
+  }),
+  watch: {
+    isLogin: {
+      handler: 'redirectOnLogin',
+      immediate: true
+    }
+  },
+  computed: {
+    ...mapGetters('auth', ['isLogin'])
+  },
+  methods: {
+    ...mapActions('auth', ['redirectOnLogin'])
+  }
 }
 </script>
 

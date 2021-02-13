@@ -13,6 +13,7 @@
 <script>
 import SectionHeader from '@/components/common/SectionHeader'
 import UserForm from '@/components/Auth/UserForm'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'SignUp',
@@ -24,26 +25,17 @@ export default {
     title: 'Welcome',
     subtitle: 'Fill all fields to create the new account.'
   }),
-  methods: {
-    submitForm(formName) {
-      this.$refs[formName].$children[0].validate(valid => {
-        if (valid) {
-          console.log('submit!')
-        } else {
-          console.log('error submit!!')
-        }
-      })
-    },
-    checkPassword(rule, value, callback) {
-      if (!value) {
-        callback(new Error('Please repeat the password'))
-      }
-      if (value !== this.formData.password) {
-        callback(new Error('Passwords must match'))
-      } else {
-        callback()
-      }
+  computed: {
+    ...mapGetters('auth', ['isLogin'])
+  },
+  watch: {
+    isLogin: {
+      handler: 'redirectOnLogin',
+      immediate: true
     }
+  },
+  methods: {
+    ...mapActions('auth', ['redirectOnLogin'])
   }
 }
 </script>
