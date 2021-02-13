@@ -1,24 +1,83 @@
 <template>
   <div class="home">
-    <h1 class="text-center">Home</h1>
-    <h2 class="text-center" v-if="isLogin">
-      You are logged in!
-      <ui-button @click="signOut">Sign out</ui-button>
-    </h2>
+    <ui-icon-bubble />
+    <current-date />
+    <expense v-if="isOverview" :total="currentMonth.total" />
+    <ui-container :color="'#ECF0F8'">
+      <overview-toggle>
+        <template v-slot:introContent>
+          <categories-per-month v-if="!showDetails" :overviewMonth="currentMonth" />
+          <overview-chart :lastOverview="lastSixMonths" />
+        </template>
+        <template v-slot:closedContent>
+          <template v-for="item in lastSixMonths">
+            <categories-per-month :key="item.month" :overviewMonth="item" detailed />
+          </template>
+        </template>
+      </overview-toggle>
+      <ui-container inner>
+        <upgrade-banner />
+        <discount-banner />
+      </ui-container>
+    </ui-container>
   </div>
 </template>
 
 <script>
+// @ts-nocheck
 import { mapGetters, mapActions } from 'vuex'
+import CurrentDate from '@/components/Overview/CurrentDate'
+import Expense from '@/components/Overview/Expense'
+import OverviewToggle from '@/components/Overview/OverviewToggle'
+import OverviewChart from '@/components/Overview/OverviewChart'
+import CategoriesPerMonth from '@/components/Overview/CategoriesPerMonthChart'
+import UpgradeBanner from '@/components/Promo/UpgradeBanner'
+import DiscountBanner from '@/components/Promo/DiscountBanner'
 
 export default {
   name: 'Home',
-
+  components: {
+    CurrentDate,
+    Expense,
+    OverviewToggle,
+    OverviewChart,
+    CategoriesPerMonth,
+    UpgradeBanner,
+    DiscountBanner
+  },
+  watch: {
+    userId() {
+      this.getOverview()
+    }
+  },
   computed: {
-    ...mapGetters('auth', ['isLogin'])
+    ...mapGetters('auth', ['isLogin']),
+    ...mapGetters('user', ['user', 'userId']),
+    ...mapGetters('overview', ['showDetails', 'lastSixMonths']),
+    isOverview() {
+      return this.lastSixMonths.length
+    },
+    currentMonth() {
+      return this.lastSixMonths[0]
+    },
+    prevMonth() {
+      return this.lastSixMonths[1]
+    }
   },
   methods: {
-    ...mapActions('auth', ['signOut'])
+    ...mapActions('auth', ['signOut']),
+    ...mapActions('overview', ['getOverview'])
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.home {
+  min-height: 100vh;
+  padding: 40px 0 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+</style>

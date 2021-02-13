@@ -19,7 +19,6 @@ const appTypes = {
   actions: {
     async getAppAllTypes({ commit, dispatch }) {
       try {
-        dispatch('toggleLoader', true, { root: true })
         const response = await axios.get(`/types/application-types`)
         commit(APP_TYPES, response)
       } catch (err) {
@@ -32,8 +31,6 @@ const appTypes = {
           },
           { root: true }
         )
-      } finally {
-        dispatch('toggleLoader', false, { root: true })
       }
     },
     async getAppType({ dispatch }, name) {

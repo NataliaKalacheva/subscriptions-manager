@@ -1,5 +1,5 @@
 <template>
-  <div class="page-settings">
+  <div class="page-settings" v-if="user">
     <div class="page-settings__content">
       <settings-header :title="title" :userName="user.displayName || ''" />
       <ui-container>

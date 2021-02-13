@@ -30,10 +30,12 @@ export default {
 
 <style lang="scss" scoped>
 .ui-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s linear;
 
   & ::v-deep {
-    margin: 10px;
     font-family: Arial, sans-serif;
   }
 
