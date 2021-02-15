@@ -55,6 +55,7 @@ export default {
 
 <style lang="scss" scoped>
 .reset-form {
+  padding-bottom: 40px;
   ::v-deep .ui-button {
     margin-top: 60px;
   }

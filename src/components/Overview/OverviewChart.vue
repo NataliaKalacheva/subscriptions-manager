@@ -39,7 +39,6 @@ export default {
     },
     revertedOverview() {
       const revertedOverview = this.lastOverview.slice().reverse()
-      console.log(revertedOverview)
       return this.showDetails ? revertedOverview.slice(-6) : revertedOverview.slice(-2)
     },
     labels() {

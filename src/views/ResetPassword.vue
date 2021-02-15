@@ -1,6 +1,7 @@
 <template>
   <div class="page-reset">
     <section-header :title="title">
+      <breadcrumps />
       {{ subtitle }}
     </section-header>
     <ui-container>
@@ -12,12 +13,14 @@
 <script>
 import SectionHeader from '@/components/common/SectionHeader'
 import ResetPasswordForm from '@/components/Auth/ResetPasswordForm'
+import Breadcrumps from '@/components/common/Breadcrumps'
 
 export default {
   name: 'Reset',
   components: {
     SectionHeader,
-    ResetPasswordForm
+    ResetPasswordForm,
+    Breadcrumps
   },
   data: () => ({
     title: 'Welcome',

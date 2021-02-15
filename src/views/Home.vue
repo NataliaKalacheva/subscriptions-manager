@@ -55,12 +55,10 @@ export default {
   watch: {
     userId() {
       this.getOverview()
-    },
-    isLogin() {
-      if (this.isLogin) {
-        this.getOverview()
-      }
     }
+  },
+  mounted() {
+    this.getOverview()
   },
   computed: {
     ...mapGetters('user', ['user', 'userId']),

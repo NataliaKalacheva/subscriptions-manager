@@ -72,6 +72,7 @@ export default {
 
 <style lang="scss" scoped>
 .login-form {
+  padding-bottom: 40px;
   ::v-deep .ui-button {
     margin-top: 60px;
   }

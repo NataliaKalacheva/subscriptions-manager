@@ -1,29 +1,19 @@
 <template>
-  <div class="breadcrumps">
-    <router-link :to="{ path: redirectLink }">
+  <div href="/" class="breadcrumps">
+    <a @click="navigate">
       <ui-arrow dir="left" />
-    </router-link>
+    </a>
   </div>
 </template>
 
 <script>
+import router from '@/router'
+
 export default {
   name: 'Breadcrumps',
-  computed: {
-    redirectLink() {
-      const type = this.$route.name
-
-      switch (type) {
-        case 'SubscriptionInfo':
-        case 'AddSubscription':
-          return '/subscriptions'
-        case 'EditSubscription':
-          return `/subscription/${this.$route.params.subId}`
-        case 'EditProfile':
-          return `/settings`
-        default:
-          return '/'
-      }
+  methods: {
+    navigate() {
+      router.go(-1)
     }
   }
 }

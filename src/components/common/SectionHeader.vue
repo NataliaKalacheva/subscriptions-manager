@@ -20,8 +20,10 @@ export default {
 
 <style lang="scss" scoped>
 .section-header {
-  width: 80%;
+  position: relative;
   margin: 10px auto 30px;
+  width: 100%;
+  max-width: 768px;
   text-align: center;
 
   &__title {
