@@ -3,16 +3,19 @@
     <ui-loader />
     <notification />
     <router-view />
+    <navigation />
   </div>
 </template>
 
 <script>
-import Notification from '@/components/Notification'
+import Notification from '@/components/common/Notification'
+import Navigation from '@/components/common/Navigation'
 
 export default {
   name: 'App',
   components: {
-    Notification
+    Notification,
+    Navigation
   }
 }
 </script>

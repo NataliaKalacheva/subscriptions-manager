@@ -18,6 +18,10 @@ export default {
       type: Boolean,
       default: false
     },
+    collapsed: {
+      type: Boolean,
+      default: false
+    },
     color: {
       type: String,
       default: 'white'
@@ -30,7 +34,8 @@ export default {
     containerClasses() {
       return {
         'container--rounded': this.isRounded,
-        'container--inner': this.inner
+        'container--inner': this.inner,
+        'container--collapsed': this.collapsed
       }
     },
     containerStyles() {
@@ -43,12 +48,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$container-padding: 33px;
 .container {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 15px 33px 0;
+  padding: 15px $container-padding $container-padding * 2;
   background: white;
   color: $color-dark-blue;
 
@@ -61,8 +67,12 @@ export default {
   }
 
   &--inner {
-    margin-left: -33px;
-    margin-right: -33px;
+    margin-left: -$container-padding;
+    margin-right: -$container-padding;
+  }
+
+  &--collapsed {
+    padding-bottom: 0;
   }
 
   &--rounded {

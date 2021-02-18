@@ -1,6 +1,6 @@
 <template>
-  <div href="/" class="breadcrumps">
-    <a @click="navigate">
+  <div class="breadcrumps">
+    <a href="/" @click="navigate">
       <ui-arrow dir="left" />
     </a>
   </div>
