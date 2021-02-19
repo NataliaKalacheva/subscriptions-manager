@@ -4,9 +4,9 @@
     xmlns="http://www.w3.org/2000/svg"
     id="Layer_1"
     enable-background="new 0 0 24 24"
-    height="32"
+    height="35"
     viewBox="0 0 24 24"
-    width="32"
+    width="30"
     fill="currentColor"
   >
     <g>

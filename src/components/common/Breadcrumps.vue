@@ -1,8 +1,8 @@
 <template>
   <div class="breadcrumps">
-    <a href="/" @click="navigate">
+    <button class="breadcrumps__item" @click="navigate">
       <ui-arrow dir="left" />
-    </a>
+    </button>
   </div>
 </template>
 
@@ -24,5 +24,16 @@ export default {
   position: absolute;
   top: 25px;
   left: 25px;
+  z-index: 99;
+
+  &__item {
+    @include reset-button;
+  }
+
+  &__item,
+  &__item svg {
+    cursor: pointer;
+    color: white;
+  }
 }
 </style>

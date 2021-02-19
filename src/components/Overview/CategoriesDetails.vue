@@ -41,7 +41,7 @@ export default {
   max-width: 300px;
 
   &__list {
-    @include reset(ul);
+    @include reset-list;
   }
   &__list-item {
     display: flex;

@@ -54,13 +54,13 @@ export default {
   padding: 15px;
   background: $color-blue;
   border-radius: 25px;
-  box-shadow: inset 0 1px 3px rgba($color-black, 0.5);
+  box-shadow: inset 0 6px 8px rgba($color-black, 0.1);
   color: $color-white;
   overflow: hidden;
   &__wrapper {
     margin: 15px 0;
     border-radius: 25px;
-    box-shadow: 0 2px 4px rgba($color-black, 0.5);
+    box-shadow: 0 4px 8px rgba($color-black, 0.1);
   }
   &__title {
     max-width: 180px;

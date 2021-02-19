@@ -2,18 +2,20 @@ import mutations from '@/store/mutations'
 import axios from '@/plugins/axios'
 import serializeSubscriptionsResponse from '@/store/utils/serializeSubscriptionsResponse'
 
-const { SUBSCRIPTIONS, UPDATE_SUBSCRIPTION, CURRENT_SUBSCRIPTION } = mutations
+const { SUBSCRIPTIONS, UPDATE_SUBSCRIPTION, CURRENT_SUBSCRIPTION, SUBSCRIPTION_HISTORY } = mutations
 
 const subscriptionsStore = {
   namespaced: true,
   state: {
     subscriptions: {},
-    currentSubscription: {}
+    currentSubscription: {},
+    subscriptionHistory: []
   },
   getters: {
     subscriptions: ({ subscriptions }) => Object.values(subscriptions),
     total: ({ subscriptions }) => Object.keys(subscriptions).length,
-    currentSubscription: ({ currentSubscription }) => currentSubscription
+    currentSubscription: ({ currentSubscription }) => currentSubscription,
+    subscriptionHistory: ({ subscriptionHistory }) => subscriptionHistory
   },
   mutations: {
     [SUBSCRIPTIONS](state, value = {}) {
@@ -24,6 +26,9 @@ const subscriptionsStore = {
     },
     [CURRENT_SUBSCRIPTION](state, obj) {
       state.currentSubscription = obj
+    },
+    [SUBSCRIPTION_HISTORY](state, arr) {
+      state.subscriptionHistory = arr
     }
   },
   actions: {
@@ -157,6 +162,26 @@ const subscriptionsStore = {
           },
           { root: true }
         )
+      } catch (err) {
+        dispatch(
+          'showNotification',
+          {
+            type: 'error',
+            message: err,
+            title: ''
+          },
+          { root: true }
+        )
+        throw new Error(err)
+      } finally {
+        dispatch('toggleLoader', false, { root: true })
+      }
+    },
+    async getSubscriptionPayments({ dispatch, commit }, id) {
+      try {
+        dispatch('toggleLoader', true, { root: true })
+        const subscriptionHistory = await axios.get(`/payments/subscription/${id}`)
+        commit(SUBSCRIPTION_HISTORY, subscriptionHistory)
       } catch (err) {
         dispatch(
           'showNotification',

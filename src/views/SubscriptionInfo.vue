@@ -1,6 +1,6 @@
 <template>
-  <div class="page-subscriptions" v-if="currentSubscription.id">
-    <div class="page-subscriptions__content">
+  <div class="subscription" v-if="currentSubscription.id">
+    <div class="subscription__content">
       <subscription-header
         :title="currentSubscription.name"
         :id="currentSubscription.id"
@@ -11,7 +11,25 @@
           {{ currentSubscription.startDate | moment('DD MMMM YYYY') }}
         </div>
       </subscription-header>
-      <ui-container> CONTENT HERE for {{ currentSubscription }}</ui-container>
+      <ui-container :color="'#ECF0F8'" collapsed>
+        <h3 class="h3 subscription__title">
+          Billing
+          <span class="subscription__price">
+            {{ currentSubscription.price }}
+            {{ currentSubscription.currency.icon }}
+            <span class="subscription__period">/{{ currentSubscription.period }}</span>
+          </span>
+        </h3>
+        {{ title }}CONTENT HERE for {{ currentSubscription }}
+        <ui-container inner>
+          <h3 class="h3 subscription__title">
+            History
+            <span>View all</span>
+          </h3>
+          inner content
+          {{ subscriptionHistory }}
+        </ui-container>
+      </ui-container>
     </div>
   </div>
 </template>
@@ -26,23 +44,48 @@ export default {
     SubscriptionHeader
   },
   mounted() {
-    this.getSubscriptionById(this.$route.params.subId)
+    this.getSubscriptionById(this.subscriptionId)
+    this.getSubscriptionPayments(this.subscriptionId)
   },
   computed: {
-    ...mapGetters('subscriptions', ['currentSubscription'])
+    ...mapGetters('subscriptions', ['currentSubscription', 'subscriptionHistory']),
+    subscriptionId() {
+      return this.$route.params.subId
+    }
   },
   methods: {
-    ...mapActions('subscriptions', ['getSubscriptionById'])
+    ...mapActions('subscriptions', ['getSubscriptionById', 'getSubscriptionPayments'])
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.page-subscriptions {
+.subscription {
   &__content {
     max-width: 768px;
+    min-height: 100vh;
     margin: 0 auto;
     position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__price {
+    margin-left: 20px;
+  }
+
+  &__period {
+    color: $color-text-grey;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: lowercase;
   }
 }
 </style>
