@@ -41,7 +41,7 @@ export default {
 
 <style lang="scss" scoped>
 .page-subscriptions {
-  padding: 0 $page-container-padding;
+  padding: 0 $page-padding;
   box-sizing: border-box;
   height: 100vh;
   overflow: hidden;
@@ -61,7 +61,7 @@ export default {
 
     &__header,
     .upcoming {
-      padding: 0 $page-container-padding;
+      padding: 0 $page-padding;
     }
   }
 }

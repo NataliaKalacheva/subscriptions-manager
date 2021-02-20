@@ -21,14 +21,7 @@
           </span>
         </h3>
         {{ title }}CONTENT HERE for {{ currentSubscription }}
-        <ui-container inner>
-          <h3 class="h3 subscription__title">
-            History
-            <span>View all</span>
-          </h3>
-          inner content
-          {{ subscriptionHistory }}
-        </ui-container>
+        <subscription-payments :subscription="currentSubscription" />
       </ui-container>
     </div>
   </div>
@@ -37,30 +30,35 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import SubscriptionHeader from '@/components/Subscriptions/SubscriptionHeader'
+import SubscriptionPayments from '@/components/Subscriptions/SubscriptionPayments'
 
 export default {
   name: 'SubscriptionInfo',
   components: {
-    SubscriptionHeader
+    SubscriptionHeader,
+    SubscriptionPayments
   },
   mounted() {
     this.getSubscriptionById(this.subscriptionId)
-    this.getSubscriptionPayments(this.subscriptionId)
   },
   computed: {
-    ...mapGetters('subscriptions', ['currentSubscription', 'subscriptionHistory']),
+    ...mapGetters('subscriptions', ['currentSubscription']),
     subscriptionId() {
       return this.$route.params.subId
     }
   },
   methods: {
-    ...mapActions('subscriptions', ['getSubscriptionById', 'getSubscriptionPayments'])
+    ...mapActions('subscriptions', ['getSubscriptionById'])
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .subscription {
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+
   &__content {
     max-width: 768px;
     min-height: 100vh;
