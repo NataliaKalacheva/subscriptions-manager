@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import { supportedCurrency } from '@/constants'
 import SubscriptionPaymentsItem from '@/components/Subscriptions/SubscriptionPaymentsItem'
 
@@ -35,9 +35,6 @@ export default {
       type: String,
       required: true
     }
-  },
-  mounted() {
-    this.getSubscriptionPayments(this.subscription.id)
   },
   data: () => ({
     supportedCurrency,
@@ -63,7 +60,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions('subscriptions', ['getSubscriptionPayments']),
     toggleHistory() {
       console.log('click')
       this.isExpanded = !this.isExpanded

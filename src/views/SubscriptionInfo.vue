@@ -20,7 +20,7 @@
             <span class="subscription__period">/{{ currentSubscription.period }}</span>
           </span>
         </h3>
-        {{ title }}CONTENT HERE for {{ currentSubscription }}
+        <subscription-payments-chart />
         <subscription-payments :subscription="currentSubscription" />
       </ui-container>
     </div>
@@ -31,15 +31,18 @@
 import { mapActions, mapGetters } from 'vuex'
 import SubscriptionHeader from '@/components/Subscriptions/SubscriptionHeader'
 import SubscriptionPayments from '@/components/Subscriptions/SubscriptionPayments'
+import SubscriptionPaymentsChart from '@/components/Subscriptions/SubscriptionPaymentsChart'
 
 export default {
   name: 'SubscriptionInfo',
   components: {
     SubscriptionHeader,
-    SubscriptionPayments
+    SubscriptionPayments,
+    SubscriptionPaymentsChart
   },
   mounted() {
     this.getSubscriptionById(this.subscriptionId)
+    this.getSubscriptionPayments(this.subscriptionId)
   },
   computed: {
     ...mapGetters('subscriptions', ['currentSubscription']),
@@ -48,7 +51,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('subscriptions', ['getSubscriptionById'])
+    ...mapActions('subscriptions', ['getSubscriptionById', 'getSubscriptionPayments'])
   }
 }
 </script>

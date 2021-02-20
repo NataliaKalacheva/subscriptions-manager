@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import BasicChart from '@/components/Overview/BasicChart'
+import BasicChart from '@/components/common/BasicChart'
 import { barColors } from '@/constants'
 import { mapGetters } from 'vuex'
 
