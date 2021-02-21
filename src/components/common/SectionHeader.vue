@@ -1,5 +1,5 @@
 <template>
-  <div class="section-header">
+  <div class="section-header page-width">
     <ui-icon-bubble />
     <h1 class="section-header__title">{{ title }}</h1>
     <slot />
@@ -23,7 +23,6 @@ export default {
   position: relative;
   margin: 10px auto 30px;
   width: 100%;
-  max-width: 768px;
   text-align: center;
 
   &__title {

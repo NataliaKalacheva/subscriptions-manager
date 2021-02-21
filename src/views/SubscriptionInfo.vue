@@ -1,6 +1,6 @@
 <template>
   <div class="subscription" v-if="currentSubscription.id">
-    <div class="subscription__content">
+    <div class="subscription__content page-width">
       <subscription-header
         :title="currentSubscription.name"
         :id="currentSubscription.id"
@@ -59,13 +59,11 @@ export default {
 <style lang="scss" scoped>
 .subscription {
   height: 100vh;
-  min-height: 600px;
+  min-height: 800px;
   overflow: hidden;
 
   &__content {
-    max-width: 768px;
     min-height: 100vh;
-    margin: 0 auto;
     position: relative;
 
     display: flex;

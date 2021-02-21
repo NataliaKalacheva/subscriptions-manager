@@ -1,5 +1,5 @@
 <template>
-  <ui-container class="subscription-history" :class="historyClasses" inner>
+  <ui-container class="subscription-history" inner :expanded="isExpanded">
     <div v-if="subscriptionHistory">
       <h3 class="h3 subscription-history__title">
         History
@@ -42,11 +42,6 @@ export default {
   }),
   computed: {
     ...mapGetters('subscriptions', ['subscriptionHistory']),
-    historyClasses() {
-      return {
-        'container--expanded': this.isExpanded
-      }
-    },
     toggleTitle() {
       return this.isExpanded ? 'Hide all' : 'View all'
     },
@@ -61,7 +56,6 @@ export default {
   },
   methods: {
     toggleHistory() {
-      console.log('click')
       this.isExpanded = !this.isExpanded
     }
   }
@@ -99,25 +93,6 @@ export default {
   }
   &.container {
     transform: translateY(0);
-  }
-  &.container--expanded {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    height: 100vh;
-    overflow-y: auto;
-    border-radius: 0;
-    transform: translateX(-50%);
-    animation: transitionHeight 0.4s linear;
-  }
-
-  @keyframes transitionHeight {
-    from {
-      transform: translateX(-50%) translateY(400px);
-    }
-    to {
-      transform: translateX(-50%) translateY(0);
-    }
   }
 }
 </style>

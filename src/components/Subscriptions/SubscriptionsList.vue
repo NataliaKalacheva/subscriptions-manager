@@ -1,6 +1,6 @@
 <template>
   <div class="subscriptions-all">
-    <ui-container :class="listClasses">
+    <ui-container :expanded="isExpanded">
       <div class="subscriptions-all__drag-up" @click="dragUpSubscriptions">
         <ui-icon-drag-up></ui-icon-drag-up>
       </div>
@@ -26,12 +26,7 @@ export default {
     isExpanded: false
   }),
   computed: {
-    ...mapGetters('subscriptions', ['subscriptions']),
-    listClasses() {
-      return {
-        'container--expanded': this.isExpanded
-      }
-    }
+    ...mapGetters('subscriptions', ['subscriptions'])
   },
   methods: {
     dragUpSubscriptions() {
@@ -43,24 +38,6 @@ export default {
 
 <style lang="scss" scoped>
 .subscriptions-all {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-
-  ::v-deep .container {
-    height: calc(100vh - 400px);
-    padding-right: 0;
-    transition: height 0.4s linear;
-
-    &.container--expanded {
-      height: 100vh;
-      overflow-y: auto;
-      border-radius: 0;
-      transition: height 0.4s linear;
-    }
-  }
-
   &__drag-up {
     width: 100%;
     text-align: center;

@@ -1,6 +1,6 @@
 <template>
   <div class="page-subscriptions">
-    <div class="page-subscriptions__content">
+    <div class="page-subscriptions__content page-width">
       <subscription-header
         :title="currentSubscription.name"
         :id="currentSubscription.id"
@@ -41,8 +41,6 @@ export default {
 <style lang="scss" scoped>
 .page-subscriptions {
   &__content {
-    max-width: 768px;
-    margin: 0 auto;
     position: relative;
   }
   @include mq-max($tab) {

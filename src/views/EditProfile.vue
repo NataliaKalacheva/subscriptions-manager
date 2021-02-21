@@ -1,6 +1,6 @@
 <template>
   <div v-if="user.uid" class="page-edit-profile">
-    <div class="page-edit-profile__content">
+    <div class="page-edit-profile__content page-width">
       <profile-header />
       <ui-container>
         <profile-icon
@@ -40,8 +40,6 @@ export default {
 <style lang="scss" scoped>
 .page-edit-profile {
   &__content {
-    max-width: 768px;
-    margin: 0 auto;
     position: relative;
     display: flex;
     flex-direction: column;

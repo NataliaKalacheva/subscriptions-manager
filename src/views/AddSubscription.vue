@@ -1,6 +1,6 @@
 <template>
   <div class="page-subscriptions">
-    <div class="page-subscriptions__content">
+    <div class="page-subscriptions__content page-width">
       <breadcrumps />
       <subscriptions-header :title="title"> {{ description }}</subscriptions-header>
       <ui-container>
@@ -39,8 +39,6 @@ export default {
 
   &__content {
     position: relative;
-    max-width: 768px;
-    margin: 0 auto;
   }
 
   &,

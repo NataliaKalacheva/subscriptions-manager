@@ -1,5 +1,5 @@
 <template>
-  <div class="page-subscriptions">
+  <div class="page-subscriptions page-width">
     <div class="page-subscriptions__header">
       <subscriptions-header />
     </div>
@@ -41,6 +41,7 @@ export default {
 
 <style lang="scss" scoped>
 .page-subscriptions {
+  position: relative;
   padding: 0 $page-padding;
   box-sizing: border-box;
   height: 100vh;
@@ -52,8 +53,6 @@ export default {
 
   &__header {
     position: relative;
-    max-width: 768px;
-    margin: 0 auto;
   }
 
   @include mq-max($tab) {
