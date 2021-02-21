@@ -4,7 +4,9 @@
       <ui-icon-ellipse class="upgrade-banner__ellipse"></ui-icon-ellipse>
       <h4 class="upgrade-banner__title">{{ title }}</h4>
       <p class="upgrade-banner__text">{{ text }}</p>
-      <ui-button class="upgrade-banner__button" size="xs">{{ cta }}</ui-button>
+      <router-link class="upgrade-banner__button" tag="span" :to="{ name: 'ComingSoon' }">
+        <ui-button size="xs">{{ cta }}</ui-button>
+      </router-link>
       <ui-icon-bubble class="upgrade-banner__bubble" :top-position="false"></ui-icon-bubble>
     </div>
   </div>
@@ -80,8 +82,12 @@ export default {
   &__button {
     grid-area: b;
     width: auto;
-    height: 50px;
     align-self: center;
+
+    ::v-deep .ui-button {
+      width: 100%;
+      height: 50px;
+    }
   }
   &__ellipse {
     position: absolute;
