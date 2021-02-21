@@ -27,6 +27,14 @@ export default {
     prices() {
       return this.subscriptionHistory.map(item => item.price)
     },
+    currentMonth() {
+      return this.$moment().format('MMM')
+    },
+    colors() {
+      return this.labels.map(month =>
+        this.currentMonth === month ? barColors.accent : barColors.general
+      )
+    },
     chartStyles() {
       return {
         height: `180px`,
@@ -40,7 +48,7 @@ export default {
         datasets: [
           {
             label: '$',
-            backgroundColor: this.barColors.general,
+            backgroundColor: this.colors,
             data: this.prices
           }
         ]

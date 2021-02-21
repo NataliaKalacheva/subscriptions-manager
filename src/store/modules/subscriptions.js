@@ -1,6 +1,7 @@
 import mutations from '@/store/mutations'
 import axios from '@/plugins/axios'
 import serializeSubscriptionsResponse from '@/store/utils/serializeSubscriptionsResponse'
+import sortSubscriptionHistory from '@/store/utils/sortSubscriptionHistory'
 
 const { SUBSCRIPTIONS, UPDATE_SUBSCRIPTION, CURRENT_SUBSCRIPTION, SUBSCRIPTION_HISTORY } = mutations
 
@@ -180,7 +181,8 @@ const subscriptionsStore = {
     async getSubscriptionPayments({ dispatch, commit }, id) {
       try {
         dispatch('toggleLoader', true, { root: true })
-        const subscriptionHistory = await axios.get(`/payments/subscription/${id}`)
+        const response = await axios.get(`/payments/subscription/${id}`)
+        const subscriptionHistory = sortSubscriptionHistory(response)
         commit(SUBSCRIPTION_HISTORY, subscriptionHistory)
       } catch (err) {
         dispatch(
