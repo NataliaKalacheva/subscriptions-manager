@@ -1,1 +1,3 @@
-src/components/common/Icons/*
+src/components/Icons/*
+src/components/common/RoundedBarChart.vue
+src/plugins/chartjs/*

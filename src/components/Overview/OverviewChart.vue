@@ -5,19 +5,19 @@
       <span :class="diffClass">{{ diffNote }}</span>
       <span class="note-grey"> than last month</span>
     </p>
-    <basic-chart :chartData="chartData" :style="chartStyles" />
+    <rounded-bar-chart :chartData="chartData" :style="chartStyles" />
   </div>
 </template>
 
 <script>
-import BasicChart from '@/components/common/BasicChart'
+import RoundedBarChart from '@/components/common/RoundedBarChart'
 import { barColors } from '@/constants'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'OverviewChart',
   components: {
-    BasicChart
+    RoundedBarChart
   },
   props: {
     lastOverview: {
