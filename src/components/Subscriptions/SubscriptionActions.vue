@@ -16,7 +16,7 @@ import { Slide } from 'vue-burger-menu'
 export default {
   name: 'SubscriptionActions',
   components: {
-    Slide // burger menu with slide effect
+    Slide
   },
   props: {
     id: {

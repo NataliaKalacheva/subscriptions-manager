@@ -7,13 +7,11 @@
 </template>
 
 <script>
-import router from '@/router'
-
 export default {
   name: 'Breadcrumps',
   methods: {
     navigate() {
-      router.go(-1)
+      this.$router.back()
     }
   }
 }

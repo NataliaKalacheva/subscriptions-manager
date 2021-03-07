@@ -16,19 +16,16 @@ export default {
   },
   data: () => ({
     supportedCurrency,
-    barColors
+    barColors,
+    currentMonth: this.$moment().format('MMM')
   }),
   computed: {
     ...mapGetters('subscriptions', ['subscriptionHistory']),
     labels() {
-      const $this = this
-      return this.subscriptionHistory.map(item => $this.$moment(item.date).format('MMM'))
+      return this.subscriptionHistory.map(item => this.$moment(item.date).format('MMM'))
     },
     prices() {
       return this.subscriptionHistory.map(item => item.price)
-    },
-    currentMonth() {
-      return this.$moment().format('MMM')
     },
     colors() {
       return this.labels.map(month =>

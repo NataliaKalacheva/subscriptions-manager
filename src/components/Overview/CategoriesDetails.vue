@@ -2,36 +2,31 @@
   <div class="categories-details">
     <ul class="categories-details__list">
       <template v-for="category in categories">
-        <li :key="category.name" class="categories-details__list-item">
-          <span
-            class="categories-details__swatch"
-            :style="{ backgroundColor: categoryColors[category.name] }"
-          ></span>
-          <span class="categories-details__category">{{ category.name }}</span>
-          <span class="categories-details__price">
-            {{ supportedCurrency.icon }} {{ category.total }}
-          </span>
-        </li>
+        <categories-details-item :category="category" :key="category.name" />
       </template>
     </ul>
   </div>
 </template>
 
 <script>
+import CategoriesDetailsItem from '@/components/Overview/CategoriesDetailsItem'
 import { categoryColors, supportedCurrency } from '@/constants'
 
 export default {
   name: 'CategoriesDetails',
-  data: () => ({
-    categoryColors,
-    supportedCurrency
-  }),
+  components: {
+    CategoriesDetailsItem
+  },
   props: {
     categories: {
       type: Object,
       required: true
     }
-  }
+  },
+  data: () => ({
+    categoryColors,
+    supportedCurrency
+  })
 }
 </script>
 
@@ -42,29 +37,6 @@ export default {
 
   &__list {
     @include reset-list;
-  }
-  &__list-item {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: $color-text-grey;
-    letter-spacing: -0.24px;
-  }
-  &__swatch {
-    display: block;
-    margin-right: 10px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-  }
-  &__category {
-    min-width: 40%;
-  }
-  &__price {
-    margin-left: auto;
-    margin-right: 0;
   }
 }
 </style>

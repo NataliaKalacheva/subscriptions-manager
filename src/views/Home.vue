@@ -29,7 +29,6 @@
 </template>
 
 <script>
-// @ts-nocheck
 import { mapGetters, mapActions } from 'vuex'
 import CurrentDate from '@/components/Overview/CurrentDate'
 import Expense from '@/components/Overview/Expense'

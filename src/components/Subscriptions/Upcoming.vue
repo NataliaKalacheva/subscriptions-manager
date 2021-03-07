@@ -51,6 +51,8 @@ export default {
 
 <style lang="scss" scoped>
 .upcoming {
+  margin-bottom: 40px;
+
   &__empty {
     margin-bottom: 40px;
     text-align: center;

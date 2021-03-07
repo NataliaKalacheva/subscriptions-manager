@@ -24,14 +24,6 @@ export default {
     IconSubscriptions,
     IconSettings
   }
-  // data: () => ({
-  //   showNav: false
-  // }),
-  // methods: {
-  //   toggleNav() {
-  //     this.showNav = !this.showNav
-  //   }
-  // }
 }
 </script>
 

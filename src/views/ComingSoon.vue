@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import router from '@/router'
 import IconDevelopment from '@/components/Icons/IconDevelopment'
 
 export default {
@@ -24,7 +23,7 @@ export default {
   }),
   methods: {
     navigate() {
-      router.go(-1)
+      this.$router.back()
     }
   }
 }
