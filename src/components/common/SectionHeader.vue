@@ -2,7 +2,7 @@
   <div class="section-header page-width">
     <ui-icon-bubble />
     <h1 class="section-header__title">{{ title }}</h1>
-    <slot />
+    <p class="section-header__desc"><slot /></p>
   </div>
 </template>
 
@@ -30,6 +30,11 @@ export default {
     font-size: 20px;
     line-height: 1.4;
     letter-spacing: 0.39px;
+  }
+
+  &__desc {
+    max-width: 320px;
+    margin: 0 auto;
   }
 }
 </style>

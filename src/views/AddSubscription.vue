@@ -2,7 +2,7 @@
   <div class="page-subscriptions">
     <div class="page-subscriptions__content page-width">
       <breadcrumps />
-      <subscriptions-header :title="title"> {{ description }}</subscriptions-header>
+      <subscriptions-header :title="title">{{ description }}</subscriptions-header>
       <ui-container>
         <subscription-form />
       </ui-container>
