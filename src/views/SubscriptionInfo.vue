@@ -6,7 +6,7 @@
         :id="currentSubscription.id"
         :icon="currentSubscription.icon"
       >
-        <p>{{ currentSubscription.description }}</p>
+        <p>{{ currentSubscription.appType }}</p>
         <div class="subscription-header__date">
           {{ currentSubscription.startDate | moment('DD MMMM YYYY') }}
         </div>
