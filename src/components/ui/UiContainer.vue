@@ -18,6 +18,14 @@ export default {
       type: Boolean,
       default: false
     },
+    collapsed: {
+      type: Boolean,
+      default: false
+    },
+    expanded: {
+      type: Boolean,
+      default: false
+    },
     color: {
       type: String,
       default: 'white'
@@ -30,7 +38,9 @@ export default {
     containerClasses() {
       return {
         'container--rounded': this.isRounded,
-        'container--inner': this.inner
+        'container--inner': this.inner,
+        'container--collapsed': this.collapsed,
+        'container--expanded': this.expanded
       }
     },
     containerStyles() {
@@ -48,7 +58,7 @@ export default {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 15px 33px 0;
+  padding: 15px $container-padding $container-padding * 2;
   background: white;
   color: $color-dark-blue;
 
@@ -61,17 +71,33 @@ export default {
   }
 
   &--inner {
-    margin-left: -33px;
-    margin-right: -33px;
+    margin-left: -$container-padding;
+    margin-right: -$container-padding;
+  }
+
+  &--collapsed {
+    padding-bottom: 0;
   }
 
   &--rounded {
     border-radius: 50px 50px 0 0;
   }
 
+  &--expanded {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    margin-left: 0;
+    overflow-y: auto;
+    border-radius: 0;
+    animation: transitionHeight 0.4s linear;
+  }
+
   @include mq($tab) {
     width: 100%;
-    max-width: 768px;
+    max-width: $page-width;
     margin: 0 auto;
   }
 }
@@ -84,5 +110,14 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+@keyframes transitionHeight {
+  from {
+    transform: translateY(400px);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 </style>

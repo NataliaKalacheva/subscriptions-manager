@@ -176,6 +176,7 @@ export default {
 
 <style lang="scss" scoped>
 .subscription-form {
+  padding-bottom: 40px;
   &__currency {
     position: absolute;
     top: 50%;

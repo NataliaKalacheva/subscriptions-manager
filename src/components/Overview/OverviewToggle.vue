@@ -18,7 +18,6 @@
 </template>
 
 <script>
-// @ts-nocheck
 import { mapActions, mapGetters } from 'vuex'
 
 export default {

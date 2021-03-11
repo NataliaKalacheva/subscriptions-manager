@@ -4,8 +4,12 @@
       <h4 class="discount-banner__title">{{ title }}</h4>
       <p class="discount-banner__text">{{ text }}</p>
       <img class="discount-banner__img" src="@/assets/finance.png" :alt="title" />
-      <ui-button class="discount-banner__button" type="primary" size="xs">{{ info }}</ui-button>
-      <ui-button class="discount-banner__button" size="xs">{{ cta }}</ui-button>
+      <router-link class="discount-banner__button-wrapper" tag="div" :to="{ name: 'ComingSoon' }">
+        <ui-button class="discount-banner__button" type="primary" size="xs">{{ info }}</ui-button>
+      </router-link>
+      <router-link class="discount-banner__button-wrapper" tag="div" :to="{ name: 'ComingSoon' }">
+        <ui-button class="discount-banner__button" size="xs">{{ cta }}</ui-button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -80,16 +84,17 @@ export default {
     max-width: 130px;
     grid-area: img;
   }
-  ::v-deep &__button {
-    width: auto;
-    margin-top: 15px;
-    height: 50px;
-    align-self: center;
-
+  &__button-wrapper {
     &:first-of-type {
       grid-area: btn;
       margin-right: 30px;
     }
+  }
+  ::v-deep &__button {
+    min-width: 90%;
+    margin-top: 15px;
+    height: 50px;
+    align-self: center;
   }
   &__ellipse {
     position: absolute;

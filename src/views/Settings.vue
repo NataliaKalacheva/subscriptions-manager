@@ -1,6 +1,6 @@
 <template>
   <div class="page-settings" v-if="user">
-    <div class="page-settings__content">
+    <div class="page-settings__content page-width">
       <settings-header :title="title" :userName="user.displayName || ''" />
       <ui-container>
         <settings-content />
@@ -32,8 +32,6 @@ export default {
 <style lang="scss" scoped>
 .page-settings {
   &__content {
-    max-width: 768px;
-    margin: 0 auto;
     position: relative;
     display: flex;
     flex-direction: column;

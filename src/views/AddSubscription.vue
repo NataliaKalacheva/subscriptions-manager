@@ -1,8 +1,8 @@
 <template>
   <div class="page-subscriptions">
-    <div class="page-subscriptions__content">
+    <div class="page-subscriptions__content page-width">
       <breadcrumps />
-      <subscriptions-header :title="title"> {{ description }}</subscriptions-header>
+      <subscriptions-header :title="title">{{ description }}</subscriptions-header>
       <ui-container>
         <subscription-form />
       </ui-container>
@@ -32,15 +32,13 @@ export default {
 
 <style lang="scss" scoped>
 .page-subscriptions {
-  padding: 0 $page-container-padding;
+  padding: 0 $page-padding;
   box-sizing: border-box;
   min-height: 100vh;
   width: 100%;
 
   &__content {
     position: relative;
-    max-width: 768px;
-    margin: 0 auto;
   }
 
   &,

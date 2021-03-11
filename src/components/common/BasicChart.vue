@@ -77,7 +77,9 @@ export default {
                 display: false
               },
               ticks: {
-                display: false
+                display: false,
+                beginAtZero: true,
+                precision: 0
               }
             }
           ]

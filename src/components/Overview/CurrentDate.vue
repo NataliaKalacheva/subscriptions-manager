@@ -7,8 +7,6 @@
 </template>
 
 <script>
-// @ts-nocheck
-
 export default {
   name: 'CurrentDay'
 }

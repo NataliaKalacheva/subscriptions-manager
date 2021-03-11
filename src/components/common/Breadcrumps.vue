@@ -1,29 +1,17 @@
 <template>
   <div class="breadcrumps">
-    <router-link :to="{ path: redirectLink }">
+    <button class="breadcrumps__item" @click="navigate">
       <ui-arrow dir="left" />
-    </router-link>
+    </button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Breadcrumps',
-  computed: {
-    redirectLink() {
-      const type = this.$route.name
-
-      switch (type) {
-        case 'SubscriptionInfo':
-        case 'AddSubscription':
-          return '/subscriptions'
-        case 'EditSubscription':
-          return `/subscription/${this.$route.params.subId}`
-        case 'EditProfile':
-          return `/settings`
-        default:
-          return '/'
-      }
+  methods: {
+    navigate() {
+      this.$router.back()
     }
   }
 }
@@ -34,5 +22,16 @@ export default {
   position: absolute;
   top: 25px;
   left: 25px;
+  z-index: 99;
+
+  &__item {
+    @include reset-button;
+  }
+
+  &__item,
+  &__item svg {
+    cursor: pointer;
+    color: white;
+  }
 }
 </style>

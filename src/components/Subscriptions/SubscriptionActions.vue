@@ -2,8 +2,8 @@
   <div>
     <Slide right no-overlay width="500">
       <router-link :to="{ name: 'EditSubscription' }">Edit</router-link>
-      <a href="#" @click.prevent="initDeleteSubscription()">Delete</a>
-      <a href="#" @click.prevent="initRenewSubscription()">Renew</a>
+      <a href="#" @click.prevent="initDeleteSubscription">Delete</a>
+      <a href="#" @click.prevent="initRenewSubscription">Renew</a>
     </Slide>
   </div>
 </template>
@@ -16,7 +16,7 @@ import { Slide } from 'vue-burger-menu'
 export default {
   name: 'SubscriptionActions',
   components: {
-    Slide // burger menu with slide effect
+    Slide
   },
   props: {
     id: {

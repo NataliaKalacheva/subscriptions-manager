@@ -9,7 +9,7 @@
       </carousel>
     </template>
     <template v-else>
-      All subscriptions is up to date!
+      <p class="upcoming__empty">All subscriptions is up to date!</p>
     </template>
   </div>
 </template>
@@ -51,8 +51,12 @@ export default {
 
 <style lang="scss" scoped>
 .upcoming {
-  max-width: 768px;
-  margin: 0 auto;
+  margin-bottom: 40px;
+
+  &__empty {
+    margin-bottom: 40px;
+    text-align: center;
+  }
 
   @include mq-max($tab) {
     margin-right: -20px;

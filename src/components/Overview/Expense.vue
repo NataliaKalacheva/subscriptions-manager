@@ -15,7 +15,6 @@
 </template>
 
 <script>
-// @ts-nocheck
 import { supportedCurrency } from '@/constants'
 
 export default {
@@ -40,7 +39,6 @@ export default {
 
 <style lang="scss" scoped>
 .expense {
-  max-width: 768px;
   margin: 20px auto;
   text-align: center;
 

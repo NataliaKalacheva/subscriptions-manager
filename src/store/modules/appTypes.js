@@ -36,8 +36,7 @@ const appTypes = {
     async getAppType({ dispatch }, name) {
       try {
         dispatch('toggleLoader', true, { root: true })
-        const response = await axios.get(`/types/application-types/${name}`)
-        console.log(response)
+        await axios.get(`/types/application-types/${name}`)
       } catch (err) {
         dispatch(
           'showNotification',

@@ -30,6 +30,11 @@ const authStore = {
       },
       root: true
     },
+    redirectOnLogin({ getters }) {
+      if (getters.isLogin) {
+        router.push({ path: '/' })
+      }
+    },
     async signUp({ dispatch }, { email, password }) {
       try {
         dispatch('toggleLoader', true, { root: true })
@@ -53,6 +58,15 @@ const authStore = {
       try {
         dispatch('toggleLoader', true, { root: true })
         await firebaseUpdateUser(user)
+        dispatch(
+          'showNotification',
+          {
+            type: 'success',
+            message: 'User updated',
+            title: ''
+          },
+          { root: true }
+        )
       } catch (err) {
         dispatch(
           'showNotification',
