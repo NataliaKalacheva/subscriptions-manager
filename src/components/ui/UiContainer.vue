@@ -84,7 +84,7 @@ export default {
   }
 
   &--expanded {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -99,6 +99,10 @@ export default {
     width: 100%;
     max-width: $page-width;
     margin: 0 auto;
+
+    &--expanded {
+      position: absolute;
+    }
   }
 }
 .fade-enter-active {

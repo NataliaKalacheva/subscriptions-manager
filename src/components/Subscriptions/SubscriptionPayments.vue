@@ -32,7 +32,7 @@ export default {
   },
   props: {
     subscription: {
-      type: String,
+      type: Object,
       required: true
     }
   },

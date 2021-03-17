@@ -56,7 +56,7 @@ export default {
       this.getOverview()
     }
   },
-  mounted() {
+  created() {
     this.getOverview()
   },
   computed: {

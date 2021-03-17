@@ -2,6 +2,7 @@
   <div class="page-subscriptions">
     <div class="page-subscriptions__content page-width">
       <subscription-header
+        v-if="currentSubscription.id"
         :title="currentSubscription.name"
         :id="currentSubscription.id"
         :icon="currentSubscription.icon"
@@ -26,7 +27,7 @@ export default {
     SubscriptionHeader,
     EditForm
   },
-  mounted() {
+  created() {
     this.getSubscriptionById(this.$route.params.subId)
   },
   computed: {

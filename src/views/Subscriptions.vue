@@ -24,7 +24,7 @@ export default {
     Upcoming,
     EmptyMessage
   },
-  mounted() {
+  created() {
     this.getSubscriptions()
   },
   computed: {
