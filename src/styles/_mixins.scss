@@ -1,0 +1,21 @@
+@mixin mq($viewport: null) {
+  @media screen and (min-width: $viewport + 1) {
+    @content;
+  }
+}
+@mixin mq-max($viewport: null) {
+  @media screen and (max-width: $viewport) {
+    @content;
+  }
+}
+
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin reset-button {
+  border: none;
+  background: none;
+}

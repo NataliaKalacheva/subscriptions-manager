@@ -1,20 +1,34 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <ui-loader />
+    <notification />
+    <router-view />
+    <navigation />
   </div>
 </template>
 
+<script>
+import Notification from '@/components/common/Notification'
+import Navigation from '@/components/common/Navigation'
+
+export default {
+  name: 'App',
+  components: {
+    Notification,
+    Navigation
+  }
+}
+</script>
+
 <style lang="scss">
 #app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 
 #nav {
@@ -22,11 +36,6 @@
 
   a {
     font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
   }
 }
 </style>

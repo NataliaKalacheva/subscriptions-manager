@@ -1,0 +1,42 @@
+body {
+  margin: 0 0;
+  color: $color-white;
+  background: $color-blue;
+  font-family: Arial, sans-serif;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.27px;
+}
+
+a {
+  color: $color-white;
+  transition: all .3s ease;
+
+  &.router-link-exact-active {
+    color: $color-grey;
+  }
+
+  &:hover, &:focus {
+    text-decoration: none;
+    opacity: .8;
+  }
+}
+
+.h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.page-width {
+  width: 100%;
+  max-width: $page-width;
+  margin-left: auto;
+  margin-right: auto;
+}
