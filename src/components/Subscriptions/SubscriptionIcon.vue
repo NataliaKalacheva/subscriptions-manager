@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'SubscriptionHeader',
+  name: 'SubscriptionIcon',
   props: {
     icon: {
       type: String,

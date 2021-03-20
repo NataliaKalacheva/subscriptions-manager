@@ -16,8 +16,7 @@ export default {
   },
   data: () => ({
     supportedCurrency,
-    barColors,
-    currentMonth: this.$moment().format('MMM')
+    barColors
   }),
   computed: {
     ...mapGetters('subscriptions', ['subscriptionHistory']),
@@ -31,6 +30,9 @@ export default {
       return this.labels.map(month =>
         this.currentMonth === month ? barColors.accent : barColors.general
       )
+    },
+    currentMonth() {
+      return this.$moment().format('MMM')
     },
     chartStyles() {
       return {

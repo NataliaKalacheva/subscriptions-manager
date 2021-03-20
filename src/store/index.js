@@ -37,11 +37,10 @@ firebase.auth().onAuthStateChanged(async userData => {
     const token = await getUserIdToken()
     localStorage.setItem(process.env.VUE_APP_LS_TOKEN_KEY, token)
     store.dispatch('setIsLoggedInState', Boolean(userData))
+    store.dispatch('appTypes/getAppAllTypes')
   } else {
     localStorage.removeItem(process.env.VUE_APP_LS_TOKEN_KEY)
   }
 })
-
-store.dispatch('appTypes/getAppAllTypes')
 
 export default store

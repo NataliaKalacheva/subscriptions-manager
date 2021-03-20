@@ -2,6 +2,7 @@
   <div class="subscription" v-if="currentSubscription.id">
     <div class="subscription__content page-width">
       <subscription-header
+        v-if="currentSubscription.id"
         :title="currentSubscription.name"
         :id="currentSubscription.id"
         :icon="currentSubscription.icon"
@@ -40,7 +41,7 @@ export default {
     SubscriptionPayments,
     SubscriptionPaymentsChart
   },
-  mounted() {
+  created() {
     this.getSubscriptionById(this.subscriptionId)
     this.getSubscriptionPayments(this.subscriptionId)
   },

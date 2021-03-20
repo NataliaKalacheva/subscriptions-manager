@@ -2,7 +2,14 @@
   <div class="upcoming">
     <h3 class="h3">{{ title }}</h3>
     <template v-if="isExist">
-      <carousel :per-page="2.3" :pagination-enabled="false">
+      <carousel
+        :per-page="2.3"
+        :perPageCustom="[
+          [480, 1.3],
+          [768, 2.3]
+        ]"
+        :pagination-enabled="false"
+      >
         <slide data-index="0" data-name="MySlideName" v-for="item in sortedUpcoming" :key="item.id">
           <upcoming-item :item="item" />
         </slide>

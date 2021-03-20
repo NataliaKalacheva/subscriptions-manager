@@ -1,5 +1,5 @@
 <template>
-  <div class="nav">
+  <div class="nav" v-if="isLogin">
     <router-link class="nav__link" :to="{ name: 'Home' }" area-label="Home">
       <icon-home />
     </router-link>
@@ -16,6 +16,7 @@
 import IconHome from '@/components/Icons/IconHome'
 import IconSubscriptions from '@/components/Icons/IconSubscriptions'
 import IconSettings from '@/components/Icons/IconSettings'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Navigation',
@@ -23,6 +24,9 @@ export default {
     IconHome,
     IconSubscriptions,
     IconSettings
+  },
+  computed: {
+    ...mapGetters('auth', ['isLogin'])
   }
 }
 </script>
