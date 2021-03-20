@@ -6,7 +6,7 @@ The app for tracking and managing paid subscriptions.
 
 ## Preview
 
-<img src="https://imgur.com/4Mg5IhA.gif" alt="Preview" width="150" />
+<img src="https://imgur.com/D426EtC.gif" alt="Preview" width="150" />
 
 ## Project setup
 ```
